@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up | CrisisMitra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="icon" href="./Material/logo.png" type="image/x-icon" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap");
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #0a0a0a;
+        color: #ffffff;
+      }
+      .auth-card {
+        background-color: #1a1a1a;
+        border: 1px solid #333333;
+        transition: all 0.3s ease;
+      }
+      .auth-card:hover {
+        border-color: #3b82f6;
+      }
+      .input-field {
+        background-color: #1a1a1a;
+        border: 1px solid #333333;
+        transition: all 0.2s ease;
+      }
+      .input-field:focus {
+        border-color: #3b82f6;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+      }
+      .gradient-bg {
+        background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+      }
+      .glow-effect {
+        box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+      }
+      .auth-divider {
+        border-top: 1px solid #333333;
+      }
+    </style>
+  </head>
+
+  <body class="min-h-screen bg-[#0A0A0A] flex items-center justify-center p-4">
+    <div class="w-full max-w-md">
+      <!-- Logo Header -->
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-bold text-blue-400 mb-2"><a href="./index.html">CrisisMitra</a></h1>
+        <p class="text-gray-400">Join our emergency response network</p>
+      </div>
+
+      <!-- Signup Card -->
+      <div class="auth-card rounded-xl p-8 glow-effect">
+        <h2 class="text-2xl font-bold text-center mb-6">Become a Volunteer</h2>
+        
+        <form class="space-y-4">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label for="first-name" class="block text-sm font-medium mb-2">First Name</label>
+              <input
+                type="text"
+                id="first-name"
+                class="input-field w-full px-4 py-3 rounded-lg text-white placeholder-gray-500"
+                placeholder="John"
+                required
+              />
+            </div>
+            <div>
+              <label for="last-name" class="block text-sm font-medium mb-2">Last Name</label>
+              <input
+                type="text"
+                id="last-name"
+                class="input-field w-full px-4 py-3 rounded-lg text-white placeholder-gray-500"
+                placeholder="Doe"
+                required
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-medium mb-2">Email</label>
+            <div class="relative">
+              <input
+                type="email"
+                id="email"
+                class="input-field w-full px-4 py-3 rounded-lg text-white placeholder-gray-500"
+                placeholder="volunteer@example.com"
+                required
+              />
+              <i data-feather="mail" class="absolute right-3 top-3 text-gray-500"></i>
+            </div>
+          </div>
+
+          <div>
+            <label for="password" class="block text-sm font-medium mb-2">Password</label>
+            <div class="relative">
+              <input
+                type="password"
+                id="password"
+                class="input-field w-full px-4 py-3 rounded-lg text-white placeholder-gray-500"
+                placeholder="••••••••"
+                required
+              />
+              <i data-feather="lock" class="absolute right-3 top-3 text-gray-500"></i>
+            </div>
+            <p class="text-xs text-gray-500 mt-1">Minimum 8 characters</p>
+          </div>
+
+          <div>
+            <label for="confirm-password" class="block text-sm font-medium mb-2">Confirm Password</label>
+            <div class="relative">
+              <input
+                type="password"
+                id="confirm-password"
+                class="input-field w-full px-4 py-3 rounded-lg text-white placeholder-gray-500"
+                placeholder="••••••••"
+                required
+              />
+              <i data-feather="lock" class="absolute right-3 top-3 text-gray-500"></i>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex items-start">
+              <div class="flex items-center h-5">
+                <input id="terms" type="checkbox" class="h-4 w-4 text-blue-500 focus:ring-blue-400 border-gray-300 rounded" required>
+              </div>
+              <div class="ml-3">
+                <label for="terms" class="text-sm text-gray-400">
+                  I agree to the <a href="#" class="text-blue-400 hover:text-blue-300">Terms of Service</a> and <a href="#" class="text-blue-400 hover:text-blue-300">Privacy Policy</a>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="gradient-bg w-full py-3 px-4 rounded-lg text-white font-medium hover:bg-blue-700 transition duration-200 flex items-center justify-center gap-2 mt-4"
+          >
+            <i data-feather="user-plus" class="w-5 h-5"></i>
+            <a href="./volunteer.html">Create Account</a>
+          </button>
+        </form>
+
+        <div class="auth-divider my-6 relative">
+          <span class="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#1a1a1a] px-4 text-sm text-gray-400">or</span>
+        </div>
+
+        <div class="space-y-4">
+          <button
+            class="w-full py-3 px-4 rounded-lg bg-[#1a1a1a] text-white font-medium hover:bg-[#222] border border-[#333] transition duration-200 flex items-center justify-center gap-2"
+          >
+            <i data-feather="facebook" class="w-5 h-5"></i>
+            Continue with Facebook
+          </button>
+          <button
+            class="w-full py-3 px-4 rounded-lg bg-[#1a1a1a] text-white font-medium hover:bg-[#222] border border-[#333] transition duration-200 flex items-center justify-center gap-2"
+          >
+            <i data-feather="google" class="w-5 h-5"></i>
+            Continue with Google
+          </button>
+        </div>
+
+        <p class="text-center text-sm text-gray-400 mt-6">
+          Already have an account? 
+          <a href="login.html" class="text-blue-400 hover:text-blue-300 font-medium">
+            Sign in
+          </a>
+        </p>
+      </div>
+
+      <div class="text-center mt-8 text-xs text-gray-600">
+        <p>© 2023 CrisisMitra. All rights reserved.</p>
+        <p class="mt-1">Emergency Response Network</p>
+      </div>
+    </div>
+
+    <script>
+      feather.replace();
+    </script>
+  </body>
+</html>

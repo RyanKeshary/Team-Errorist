@@ -45,26 +45,32 @@
     <!-- Vanta.js Background -->
     <div id="vanta-bg" class="fixed inset-0 -z-10 opacity-20"></div>
 
-    <!-- Language Switch -->
-    <div class="fixed top-6 right-6 z-50 flex gap-2">
-      <button
-        id="lang-en"
-        class="px-3 py-1 bg-white text-black rounded-full text-sm font-medium hover:scale-105 transition"
-      >
-        English
-      </button>
-      <button
-        id="lang-hi"
-        class="px-3 py-1 bg-white text-black rounded-full text-sm font-medium hover:scale-105 transition"
-      >
-        हिन्दी
-      </button>
-      <button
-        id="lang-mr"
-        class="px-3 py-1 bg-white text-black rounded-full text-sm font-medium hover:scale-105 transition"
-      >
-        मराठी
-      </button>
+    <!-- Collapsible Language Switch -->
+    <div
+      id="lang-switch"
+      class="fixed top-5 right-5 z-50 flex items-center gap-2 bg-[#0A0A0A]/70 backdrop-blur-md px-3 py-2 rounded-full border border-[#333] shadow-md transition-all duration-300 cursor-pointer"
+    >
+      <i data-feather="globe" class="w-5 h-5 text-white"></i>
+      <div id="lang-buttons" class="flex gap-2 transition-all duration-300">
+        <button
+          id="lang-en"
+          class="px-3 py-1 bg-white text-black rounded-full text-sm font-medium hover:scale-105 transition"
+        >
+          EN
+        </button>
+        <button
+          id="lang-hi"
+          class="px-3 py-1 bg-white text-black rounded-full text-sm font-medium hover:scale-105 transition"
+        >
+          हि
+        </button>
+        <button
+          id="lang-mr"
+          class="px-3 py-1 bg-white text-black rounded-full text-sm font-medium hover:scale-105 transition"
+        >
+          म
+        </button>
+      </div>
     </div>
 
     <!-- Hero Section -->
@@ -106,11 +112,11 @@
             <span data-i18n="dashboard">Dashboard</span>
           </a>
           <a
-            href="volunteer.html"
+            href="signin.html"
             class="border-2 border-white px-8 py-4 rounded-full font-medium text-lg hover:bg-white hover:text-black transition-all flex items-center gap-2"
           >
             <i data-feather="users"></i>
-            <span data-i18n="volunteerLogin">Volunteer Login</span>
+            <span data-i18n="volunteerLogin">User Login</span>
           </a>
         </div>
       </div>
@@ -309,7 +315,7 @@
             "Connect emergency responders with those in need through real-time coordination",
           sendSOS: "Send SOS",
           dashboard: "Dashboard",
-          volunteerLogin: "Volunteer Login",
+          volunteerLogin: "User Login",
           criticalFunc: "Critical Functionalities",
           offlineAvail: "Offline Availability",
           offlineDesc:
@@ -332,7 +338,7 @@
           heroText: "आपातकालीन सहायता को ज़रूरतमंदों से रियल-टाइम में जोड़ें",
           sendSOS: "एसओएस भेजें",
           dashboard: "डैशबोर्ड",
-          volunteerLogin: "स्वयंसेवक लॉगिन",
+          volunteerLogin: "उपयोगकर्ता लॉगिन",
           criticalFunc: "मुख्य विशेषताएँ",
           offlineAvail: "ऑफलाइन सुविधा",
           offlineDesc: "इंटरनेट न होने पर भी कार्य उपलब्ध रहेगा।",
@@ -354,7 +360,7 @@
             "आपत्कालीन मदतकार्यकर्त्यांना गरजू लोकांशी रिअल-टाइममध्ये जोडा",
           sendSOS: "एसओएस पाठवा",
           dashboard: "डॅशबोर्ड",
-          volunteerLogin: "स्वयंसेवक लॉगिन",
+          volunteerLogin: "उपयोगकर्ता लॉगिन",
           criticalFunc: "महत्त्वपूर्ण कार्ये",
           offlineAvail: "ऑफलाइन उपलब्धता",
           offlineDesc: "इंटरनेटशिवाय देखील कार्य उपलब्ध राहील.",
