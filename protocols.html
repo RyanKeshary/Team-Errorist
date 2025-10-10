@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relief Protocols | Crisis Beacon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0A0A0A;
+            color: #FFFFFF;
+        }
+        .card {
+            background-color: #1A1A1A;
+            border: 1px solid #333333;
+            border-radius: 0.75rem;
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            border-color: white;
+        }
+        .accordion-content {
+            display: none;
+            padding-top: 0.75rem;
+            color: #D3D3D3;
+        }
+        .accordion-header.active + .accordion-content {
+            display: block;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-[#0A0A0A]">
+    <!-- Header -->
+    <header class="px-4 py-6 border-b border-[#333333]">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-medium">Crisis Beacon</a>
+            <nav class="flex items-center gap-4 text-sm">
+                <a href="dashboard.html" class="hover:text-blue-400">Dashboard</a>
+                <a href="volunteer.html" class="hover:text-blue-400">Volunteers</a>
+                <a href="protocols.html" class="text-blue-400 font-medium">Protocols</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <main class="max-w-5xl mx-auto px-4 py-12">
+        <h1 class="text-3xl font-semibold mb-8 text-center">Emergency Response Protocols</h1>
+
+        <!-- General Safety Protocols -->
+        <div class="card p-6 mb-6">
+            <button class="accordion-header flex justify-between items-center w-full text-left font-medium text-lg">
+                <span><i data-feather="shield" class="inline w-5 h-5 mr-2 text-blue-400"></i> General Safety Guidelines</span>
+                <i data-feather="chevron-down" class="w-5 h-5"></i>
+            </button>
+            <div class="accordion-content mt-2">
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Always wear your safety gear before entering a disaster zone.</li>
+                    <li>Never move alone — coordinate with your assigned team leader.</li>
+                    <li>Report any hazards or missing supplies immediately through the app.</li>
+                    <li>Stay aware of surroundings; aftershocks or secondary hazards may occur.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Medical Emergency Protocols -->
+        <div class="card p-6 mb-6">
+            <button class="accordion-header flex justify-between items-center w-full text-left font-medium text-lg">
+                <span><i data-feather="activity" class="inline w-5 h-5 mr-2 text-red-400"></i> Medical Emergency Protocols</span>
+                <i data-feather="chevron-down" class="w-5 h-5"></i>
+            </button>
+            <div class="accordion-content mt-2">
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Check for pulse and breathing — administer CPR if trained.</li>
+                    <li>Use emergency bandages to stop bleeding immediately.</li>
+                    <li>Prioritize evacuation for victims with severe trauma.</li>
+                    <li>Use the app’s SOS feature to request medical reinforcement.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Communication Protocols -->
+        <div class="card p-6 mb-6">
+            <button class="accordion-header flex justify-between items-center w-full text-left font-medium text-lg">
+                <span><i data-feather="radio" class="inline w-5 h-5 mr-2 text-yellow-400"></i> Communication & Reporting</span>
+                <i data-feather="chevron-down" class="w-5 h-5"></i>
+            </button>
+            <div class="accordion-content mt-2">
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Use in-app chat for team communication — avoid personal channels.</li>
+                    <li>Report every mission update within 15 minutes of action.</li>
+                    <li>If offline, record updates manually and sync when online.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Evacuation Protocols -->
+        <div class="card p-6 mb-6">
+            <button class="accordion-header flex justify-between items-center w-full text-left font-medium text-lg">
+                <span><i data-feather="map-pin" class="inline w-5 h-5 mr-2 text-green-400"></i> Evacuation Protocols</span>
+                <i data-feather="chevron-down" class="w-5 h-5"></i>
+            </button>
+            <div class="accordion-content mt-2">
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Follow pre-mapped safe routes shown in the mission dashboard.</li>
+                    <li>Assist elderly and disabled individuals first.</li>
+                    <li>Keep evacuees calm; avoid panic through clear communication.</li>
+                    <li>Verify headcount before marking an area as cleared.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="text-center mt-12">
+            <p class="text-[#D3D3D3] mb-4">Need clarification on a specific procedure?</p>
+            <a href="sos.html" class="bg-red-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-red-700 transition-all inline-flex items-center gap-2">
+                <i data-feather="alert-circle" class="w-4 h-4"></i> Contact Command Center
+            </a>
+        </div>
+    </main>
+
+    <script>
+        feather.replace();
+
+        // Accordion Functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                header.classList.toggle('active');
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('i[data-feather="chevron-down"]');
+                content.classList.toggle('open');
+                icon.classList.toggle('rotate-180');
+            });
+        });
+    </script>
+</body>
+</html>
