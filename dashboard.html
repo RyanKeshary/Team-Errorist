@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crisis Beacon | Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0A0A0A;
+      color: #FFFFFF;
+    }
+    .card {
+      background-color: #1A1A1A;
+      border: 1px solid #333333;
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      border-color: white;
+      transform: translateY(-5px);
+    }
+    .stat-card {
+      background: linear-gradient(135deg, #1A1A1A 0%, #333333 100%);
+    }
+    #map {
+      height: 400px;
+      width: 100%;
+      border-radius: 10px;
+      z-index: 1;
+    }
+    .leaflet-popup-content-wrapper {
+      background-color: #1A1A1A;
+      color: #fff;
+    }
+    .leaflet-popup-tip { background-color: #1A1A1A; }
+    .leaflet-control-attribution { display: none; }
+    .btn-clear {
+      background: #dc2626;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      transition: 0.2s;
+    }
+    .btn-clear:hover { background: #b91c1c; }
+  </style>
+</head>
+
+<body class="min-h-screen bg-[#0A0A0A]">
+
+  <!-- Language Switch -->
+  <div class="fixed top-6 right-6 z-50 flex gap-2">
+    <button id="lang-en" class="px-3 py-1 bg-white text-black rounded-full text-sm font-medium hover:scale-105 transition">English</button>
+    <button id="lang-hi" class="px-3 py-1 bg-white text-black rounded-full text-sm font-medium hover:scale-105 transition">हिन्दी</button>
+    <button id="lang-mr" class="px-3 py-1 bg-white text-black rounded-full text-sm font-medium hover:scale-105 transition">मराठी</button>
+  </div>
+
+  <!-- Header -->
+  <header class="px-4 py-6 border-b border-[#333333]">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <a href="index.html" class="text-2xl font-medium">Crisis Beacon</a>
+      <div class="flex items-center gap-4">
+        <a href="sos.html" class="bg-red-600 text-white px-4 py-2 rounded-full text-sm flex items-center gap-2">
+          <i data-feather="alert-triangle" class="w-4 h-4"></i> <span data-i18n="sosBtn">SOS</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    <h1 data-i18n="responseDashboard" class="text-3xl font-medium mb-8">Response Dashboard</h1>
+    
+    <!-- Stats Overview -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <div class="stat-card p-6 rounded-xl">
+        <div class="flex items-center justify-between">
+          <div>
+            <p data-i18n="activeAlerts" class="text-[#D3D3D3] text-sm">Active Alerts</p>
+            <p class="text-3xl font-bold">24</p>
+          </div>
+          <div class="w-12 h-12 bg-red-600/20 rounded-full flex items-center justify-center">
+            <i data-feather="alert-circle" class="text-red-500"></i>
+          </div>
+        </div>
+      </div>
+      
+      <div class="stat-card p-6 rounded-xl">
+        <div class="flex items-center justify-between">
+          <div>
+            <p data-i18n="responders" class="text-[#D3D3D3] text-sm">Responders</p>
+            <p class="text-3xl font-bold">128</p>
+          </div>
+          <div class="w-12 h-12 bg-blue-600/20 rounded-full flex items-center justify-center">
+            <i data-feather="users" class="text-blue-500"></i>
+          </div>
+        </div>
+      </div>
+      
+      <div class="stat-card p-6 rounded-xl">
+        <div class="flex items-center justify-between">
+          <div>
+            <p data-i18n="resolvedToday" class="text-[#D3D3D3] text-sm">Resolved Today</p>
+            <p class="text-3xl font-bold">42</p>
+          </div>
+          <div class="w-12 h-12 bg-green-600/20 rounded-full flex items-center justify-center">
+            <i data-feather="check-circle" class="text-green-500"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Alerts -->
+    <div class="mb-8">
+      <h2 data-i18n="recentAlerts" class="text-xl font-medium mb-4">Recent Alerts</h2>
+      <div class="grid grid-cols-1 gap-4">
+        <div class="card p-4 rounded-lg">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 bg-red-600/20 rounded-full flex items-center justify-center">
+                <i data-feather="alert-triangle" class="text-red-500"></i>
+              </div>
+              <div>
+                <p class="font-medium" data-i18n="medicalEmergency">Medical Emergency</p>
+                <p class="text-sm text-[#D3D3D3]">12.3456° N, 98.7654° W</p>
+              </div>
+            </div>
+            <div class="text-sm text-[#D3D3D3]">5 min ago</div>
+          </div>
+        </div>
+        
+        <div class="card p-4 rounded-lg">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 bg-yellow-600/20 rounded-full flex items-center justify-center">
+                <i data-feather="alert-triangle" class="text-yellow-500"></i>
+              </div>
+              <div>
+                <p class="font-medium" data-i18n="trappedBuilding">Trapped in Building</p>
+                <p class="text-sm text-[#D3D3D3]">12.3478° N, 98.7632° W</p>
+              </div>
+            </div>
+            <div class="text-sm text-[#D3D3D3]">12 min ago</div>
+          </div>
+        </div>
+
+        <div class="card p-4 rounded-lg">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 bg-blue-600/20 rounded-full flex items-center justify-center">
+                <i data-feather="alert-triangle" class="text-blue-500"></i>
+              </div>
+              <div>
+                <p class="font-medium" data-i18n="floodAssist">Flood Assistance</p>
+                <p class="text-sm text-[#D3D3D3]">12.3421° N, 98.7689° W</p>
+              </div>
+            </div>
+            <div class="text-sm text-[#D3D3D3]">22 min ago</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Map -->
+    <div class="mb-8">
+      <h2 data-i18n="mapTitle" class="text-xl font-medium mb-4">Interactive Incident Map</h2>
+      <div class="card rounded-lg overflow-hidden p-4">
+        <div id="map"></div>
+        <div class="flex justify-end mt-4">
+          <button id="clearMarkers" class="btn-clear flex items-center gap-2 text-sm">
+            🗑 <span data-i18n="clearMarkers">Clear All Markers</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resources -->
+    <div>
+      <h2 data-i18n="resources" class="text-xl font-medium mb-4">Response Resources</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="card p-6 rounded-lg">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-12 h-12 bg-purple-600/20 rounded-full flex items-center justify-center">
+              <i data-feather="file-text" class="text-purple-500"></i>
+            </div>
+            <h3 data-i18n="protocols" class="text-lg font-medium">Protocols</h3>
+          </div>
+          <a href="protocols.html" class="block bg-[#1A1A1A] border border-[#333333] hover:border-blue-400 hover:bg-[#111111] transition-all rounded-lg px-6 py-4 text-center">
+            <p data-i18n="protocolDesc" class="text-[#D3D3D3] mb-2">View emergency response protocols and procedures.</p>
+            <span class="text-blue-400 font-medium flex items-center justify-center gap-2">
+              <i data-feather="book-open" class="w-4 h-4"></i> <span data-i18n="protocols">Protocols</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    feather.replace();
+
+    // Initialize map
+    const map = L.map('map').setView([20.5937, 78.9629], 5);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    let sosMarkers = JSON.parse(localStorage.getItem('sosMarkers')) || [];
+    sosMarkers.forEach(marker => {
+      L.marker([marker.lat, marker.lng])
+        .addTo(map)
+        .bindPopup(`<b>${marker.title}</b><br>${marker.description}`);
+    });
+
+    map.on('click', function (e) {
+      const title = prompt("Enter SOS Title (e.g. 'Flood Help Needed')");
+      const description = prompt("Enter short description (e.g. '3 people stranded near river')");
+      if (!title || !description) return;
+      const newMarker = { lat: e.latlng.lat, lng: e.latlng.lng, title, description };
+      L.marker([newMarker.lat, newMarker.lng]).addTo(map).bindPopup(`<b>${title}</b><br>${description}`).openPopup();
+      sosMarkers.push(newMarker);
+      localStorage.setItem('sosMarkers', JSON.stringify(sosMarkers));
+    });
+
+    document.getElementById('clearMarkers').addEventListener('click', () => {
+      if (confirm("Are you sure you want to clear all SOS markers?")) {
+        localStorage.removeItem('sosMarkers');
+        location.reload();
+      }
+    });
+
+    // Translations
+    const translations = {
+      en: {
+        sosBtn: "SOS",
+        responseDashboard: "Response Dashboard",
+        activeAlerts: "Active Alerts",
+        responders: "Responders",
+        resolvedToday: "Resolved Today",
+        recentAlerts: "Recent Alerts",
+        medicalEmergency: "Medical Emergency",
+        trappedBuilding: "Trapped in Building",
+        floodAssist: "Flood Assistance",
+        mapTitle: "Interactive Incident Map",
+        clearMarkers: "Clear All Markers",
+        resources: "Response Resources",
+        protocols: "Protocols",
+        protocolDesc: "View emergency response protocols and procedures."
+      },
+      hi: {
+        sosBtn: "एसओएस",
+        responseDashboard: "प्रतिक्रिया डैशबोर्ड",
+        activeAlerts: "सक्रिय अलर्ट",
+        responders: "उत्तरदाता",
+        resolvedToday: "आज हल किए गए",
+        recentAlerts: "हाल के अलर्ट",
+        medicalEmergency: "चिकित्सा आपातकाल",
+        trappedBuilding: "भवन में फंसे",
+        floodAssist: "बाढ़ सहायता",
+        mapTitle: "इंटरैक्टिव घटना मानचित्र",
+        clearMarkers: "सभी मार्कर हटाएं",
+        resources: "प्रतिक्रिया संसाधन",
+        protocols: "प्रोटोकॉल",
+        protocolDesc: "आपातकालीन प्रतिक्रिया प्रोटोकॉल और प्रक्रियाएँ देखें।"
+      },
+      mr: {
+        sosBtn: "एसओएस",
+        responseDashboard: "प्रतिसाद डॅशबोर्ड",
+        activeAlerts: "सक्रिय चेतावणी",
+        responders: "प्रतिसादकर्ते",
+        resolvedToday: "आज निराकरण झालेले",
+        recentAlerts: "अलीकडील चेतावणी",
+        medicalEmergency: "वैद्यकीय आपत्काल",
+        trappedBuilding: "इमारतीत अडकलेले",
+        floodAssist: "पूर मदत",
+        mapTitle: "परस्परसंवादी घटना नकाशा",
+        clearMarkers: "सर्व मार्कर साफ करा",
+        resources: "प्रतिसाद संसाधने",
+        protocols: "प्रोटोकॉल",
+        protocolDesc: "आपत्कालीन प्रतिसाद प्रोटोकॉल आणि प्रक्रिया पहा."
+      }
+    };
+
+    function setLanguage(lang) {
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        el.textContent = translations[lang][key] || key;
+      });
+    }
+
+    document.getElementById("lang-en").addEventListener("click", () => setLanguage("en"));
+    document.getElementById("lang-hi").addEventListener("click", () => setLanguage("hi"));
+    document.getElementById("lang-mr").addEventListener("click", () => setLanguage("mr"));
+  </script>
+</body>
+</html>
