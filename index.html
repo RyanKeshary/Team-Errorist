@@ -1,212 +1,459 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crisis Beacon | Disaster Coordination</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CrisisMitra | Every Second Counts</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <link rel="icon" href="./Material/logo.png" type="image/x-icon" />
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #0A0A0A; color: #FFFFFF; }
-        .glow-hover:hover { box-shadow: 0 0 15px rgba(255, 255, 255, 0.7); }
-        .pulse { animation: pulse 2s infinite; }
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
-            70% { box-shadow: 0 0 0 15px rgba(255, 255, 255, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap");
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #0a0a0a;
+        color: #ffffff;
+      }
+      .glow-hover:hover {
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+      }
+      .pulse {
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
         }
-        .map-overlay { background: linear-gradient(to bottom, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.5) 100%); }
+        70% {
+          box-shadow: 0 0 0 15px rgba(255, 255, 255, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+        }
+      }
+      .map-overlay {
+        background: linear-gradient(
+          to bottom,
+          rgba(10, 10, 10, 0.9) 0%,
+          rgba(10, 10, 10, 0.5) 100%
+        );
+      }
     </style>
-</head>
-<body class="min-h-screen bg-[#0A0A0A]">
+  </head>
+  <body class="min-h-screen bg-[#0A0A0A]">
     <!-- Vanta.js Background -->
     <div id="vanta-bg" class="fixed inset-0 -z-10 opacity-20"></div>
 
     <!-- Language Switch -->
     <div class="fixed top-6 right-6 z-50 flex gap-2">
-        <button id="lang-en" class="px-3 py-1 bg-white text-black rounded-full text-sm font-medium hover:scale-105 transition">English</button>
-        <button id="lang-hi" class="px-3 py-1 bg-white text-black rounded-full text-sm font-medium hover:scale-105 transition">हिन्दी</button>
-        <button id="lang-mr" class="px-3 py-1 bg-white text-black rounded-full text-sm font-medium hover:scale-105 transition">मराठी</button>
+      <button
+        id="lang-en"
+        class="px-3 py-1 bg-white text-black rounded-full text-sm font-medium hover:scale-105 transition"
+      >
+        English
+      </button>
+      <button
+        id="lang-hi"
+        class="px-3 py-1 bg-white text-black rounded-full text-sm font-medium hover:scale-105 transition"
+      >
+        हिन्दी
+      </button>
+      <button
+        id="lang-mr"
+        class="px-3 py-1 bg-white text-black rounded-full text-sm font-medium hover:scale-105 transition"
+      >
+        मराठी
+      </button>
     </div>
 
     <!-- Hero Section -->
-    <section class="relative h-screen flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 bg-[url('http://static.photos/black/1200x630/7')] bg-cover bg-center opacity-30"></div>
-        <div class="map-overlay absolute inset-0"></div>
-        
-        <div class="relative z-10 text-center px-4 max-w-4xl">
-            <h1 class="text-5xl md:text-7xl font-light mb-6 tracking-tight">
-                <span data-i18n="every" class="block mb-2">Every</span>
-                <span data-i18n="secondCounts" class="font-medium">Second Counts</span>
-            </h1>
-            <p data-i18n="heroText" class="text-xl md:text-2xl text-[#D3D3D3] mb-12 max-w-2xl mx-auto">
-                Connect emergency responders with those in need through real-time coordination
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="sos.html" class="bg-white text-black px-8 py-4 rounded-full font-medium text-lg glow-hover transform hover:scale-105 transition-all flex items-center gap-2">
-                    <i data-feather="alert-triangle"></i> <span data-i18n="sendSOS">Send SOS</span>
-                </a>
-                <a href="dashboard.html" class="bg-blue-600 text-white px-8 py-4 rounded-full font-medium text-lg glow-hover transform hover:scale-105 transition-all flex items-center gap-2">
-                    <i data-feather="activity"></i> <span data-i18n="dashboard">Dashboard</span>
-                </a>
-                <a href="volunteer.html" class="border-2 border-white px-8 py-4 rounded-full font-medium text-lg hover:bg-white hover:text-black transition-all flex items-center gap-2">
-                    <i data-feather="users"></i> <span data-i18n="volunteerLogin">Volunteer Login</span>
-                </a>
-            </div>
+    <section
+      class="relative h-screen flex items-center justify-center overflow-hidden"
+    >
+      <div
+        class="absolute inset-0 bg-[url('http://static.photos/black/1200x630/7')] bg-cover bg-center opacity-30"
+      ></div>
+      <div class="map-overlay absolute inset-0"></div>
+
+      <div class="relative z-10 text-center px-4 max-w-4xl">
+        <h1 class="text-5xl md:text-7xl font-light mb-6 tracking-tight">
+          <span data-i18n="every" class="block mb-2">Every</span>
+          <span data-i18n="secondCounts" class="font-medium"
+            >Second Counts</span
+          >
+        </h1>
+        <p
+          data-i18n="heroText"
+          class="text-xl md:text-2xl text-[#D3D3D3] mb-12 max-w-2xl mx-auto"
+        >
+          Connect emergency responders with those in need through real-time
+          coordination
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="sos.html"
+            class="bg-white text-black px-8 py-4 rounded-full font-medium text-lg glow-hover transform hover:scale-105 transition-all flex items-center gap-2"
+          >
+            <i data-feather="alert-triangle"></i>
+            <span data-i18n="sendSOS">Send SOS</span>
+          </a>
+          <a
+            href="dashboard.html"
+            class="bg-blue-600 text-white px-8 py-4 rounded-full font-medium text-lg glow-hover transform hover:scale-105 transition-all flex items-center gap-2"
+          >
+            <i data-feather="activity"></i>
+            <span data-i18n="dashboard">Dashboard</span>
+          </a>
+          <a
+            href="volunteer.html"
+            class="border-2 border-white px-8 py-4 rounded-full font-medium text-lg hover:bg-white hover:text-black transition-all flex items-center gap-2"
+          >
+            <i data-feather="users"></i>
+            <span data-i18n="volunteerLogin">Volunteer Login</span>
+          </a>
         </div>
-        <div class="absolute bottom-10 left-0 right-0 flex justify-center">
-            <a href="#features" class="animate-bounce">
-                <i data-feather="chevron-down" class="w-10 h-10"></i>
-            </a>
-        </div>
+      </div>
+      <div class="absolute bottom-10 left-0 right-0 flex justify-center">
+        <a href="#features" class="animate-bounce">
+          <i data-feather="chevron-down" class="w-10 h-10"></i>
+        </a>
+      </div>
     </section>
 
     <!-- Features Section -->
     <section id="features" class="py-20 px-4 max-w-6xl mx-auto">
-        <h2 data-i18n="criticalFunc" class="text-3xl font-medium mb-16 text-center">Critical Functionalities</h2>
-        
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- SOS System -->
-            <div class="bg-[#1A1A1A] p-6 rounded-xl border border-[#333333] hover:border-white transition-all">
-                <div class="w-14 h-14 bg-[#333333] rounded-full flex items-center justify-center mb-4">
-                    <i data-feather="alert-circle" class="w-6 h-6"></i>
-                </div>
-                <h3 data-i18n="offlineAvail" class="text-xl font-medium mb-3">Offline Availability</h3>
-                <p data-i18n="offlineDesc" class="text-[#D3D3D3]">Functionality remains available even without internet connection.</p>
-            </div>
-            
-            <!-- Map -->
-            <div class="bg-[#1A1A1A] p-6 rounded-xl border border-[#333333] hover:border-white transition-all">
-                <div class="w-14 h-14 bg-[#333333] rounded-full flex items-center justify-center mb-4">
-                    <i data-feather="map" class="w-6 h-6"></i>
-                </div>
-                <h3 data-i18n="liveMap" class="text-xl font-medium mb-3">Live Incident Map</h3>
-                <p data-i18n="liveMapDesc" class="text-[#D3D3D3]">Visualize emergencies and resources in real-time across affected areas.</p>
-            </div>
-            
-            <!-- Chatbot -->
-            <div class="bg-[#1A1A1A] p-6 rounded-xl border border-[#333333] hover:border-white transition-all">
-                <div class="w-14 h-14 bg-[#333333] rounded-full flex items-center justify-center mb-4">
-                    <i data-feather="message-square" class="w-6 h-6"></i>
-                </div>
-                <h3 data-i18n="aiAssist" class="text-xl font-medium mb-3">AI Assistant</h3>
-                <p data-i18n="aiAssistDesc" class="text-[#D3D3D3]">Get critical information without internet using our NLP system.</p>
-            </div>
+      <h2
+        data-i18n="criticalFunc"
+        class="text-3xl font-medium mb-16 text-center"
+      >
+        Critical Functionalities
+      </h2>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- SOS System -->
+        <div
+          class="bg-[#1A1A1A] p-6 rounded-xl border border-[#333333] hover:border-white transition-all"
+        >
+          <div
+            class="w-14 h-14 bg-[#333333] rounded-full flex items-center justify-center mb-4"
+          >
+            <i data-feather="alert-circle" class="w-6 h-6"></i>
+          </div>
+          <h3 data-i18n="offlineAvail" class="text-xl font-medium mb-3">
+            Offline Availability
+          </h3>
+          <p data-i18n="offlineDesc" class="text-[#D3D3D3]">
+            Functionality remains available even without internet connection.
+          </p>
         </div>
+
+        <!-- Map -->
+        <div
+          class="bg-[#1A1A1A] p-6 rounded-xl border border-[#333333] hover:border-white transition-all"
+        >
+          <div
+            class="w-14 h-14 bg-[#333333] rounded-full flex items-center justify-center mb-4"
+          >
+            <i data-feather="map" class="w-6 h-6"></i>
+          </div>
+          <h3 data-i18n="liveMap" class="text-xl font-medium mb-3">
+            Live Incident Map
+          </h3>
+          <p data-i18n="liveMapDesc" class="text-[#D3D3D3]">
+            Visualize emergencies and resources in real-time across affected
+            areas.
+          </p>
+        </div>
+
+        <!-- Chatbot -->
+        <div
+          class="bg-[#1A1A1A] p-6 rounded-xl border border-[#333333] hover:border-white transition-all"
+        >
+          <div
+            class="w-14 h-14 bg-[#333333] rounded-full flex items-center justify-center mb-4"
+          >
+            <i data-feather="message-square" class="w-6 h-6"></i>
+          </div>
+          <h3 data-i18n="aiAssist" class="text-xl font-medium mb-3">
+            AI Assistant
+          </h3>
+          <p data-i18n="aiAssistDesc" class="text-[#D3D3D3]">
+            Get critical information without internet using our NLP system.
+          </p>
+        </div>
+      </div>
     </section>
 
     <!-- Emergency CTA -->
     <section class="py-20 bg-[#1A1A1A]">
-        <div class="max-w-4xl mx-auto text-center px-4">
-            <div class="p-8 bg-[#0A0A0A] rounded-xl border border-[#333333]">
-                <h2 data-i18n="needHelp" class="text-3xl font-medium mb-6">Need Immediate Help?</h2>
-                <button class="pulse bg-red-600 text-white px-10 py-5 rounded-full font-bold text-xl glow-hover transform hover:scale-105 transition-all flex items-center gap-3 mx-auto">
-                    <i data-feather="alert-octagon"></i> <span data-i18n="emergencyAlert">EMERGENCY ALERT</span>
-                </button>
-                <p data-i18n="notifyMsg" class="mt-6 text-[#D3D3D3]">This will notify all nearby responders of your exact location</p>
-            </div>
+      <div class="max-w-4xl mx-auto text-center px-4">
+        <div class="p-8 bg-[#0A0A0A] rounded-xl border border-[#333333]">
+          <h2 data-i18n="needHelp" class="text-3xl font-medium mb-6">
+            Need Immediate Help?
+          </h2>
+          <a
+            href="./sos.html"
+            class="pulse bg-red-600 text-white px-10 py-5 rounded-full font-bold text-xl glow-hover transform hover:scale-105 transition-all flex items-center gap-3 mx-auto"
+          >
+            <i data-feather="alert-octagon"></i>
+            <span data-i18n="emergencyAlert">EMERGENCY ALERT</span>
+          </a>
+
+          <p data-i18n="notifyMsg" class="mt-6 text-[#D3D3D3]">
+            This will notify all nearby responders of your exact location
+          </p>
         </div>
+      </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 px-4 border-t border-[#333333]">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
-            <div class="mb-6 md:mb-0">
-                <h3 class="text-2xl font-medium mb-2">Crisis Beacon</h3>
-                <p data-i18n="footerText" class="text-[#D3D3D3]">Real-time disaster relief coordination</p>
-            </div>
-            <div class="flex gap-6">
-                <a href="#" class="text-[#D3D3D3] hover:text-white transition-all"><i data-feather="github"></i></a>
-                <a href="#" class="text-[#D3D3D3] hover:text-white transition-all"><i data-feather="twitter"></i></a>
-                <a href="#" class="text-[#D3D3D3] hover:text-white transition-all"><i data-feather="linkedin"></i></a>
-            </div>
+    <footer class="py-12 px-4 border-t border-[#333333] relative z-50">
+      <div
+        class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center"
+      >
+        <div class="mb-6 md:mb-0 text-center md:text-left">
+          <h3 class="text-2xl font-medium mb-2">CrisisMitra</h3>
+          <p data-i18n="footerText" class="text-[#D3D3D3]">
+            Real-time disaster relief coordination
+          </p>
         </div>
+
+        <!-- Social Icons -->
+        <div class="flex gap-6 justify-center md:justify-end">
+          <a
+            href="#"
+            class="text-[#D3D3D3] transition-all hover:text-[#1877F2] glow-hover"
+            title="Facebook"
+          >
+            <i data-feather="facebook"></i>
+          </a>
+          <a
+            href="#"
+            class="text-[#D3D3D3] transition-all hover:text-[#1DA1F2] glow-hover"
+            title="Twitter"
+          >
+            <i data-feather="twitter"></i>
+          </a>
+          <a
+            href="#"
+            class="text-[#D3D3D3] transition-all hover:text-[#E1306C] glow-hover"
+            title="Instagram"
+          >
+            <i data-feather="instagram"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="mt-8 text-center">
+        <p
+          class="text-[#666] text-sm hover:text-white transition-all glow-hover inline-block"
+        >
+          © 2025 CrisisMitra. All Rights Reserved.
+        </p>
+      </div>
     </footer>
 
+    <style>
+      /* --- Clean Glow Fix --- */
+      .glow-hover {
+        transition: all 0.3s ease-in-out;
+      }
+
+      /* TEXT ELEMENTS — copyright, links, etc. */
+      p.glow-hover:hover,
+      span.glow-hover:hover,
+      h1.glow-hover:hover,
+      h2.glow-hover:hover,
+      h3.glow-hover:hover,
+      a.glow-hover.inline-block:hover {
+        text-shadow: 0 0 50px currentColor, 0 0 10px currentColor,
+          0 0 20px currentColor, 0 0 40px currentColor;
+        box-shadow: none !important;
+        transform: none;
+      }
+
+      /* BUTTONS & ICON LINKS — keep scale, no box or text glow */
+      a.glow-hover:hover,
+      button.glow-hover:hover {
+        transform: scale(1.05);
+        text-shadow: none !important;
+        box-shadow: none !important;
+      }
+    </style>
+
     <!-- Chatbot Embed -->
-    <script src='https://www.noupe.com/embed/0199cc5a78967a5e8e7d90d4bec06d4f5e41.js'></script>
+    <script src="https://www.noupe.com/embed/0199cc5a78967a5e8e7d90d4bec06d4f5e41.js"></script>
 
     <script>
-        // Vanta background
-        VANTA.NET({ el: "#vanta-bg", color: 0xffffff, backgroundColor: 0x0A0A0A, points: 8, maxDistance: 15, spacing: 15 });
+      // Vanta background
+      VANTA.NET({
+        el: "#vanta-bg",
+        color: 0xffffff,
+        backgroundColor: 0x0a0a0a,
+        points: 8,
+        maxDistance: 15,
+        spacing: 15,
+      });
 
-        // Feather icons
-        feather.replace();
+      // Feather icons
+      feather.replace();
 
-        // Translations
-        const translations = {
-            en: {
-                every: "Every",
-                secondCounts: "Second Counts",
-                heroText: "Connect emergency responders with those in need through real-time coordination",
-                sendSOS: "Send SOS",
-                dashboard: "Dashboard",
-                volunteerLogin: "Volunteer Login",
-                criticalFunc: "Critical Functionalities",
-                offlineAvail: "Offline Availability",
-                offlineDesc: "Functionality remains available even without internet connection.",
-                liveMap: "Live Incident Map",
-                liveMapDesc: "Visualize emergencies and resources in real-time across affected areas.",
-                aiAssist: "AI Assistant",
-                aiAssistDesc: "Get critical information without internet using our NLP system.",
-                needHelp: "Need Immediate Help?",
-                emergencyAlert: "EMERGENCY ALERT",
-                notifyMsg: "This will notify all nearby responders of your exact location",
-                footerText: "Real-time disaster relief coordination"
-            },
-            hi: {
-                every: "हर",
-                secondCounts: "सेकंड मायने रखता है",
-                heroText: "आपातकालीन सहायता को ज़रूरतमंदों से रियल-टाइम में जोड़ें",
-                sendSOS: "एसओएस भेजें",
-                dashboard: "डैशबोर्ड",
-                volunteerLogin: "स्वयंसेवक लॉगिन",
-                criticalFunc: "मुख्य विशेषताएँ",
-                offlineAvail: "ऑफलाइन सुविधा",
-                offlineDesc: "इंटरनेट न होने पर भी कार्य उपलब्ध रहेगा।",
-                liveMap: "लाइव घटना मानचित्र",
-                liveMapDesc: "प्रभावित क्षेत्रों में आपात स्थितियों और संसाधनों को रियल-टाइम में देखें।",
-                aiAssist: "एआई सहायक",
-                aiAssistDesc: "हमारे NLP सिस्टम का उपयोग करके बिना इंटरनेट जानकारी प्राप्त करें।",
-                needHelp: "तुरंत मदद चाहिए?",
-                emergencyAlert: "आपातकालीन चेतावनी",
-                notifyMsg: "यह आपके आस-पास के सभी उत्तरदाताओं को सूचित करेगा।",
-                footerText: "रियल-टाइम आपदा राहत समन्वय"
-            },
-            mr: {
-                every: "प्रत्येक",
-                secondCounts: "सेकंद महत्त्वाचा आहे",
-                heroText: "आपत्कालीन मदतकार्यकर्त्यांना गरजू लोकांशी रिअल-टाइममध्ये जोडा",
-                sendSOS: "एसओएस पाठवा",
-                dashboard: "डॅशबोर्ड",
-                volunteerLogin: "स्वयंसेवक लॉगिन",
-                criticalFunc: "महत्त्वपूर्ण कार्ये",
-                offlineAvail: "ऑफलाइन उपलब्धता",
-                offlineDesc: "इंटरनेटशिवाय देखील कार्य उपलब्ध राहील.",
-                liveMap: "लाइव्ह घटना नकाशा",
-                liveMapDesc: "प्रभावित भागातील आपत्कालीन घटना आणि साधने रिअल-टाइममध्ये पहा.",
-                aiAssist: "एआय सहाय्यक",
-                aiAssistDesc: "इंटरनेटशिवाय आमच्या NLP प्रणालीद्वारे माहिती मिळवा.",
-                needHelp: "त्वरित मदत हवी आहे?",
-                emergencyAlert: "आपत्कालीन सूचना",
-                notifyMsg: "हे आपल्या आसपासच्या सर्व प्रतिसादकर्त्यांना सूचित करेल.",
-                footerText: "रिअल-टाइम आपत्ती निवारण समन्वय"
-            }
-        };
+      // Translations
+      const translations = {
+        en: {
+          every: "Every",
+          secondCounts: "Second Counts",
+          heroText:
+            "Connect emergency responders with those in need through real-time coordination",
+          sendSOS: "Send SOS",
+          dashboard: "Dashboard",
+          volunteerLogin: "Volunteer Login",
+          criticalFunc: "Critical Functionalities",
+          offlineAvail: "Offline Availability",
+          offlineDesc:
+            "Functionality remains available even without internet connection.",
+          liveMap: "Live Incident Map",
+          liveMapDesc:
+            "Visualize emergencies and resources in real-time across affected areas.",
+          aiAssist: "AI Assistant",
+          aiAssistDesc:
+            "Get critical information without internet using our NLP system.",
+          needHelp: "Need Immediate Help?",
+          emergencyAlert: "EMERGENCY ALERT",
+          notifyMsg:
+            "This will notify all nearby responders of your exact location",
+          footerText: "Real-time disaster relief coordination",
+        },
+        hi: {
+          every: "हर",
+          secondCounts: "सेकंड मायने रखता है",
+          heroText: "आपातकालीन सहायता को ज़रूरतमंदों से रियल-टाइम में जोड़ें",
+          sendSOS: "एसओएस भेजें",
+          dashboard: "डैशबोर्ड",
+          volunteerLogin: "स्वयंसेवक लॉगिन",
+          criticalFunc: "मुख्य विशेषताएँ",
+          offlineAvail: "ऑफलाइन सुविधा",
+          offlineDesc: "इंटरनेट न होने पर भी कार्य उपलब्ध रहेगा।",
+          liveMap: "लाइव घटना मानचित्र",
+          liveMapDesc:
+            "प्रभावित क्षेत्रों में आपात स्थितियों और संसाधनों को रियल-टाइम में देखें।",
+          aiAssist: "एआई सहायक",
+          aiAssistDesc:
+            "हमारे NLP सिस्टम का उपयोग करके बिना इंटरनेट जानकारी प्राप्त करें।",
+          needHelp: "तुरंत मदद चाहिए?",
+          emergencyAlert: "आपातकालीन चेतावनी",
+          notifyMsg: "यह आपके आस-पास के सभी उत्तरदाताओं को सूचित करेगा।",
+          footerText: "रियल-टाइम आपदा राहत समन्वय",
+        },
+        mr: {
+          every: "प्रत्येक",
+          secondCounts: "सेकंद महत्त्वाचा आहे",
+          heroText:
+            "आपत्कालीन मदतकार्यकर्त्यांना गरजू लोकांशी रिअल-टाइममध्ये जोडा",
+          sendSOS: "एसओएस पाठवा",
+          dashboard: "डॅशबोर्ड",
+          volunteerLogin: "स्वयंसेवक लॉगिन",
+          criticalFunc: "महत्त्वपूर्ण कार्ये",
+          offlineAvail: "ऑफलाइन उपलब्धता",
+          offlineDesc: "इंटरनेटशिवाय देखील कार्य उपलब्ध राहील.",
+          liveMap: "लाइव्ह घटना नकाशा",
+          liveMapDesc:
+            "प्रभावित भागातील आपत्कालीन घटना आणि साधने रिअल-टाइममध्ये पहा.",
+          aiAssist: "एआय सहाय्यक",
+          aiAssistDesc: "इंटरनेटशिवाय आमच्या NLP प्रणालीद्वारे माहिती मिळवा.",
+          needHelp: "त्वरित मदत हवी आहे?",
+          emergencyAlert: "आपत्कालीन सूचना",
+          notifyMsg: "हे आपल्या आसपासच्या सर्व प्रतिसादकर्त्यांना सूचित करेल.",
+          footerText: "रिअल-टाइम आपत्ती निवारण समन्वय",
+        },
+      };
 
-        function setLanguage(lang) {
-            document.querySelectorAll("[data-i18n]").forEach(el => {
-                const key = el.getAttribute("data-i18n");
-                el.textContent = translations[lang][key] || key;
-            });
-        }
+      function setLanguage(lang) {
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          el.textContent = translations[lang][key] || key;
+        });
+      }
 
-        document.getElementById("lang-en").addEventListener("click", () => setLanguage("en"));
-        document.getElementById("lang-hi").addEventListener("click", () => setLanguage("hi"));
-        document.getElementById("lang-mr").addEventListener("click", () => setLanguage("mr"));
+      document
+        .getElementById("lang-en")
+        .addEventListener("click", () => setLanguage("en"));
+      document
+        .getElementById("lang-hi")
+        .addEventListener("click", () => setLanguage("hi"));
+      document
+        .getElementById("lang-mr")
+        .addEventListener("click", () => setLanguage("mr"));
     </script>
-</body>
-</html>
+    <!-- Noupe AI Chatbot Embed -->
+    <script src="https://www.noupe.com/embed/0199cc5a78967a5e8e7d90d4bec06d4f5e41.js"></script>
 
+    <style>
+      /* ---- Footer fix ---- */
+      footer {
+        position: relative;
+        z-index: 1;
+        padding-bottom: 100px; /* space for chat bubble */
+      }
+
+      /* ---- Chatbot container styling ---- */
+      #JotformAgent-0199cc5a78967a5e8e7d90d4bec06d4f5e41 {
+        position: fixed !important;
+        bottom: 30px !important;
+        right: 30px !important;
+        z-index: 9999 !important; /* stays above everything */
+        animation: fadeInUp 1.2s ease-out, floaty 3s ease-in-out infinite;
+        transition: all 0.3s ease-in-out;
+      }
+
+      /* ---- Adjust chat area popup when open ---- */
+      [id^="jfPopupContainer"] {
+        bottom: 100px !important; /* lifts chatbot window slightly above footer */
+        right: 20px !important;
+        z-index: 99999 !important;
+      }
+
+      /* ---- Entrance Animation ---- */
+      @keyframes fadeInUp {
+        0% {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ---- Floating/Breathing effect ---- */
+      @keyframes floaty {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-6px);
+        }
+      }
+
+      /* ---- Hover glow ---- */
+      #JotformAgent-0199cc5a78967a5e8e7d90d4bec06d4f5e41:hover {
+        box-shadow: 0 0 25px rgba(0, 150, 255, 0.6);
+      }
+
+      /* ---- Responsive (mobile safe) ---- */
+      @media (max-width: 640px) {
+        #JotformAgent-0199cc5a78967a5e8e7d90d4bec06d4f5e41 {
+          bottom: 20px !important;
+          right: 20px !important;
+        }
+        [id^="jfPopupContainer"] {
+          bottom: 80px !important;
+          right: 10px !important;
+        }
+      }
+    </style>
+  </body>
+</html>

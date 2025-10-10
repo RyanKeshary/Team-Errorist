@@ -1,218 +1,179 @@
-<!DOCTYPE html>
+now this <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Send SOS | Crisis Beacon</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/feather-icons"></script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #0A0A0A;
-      color: #FFFFFF;
-    }
-    .form-input {
-      background-color: #1A1A1A;
-      border: 1px solid #333333;
-      color: white;
-    }
-    .form-input:focus {
-      outline: none;
-      border-color: white;
-      box-shadow: 0 0 0 2px rgba(255,255,255,0.2);
-    }
-    .offline-badge {
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0% { opacity: 0.6; }
-      50% { opacity: 1; }
-      100% { opacity: 0.6; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send SOS | Crisis Beacon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0A0A0A;
+            color: #FFFFFF;
+        }
+        .form-input {
+            background-color: #1A1A1A;
+            border: 1px solid #333333;
+            color: white;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: white;
+            box-shadow: 0 0 0 2px rgba(255,255,255,0.2);
+        }
+        .offline-badge {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+    </style>
 </head>
-
 <body class="min-h-screen bg-[#0A0A0A]">
-  <!-- Header -->
-  <header class="px-4 py-6 border-b border-[#333333]">
-    <div class="max-w-6xl mx-auto flex justify-between items-center">
-      <a href="index.html" class="text-2xl font-medium" id="title">Crisis Beacon</a>
-
-      <div class="flex items-center gap-4">
-        <!-- Language Selector -->
-        <select id="languageSelector" class="bg-[#1A1A1A] border border-[#333333] px-3 py-1 rounded-lg text-sm">
-          <option value="en">English</option>
-          <option value="hi">हिंदी</option>
-          <option value="mr">मराठी</option>
-        </select>
-
-        <div class="flex items-center gap-2 bg-[#333333] px-3 py-1 rounded-full">
-          <i data-feather="wifi-off" class="w-4 h-4"></i>
-          <span class="text-sm offline-badge" id="offline">Offline Mode</span>
+    <!-- Header -->
+    <header class="px-4 py-6 border-b border-[#333333]">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-medium">Crisis Beacon</a>
+            <div class="flex items-center gap-2 bg-[#333333] px-3 py-1 rounded-full">
+                <i data-feather="wifi-off" class="w-4 h-4"></i>
+                <span class="text-sm offline-badge">Offline Mode</span>
+            </div>
         </div>
-      </div>
-    </div>
-  </header>
+    </header>
 
-  <main class="max-w-2xl mx-auto px-4 py-12">
-    <div class="text-center mb-12">
-      <h1 class="text-3xl font-medium mb-4" id="heading">Send Distress Signal</h1>
-      <p class="text-[#D3D3D3]" id="subtext">
-        This alert will be sent to all nearby responders with your location
-      </p>
-    </div>
-
-    <form class="space-y-6">
-      <div>
-        <label class="block mb-2" id="labelName">Your Name</label>
-        <input type="text" class="form-input w-full px-4 py-3 rounded-lg" placeholder="Full name (optional)">
-      </div>
-
-      <div>
-        <label class="block mb-2" id="labelLocation">Location</label>
-        <div class="relative">
-          <input 
-            type="text" 
-            id="locationInput"
-            class="form-input w-full px-4 py-3 rounded-lg bg-[#1A1A1A] border border-[#333333] text-white placeholder-[#666666]" 
-            placeholder="Detecting..."
-            value="Detecting location..."
-            readonly
-          >
-
-          <button type="button" id="detectLocation" class="absolute right-12 top-3 text-[#D3D3D3] hover:text-white" title="Detect Location">
-            <i data-feather="map-pin"></i>
-          </button>
-
-          <button type="button" id="openMap" class="absolute right-3 top-3 text-[#D3D3D3] hover:text-white" title="Open Map">
-            <i data-feather="map"></i>
-          </button>
+    <main class="max-w-2xl mx-auto px-4 py-12">
+        <div class="text-center mb-12">
+            <h1 class="text-3xl font-medium mb-4">Send Distress Signal</h1>
+            <p class="text-[#D3D3D3]">This alert will be sent to all nearby responders with your location</p>
         </div>
-        <p class="text-sm text-[#D3D3D3] mt-1" id="locationNote">
-          We are using your device location services, or you can select manually on the map.
-        </p>
-      </div>
 
-      <div>
-        <label class="block mb-2" id="labelEmergency">Type of Emergency</label>
-        <select class="form-input w-full px-4 py-3 rounded-lg" id="emergencySelect">
-          <option value="">Select emergency type</option>
-          <option value="medical">Medical Emergency</option>
-          <option value="trapped">Trapped/Rescue Needed</option>
-          <option value="fire">Fire</option>
-          <option value="flood">Flood</option>
-          <option value="other">Other Critical Need</option>
-        </select>
-      </div>
+        <form class="space-y-6">
+            <div>
+                <label class="block mb-2">Your Name</label>
+                <input type="text" class="form-input w-full px-4 py-3 rounded-lg" placeholder="Full name (optional)">
+            </div>
 
-      <div>
-        <label class="block mb-2" id="labelDetails">Additional Details</label>
-        <textarea class="form-input w-full px-4 py-3 rounded-lg h-32" placeholder="Brief description of your emergency"></textarea>
-      </div>
+            <div>
+                <label class="block mb-2">Location</label>
+<div class="relative">
+  <input 
+    type="text" 
+    id="locationInput"
+    class="form-input w-full px-4 py-3 rounded-lg bg-[#1A1A1A] border border-[#333333] text-white placeholder-[#666666]" 
+    placeholder="Detecting..."
+    value="Detecting location..."
+    readonly
+  >
 
-      <div>
-        <label class="block mb-2" id="labelUpload">Photo/Video Evidence (Optional)</label>
-        <div class="border-2 border-dashed border-[#333333] rounded-lg p-8 text-center hover:border-white transition-all cursor-pointer">
-          <i data-feather="upload" class="w-8 h-8 mx-auto mb-2"></i>
-          <p class="text-[#D3D3D3]" id="uploadText">Click to upload or drag and drop</p>
-          <p class="text-sm text-[#666666] mt-1" id="uploadNote">Files will be sent when connection is restored</p>
+  <!-- Detect Location Button -->
+  <button 
+    type="button" 
+    id="detectLocation" 
+    class="absolute right-12 top-3 text-[#D3D3D3] hover:text-white"
+    title="Detect Location"
+  >
+    <i data-feather="map-pin"></i>
+  </button>
+
+  <!-- Redirect to Map Button -->
+  <button 
+    type="button" 
+    id="openMap" 
+    class="absolute right-3 top-3 text-[#D3D3D3] hover:text-white"
+    title="Open Map to Select Location"
+  >
+    <i data-feather="map"></i>
+  </button>
+</div>
+
+                <p class="text-sm text-[#D3D3D3] mt-1">
+                We are using your device location services, or you can select manually on the map.
+                </p>
+
+                <script>
+                feather.replace();
+
+                // Detect location automatically
+                document.getElementById("detectLocation").addEventListener("click", () => {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition((position) => {
+                    const { latitude, longitude } = position.coords;
+                    document.getElementById("locationInput").value = `${latitude.toFixed(5)}, ${longitude.toFixed(5)}`;
+                    }, () => {
+                    alert("Unable to retrieve location. Please enable GPS.");
+                    });
+                } else {
+                    alert("Geolocation not supported by your browser.");
+                }
+                });
+
+                // Redirect to map page to select manually
+                document.getElementById("openMap").addEventListener("click", () => {
+                window.location.href = "map.html"; // 🔗 Replace with your actual map page path
+                });
+                </script>
+
+            </div>
+
+            <div>
+                <label class="block mb-2">Type of Emergency</label>
+                <select class="form-input w-full px-4 py-3 rounded-lg">
+                    <option value="">Select emergency type</option>
+                    <option value="medical">Medical Emergency</option>
+                    <option value="trapped">Trapped/Rescue Needed</option>
+                    <option value="fire">Fire</option>
+                    <option value="flood">Flood</option>
+                    <option value="other">Other Critical Need</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="block mb-2">Additional Details</label>
+                <textarea class="form-input w-full px-4 py-3 rounded-lg h-32" placeholder="Brief description of your emergency"></textarea>
+            </div>
+
+            <div>
+                <label class="block mb-2">Photo/Video Evidence (Optional)</label>
+                <div class="border-2 border-dashed border-[#333333] rounded-lg p-8 text-center hover:border-white transition-all cursor-pointer">
+                    <i data-feather="upload" class="w-8 h-8 mx-auto mb-2"></i>
+                    <p class="text-[#D3D3D3]">Click to upload or drag and drop</p>
+                    <p class="text-sm text-[#666666] mt-1">Files will be sent when connection is restored</p>
+                </div>
+            </div>
+
+            <div class="pt-6">
+                <button type="submit" class="w-full bg-white text-black px-6 py-4 rounded-lg font-medium text-lg flex items-center justify-center gap-2 hover:bg-opacity-90 transition-all">
+                    <i data-feather="send"></i> Send Emergency Alert
+                </button>
+            </div>
+        </form>
+
+        <div class="mt-12 p-4 bg-[#1A1A1A] rounded-lg border border-[#333333]">
+            <div class="flex items-start gap-3">
+                <i data-feather="alert-circle" class="w-5 h-5 mt-0.5"></i>
+                <div>
+                    <h3 class="font-medium mb-1">Offline Notice</h3>
+                    <p class="text-sm text-[#D3D3D3]">Your alert has been queued and will automatically send when connection is restored. Stay in this location if possible.</p>
+                </div>
+            </div>
         </div>
-      </div>
+    </main>
 
-      <div class="pt-6">
-        <button type="submit" class="w-full bg-white text-black px-6 py-4 rounded-lg font-medium text-lg flex items-center justify-center gap-2 hover:bg-opacity-90 transition-all">
-          <i data-feather="send"></i> <span id="btnSend">Send Emergency Alert</span>
-        </button>
-      </div>
-    </form>
-
-    <div class="mt-12 p-4 bg-[#1A1A1A] rounded-lg border border-[#333333]">
-      <div class="flex items-start gap-3">
-        <i data-feather="alert-circle" class="w-5 h-5 mt-0.5"></i>
-        <div>
-          <h3 class="font-medium mb-1" id="offlineTitle">Offline Notice</h3>
-          <p class="text-sm text-[#D3D3D3]" id="offlineText">
-            Your alert has been queued and will automatically send when connection is restored. Stay in this location if possible.
-          </p>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <script>
-    feather.replace();
-
-    // 🌐 Translation Data
-    const translations = {
-      en: {
-        title: "Crisis Beacon",
-        offline: "Offline Mode",
-        heading: "Send Distress Signal",
-        subtext: "This alert will be sent to all nearby responders with your location",
-        labelName: "Your Name",
-        labelLocation: "Location",
-        locationNote: "We are using your device location services, or you can select manually on the map.",
-        labelEmergency: "Type of Emergency",
-        labelDetails: "Additional Details",
-        labelUpload: "Photo/Video Evidence (Optional)",
-        uploadText: "Click to upload or drag and drop",
-        uploadNote: "Files will be sent when connection is restored",
-        btnSend: "Send Emergency Alert",
-        offlineTitle: "Offline Notice",
-        offlineText: "Your alert has been queued and will automatically send when connection is restored. Stay in this location if possible."
-      },
-      hi: {
-        title: "क्राइसिस बीकन",
-        offline: "ऑफ़लाइन मोड",
-        heading: "आपातकालीन संकेत भेजें",
-        subtext: "यह अलर्ट आपके स्थान के साथ आसपास के सभी उत्तरदाताओं को भेजा जाएगा",
-        labelName: "आपका नाम",
-        labelLocation: "स्थान",
-        locationNote: "हम आपके डिवाइस की लोकेशन सेवा का उपयोग कर रहे हैं, या आप मानचित्र पर मैन्युअली चयन कर सकते हैं।",
-        labelEmergency: "आपातकाल का प्रकार",
-        labelDetails: "अतिरिक्त विवरण",
-        labelUpload: "फोटो/वीडियो प्रमाण (वैकल्पिक)",
-        uploadText: "अपलोड करने के लिए क्लिक करें या ड्रैग और ड्रॉप करें",
-        uploadNote: "फ़ाइलें कनेक्शन बहाल होने पर भेजी जाएंगी",
-        btnSend: "आपातकालीन अलर्ट भेजें",
-        offlineTitle: "ऑफ़लाइन सूचना",
-        offlineText: "आपका अलर्ट कतार में है और कनेक्शन बहाल होने पर स्वतः भेज दिया जाएगा। कृपया यथासंभव इसी स्थान पर रहें।"
-      },
-      mr: {
-        title: "क्रायसिस बीकन",
-        offline: "ऑफलाइन मोड",
-        heading: "आपत्कालीन सिग्नल पाठवा",
-        subtext: "हा अलर्ट आपल्या स्थानासह जवळच्या प्रतिसादकर्त्यांना पाठविला जाईल",
-        labelName: "आपले नाव",
-        labelLocation: "स्थान",
-        locationNote: "आम्ही आपल्या उपकरणाचे स्थान सेवा वापरत आहोत, किंवा आपण नकाशावर स्वतः निवडू शकता.",
-        labelEmergency: "आपत्कालाचा प्रकार",
-        labelDetails: "अतिरिक्त तपशील",
-        labelUpload: "फोटो/व्हिडिओ पुरावा (ऐच्छिक)",
-        uploadText: "अपलोड करण्यासाठी क्लिक करा किंवा ड्रॅग आणि ड्रॉप करा",
-        uploadNote: "फाइल्स कनेक्शन पुनर्स्थापित झाल्यावर पाठवल्या जातील",
-        btnSend: "आपत्कालीन अलर्ट पाठवा",
-        offlineTitle: "ऑफलाइन सूचना",
-        offlineText: "आपला अलर्ट कतारमध्ये आहे आणि कनेक्शन पुन्हा आल्यावर स्वयंचलितपणे पाठविला जाईल. कृपया शक्य असल्यास येथेच थांबा."
-      }
-    };
-
-    // 🌍 Language Switcher
-    const langSelect = document.getElementById("languageSelector");
-    langSelect.addEventListener("change", (e) => applyLanguage(e.target.value));
-
-    function applyLanguage(lang) {
-      const t = translations[lang];
-      for (let key in t) {
-        const el = document.getElementById(key);
-        if (el) el.innerText = t[key];
-      }
-    }
-
-    // Default: English
-    applyLanguage("en");
-  </script>
+    <script>
+        feather.replace();
+        
+        // Simulate location detection
+        setTimeout(() => {
+            const locationInput = document.querySelector('input[type="text"][placeholder="Detecting..."]');
+            if (locationInput) {
+                locationInput.value = "Approx. 12.3456° N, 98.7654° W";
+                locationInput.classList.add('text-green-400');
+            }
+        }, 1500);
+    </script>
 </body>
 </html>
