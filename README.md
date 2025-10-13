@@ -1,55 +1,97 @@
-# Team-Errorist
-Crisis Beacon is an intelligent disaster coordination platform that unites people in need with responders and volunteers through real-time alerts, live maps, and AI assistance. It ensures seamless communication, quick response, and vital connectivity when it matters most, even without internet access.
+# 🚨 CrisisMitra: Real-Time Disaster Relief Coordination Portal
 
-===========================================================================================
+🏆 **1st Place – JARVIS 24-Hour Hackathon**
 
-🛰️ Crisis Beacon
+CrisisMitra is a full-stack, offline-first disaster relief coordination platform that bridges communication between victims, volunteers, and authorities during emergencies. It enables real-time data sharing, mapping, and resource management even under low or no connectivity.
 
-Crisis Beacon is an intelligent disaster coordination platform built to connect people in distress with nearby responders and volunteers through seamless real time communication. It aims to transform the way communities respond to emergencies by combining instant alerts, live incident mapping, and AI powered assistance in one intuitive interface.
+---
 
-When disasters strike, communication breakdowns can cost lives. Crisis Beacon ensures that every message, signal, and alert reaches the right people at the right time. With an elegant design, fast performance, and the ability to operate without an internet connection, it becomes a lifeline in moments of chaos.
+## ✨ Features
 
-🌍 Core Features
+**🚨 Real-Time SOS and Live Mapping**
+Victims can send SOS alerts with live geolocation, displayed on an interactive Leaflet.js map for rapid situational awareness.
 
-Instant SOS Alerts
-Users can trigger an emergency signal that immediately shares their location and request for help with responders and volunteers in the area.
+**🧠 AI-Powered Message Triage**
+An integrated spaCy NLP engine automatically analyzes incoming messages to extract details such as disaster type, urgency, and location, functioning even offline.
 
-Live Incident Map
-A dynamic map visualizes ongoing crises, active responders, and available resources to enhance coordination and situational awareness.
+**📊 Centralized Response Dashboard**
+Coordinators can monitor all active alerts, volunteers, and available resources through a unified dashboard interface.
 
-AI Assistant
-The built in assistant provides essential safety guidance and information even when the user is offline, ensuring help is always within reach.
+**🙋 Volunteer Coordination Portal**
+Volunteers have access to their assigned missions, profile details, and task priorities via a dedicated interface.
 
-Volunteer Coordination
-A secure and simple portal allows volunteers to log in, connect with missions, and collaborate with official emergency teams.
+**🌐 Multilingual Accessibility**
+Supports English, Hindi, and Marathi to ensure inclusivity across diverse regions.
 
-Offline Functionality
-Core tools and instructions remain available even without connectivity, ensuring reliability under any circumstance.
+**📶 Offline-First Architecture**
+Core functions such as SOS mapping and NLP processing work without an internet connection and sync automatically to Firebase once reconnected.
 
-🧠 Technology Stack
+---
 
-Crisis Beacon is developed with modern web technologies that emphasize performance and resilience.
+## 🛠️ Tech Stack
 
-HTML for structured and accessible content
+**Frontend:** HTML, CSS, JavaScript
+**Backend:** Node.js, Express.js
+**Database and Real-time Sync:** Firebase Realtime Database
+**Mapping:** Leaflet.js with OpenStreetMap
+**AI/NLP:** Python, spaCy
 
-Tailwind CSS for elegant and responsive design
+---
 
-Feather Icons for clear and minimal iconography
+## 🏗️ System Architecture
 
-Vanta JS for animated and immersive backgrounds
+CrisisMitra is structured for three key user roles:
 
-🚀 Getting Started
+**Victims/Civilians:** Access the public portal (index.html) to send SOS alerts or register details.
+**Coordinators:** Use dashboard.html to view live incidents, manage volunteers, and track resources.
+**Volunteers:** Log in via login.html to access volunteer.html for assigned missions.
+**AI Backend:** spaCy.py processes disaster-related text data to extract structured insights for better resource allocation.
 
-Clone the repository to your local environment.
+---
 
-Open the index.html file in your browser.
+## 🚀 Getting Started
 
-Explore the main sections including SOS alerts, dashboard, and volunteer login.
+**Prerequisites**
+A modern browser (Chrome, Firefox, Safari, or Edge)
+A local server (e.g., VSCode Live Server or `python -m http.server`)
 
-For customization, you can adjust Tailwind classes directly in the HTML and modify the Vanta JS settings in the script section at the bottom of the file.
+**Setup**
 
-💡 Vision
+1. Clone the repository:
 
-Crisis Beacon envisions a world where technology becomes the fastest bridge between danger and safety. It is designed not just as a tool but as a network that empowers individuals, responders, and communities to act collectively and efficiently in moments of crisis.
+   ```bash
+   git clone https://github.com/your-username/CrisisMitra.git
+   ```
+2. Navigate to the project directory.
+3. Open index.html directly or serve via a local server.
+4. Explore the modules:
 
-Every second matters. Crisis Beacon ensures those seconds count.
+   * map.html: Simulate SOS alerts.
+   * dashboard.html: Coordinator view.
+   * spaCy.py: Run offline NLP analysis (requires Python + spaCy).
+
+---
+
+## 🎯 Hackathon Overview
+
+Developed within 24 hours during the JARVIS Hackathon, CrisisMitra secured **1st place** for its technical depth, resilience, and real-world applicability.
+The focus was to design a "Real-Time Disaster Relief Coordination Portal" capable of functioning in network-constrained environments.
+
+As a first-year engineering student and frontend lead, building a solution that outperformed senior teams was a major milestone in full-stack development, collaboration, and rapid prototyping.
+
+---
+
+## 🔮 Future Enhancements
+
+Integration with SMS gateways for wider reach
+Advanced resource tracking and logistics management
+Push notifications for responders and volunteers
+Full cloud deployment for production scalability
+
+---
+
+## 👥 Team Errorists
+
+Developed with dedication by **Team Errorists**
+
+---
