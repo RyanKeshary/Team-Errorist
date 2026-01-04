@@ -1,10 +1,769 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" data-theme="light">
   <head>
-    <meta http-equiv="refresh" content="0; url=./frontend/index.html" />
-    <title>Redirecting...</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ryan Keshary | Portfolio</title>
+
+    <!-- Fonts & Icons -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Lato:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="./style.css" />
+
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="./material/images/logo.jpg" />
   </head>
   <body>
-    <p>If you are not redirected, <a href="./frontend/index.html">click here</a>.</p>
+    <!-- Navigation -->
+    <nav class="main-nav">
+      <div class="nav-container">
+        <a href="#hero" class="logo">Ryan Keshary</a>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#tech-stack">Tech Stack</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#achievements">Achievements</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li>
+            <button class="theme-toggle" aria-label="Toggle theme">
+              <i class="fas fa-moon"></i>
+            </button>
+          </li>
+        </ul>
+        <div class="hamburger" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+      <div class="animated-bg"></div>
+      <div class="particles-bg" id="particles"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">
+          <span class="typing-text"></span>
+        </h1>
+        <p class="hero-subtitle">
+          Full-Stack Developer | Problem Solver | Tech Enthusiast
+        </p>
+        <a href="#projects" class="cta-button">View My Work</a>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section reveal">
+      <div class="section-container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+          <div class="about-image-container">
+            <img
+              src="./material/images/Speech picture.jpg"
+              alt="Ryan Keshary"
+              class="about-image"
+              loading="lazy"
+            />
+          </div>
+          <div class="about-text">
+            <h3>Building Digital Solutions</h3>
+            <p>
+              I'm a passionate full-stack developer with a keen eye for creating
+              seamless user experiences and robust backend systems. With
+              expertise spanning modern web technologies, I transform complex
+              problems into elegant, scalable solutions.
+            </p>
+            <p>
+              My development philosophy centers on writing clean, maintainable
+              code while staying current with industry best practices. I thrive
+              in collaborative environments and am constantly exploring new
+              technologies to expand my technical repertoire.
+            </p>
+
+            <!-- <div class="skill-bars">
+              <div class="skill">
+                <div class="skill-header">
+                  <span class="skill-name">Frontend Development</span>
+                  <span class="skill-level">Intermediate</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" data-width="90%"></div>
+                </div>
+              </div>
+              <div class="skill">
+                <div class="skill-header">
+                  <span class="skill-name">Backend Development</span>
+                  <span class="skill-level">Advanced</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" data-width="85%"></div>
+                </div>
+              </div>
+              <div class="skill">
+                <div class="skill-header">
+                  <span class="skill-name">Database Management</span>
+                  <span class="skill-level">Advanced</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" data-width="80%"></div>
+                </div>
+              </div>
+              <div class="skill">
+                <div class="skill-header">
+                  <span class="skill-name">DevOps & Cloud</span>
+                  <span class="skill-level">Intermediate</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" data-width="75%"></div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section id="tech-stack" class="tech-section reveal">
+      <div class="section-container">
+        <h2 class="section-title">Tech Stack</h2>
+        <div class="tech-categories">
+          <div class="tech-category">
+            <h3 class="category-title">Frontend</h3>
+            <div class="tech-grid">
+              <!-- <div class="tech-item" data-tooltip="React - JavaScript Library">
+                <div class="tech-icon">
+                  <i class="fab fa-react" style="color: #61dafb"></i>
+                </div>
+                <div class="tech-name">React</div>
+              </div> -->
+              <div class="tech-item" data-tooltip="HTML5 - Markup Language">
+                <div class="tech-icon">
+                  <i class="fab fa-html5" style="color: #e34f26"></i>
+                </div>
+                <div class="tech-name">HTML5</div>
+              </div>
+              <div class="tech-item" data-tooltip="CSS3 - Styling Language">
+                <div class="tech-icon">
+                  <i class="fab fa-css3-alt" style="color: #1572b6"></i>
+                </div>
+                <div class="tech-name">CSS3</div>
+              </div>
+              <div
+                class="tech-item"
+                data-tooltip="JavaScript - Programming Language"
+              >
+                <div class="tech-icon">
+                  <i class="fab fa-js" style="color: #f7df1e"></i>
+                </div>
+                <div class="tech-name">JavaScript</div>
+              </div>
+              <div
+                class="tech-item"
+                data-tooltip="Bootstrap - Frontend Framework"
+              >
+                <div class="tech-icon">
+                  <i class="fab fa-bootstrap" style="color: #7952b3"></i>
+                </div>
+                <div class="tech-name">Bootstrap</div>
+              </div>
+              <div class="tech-item" data-tooltip="jQuery - JavaScript Library">
+                <div class="tech-icon">
+                  <i class="fab fa-js" style="color: #0769ad"></i>
+                </div>
+                <div class="tech-name">jQuery</div>
+              </div>
+            </div>
+          </div>
+          <div class="tech-category">
+            <h3 class="category-title">Backend</h3>
+            <div class="tech-grid">
+              <div
+                class="tech-item"
+                data-tooltip="Node.js - JavaScript Runtime"
+              >
+                <div class="tech-icon">
+                  <i class="fab fa-node-js" style="color: #339933"></i>
+                </div>
+                <div class="tech-name">Node.js</div>
+              </div>
+              <div
+                class="tech-item"
+                data-tooltip="Express.js - Web Framework for Node.js"
+              >
+                <div class="tech-icon">
+                  <i class="fas fa-server" style="color: #000000"></i>
+                </div>
+                <div class="tech-name">Express.js</div>
+              </div>
+              <!-- <div
+                class="tech-item"
+                data-tooltip="Python - Programming Language"
+              >
+                <div class="tech-icon">
+                  <i class="fab fa-python" style="color: #3776ab"></i>
+                </div>
+                <div class="tech-name">Python</div>
+              </div>
+              <div class="tech-item" data-tooltip="SQL - Database Language">
+                <div class="tech-icon">
+                  <i class="fas fa-database" style="color: #4479a1"></i>
+                </div>
+                <div class="tech-name">SQL</div>
+              </div> -->
+            </div>
+          </div>
+          <div class="tech-category">
+            <h3 class="category-title">Tools</h3>
+            <div class="tech-grid">
+              <div class="tech-item" data-tooltip="Git - Version Control">
+                <div class="tech-icon">
+                  <i class="fab fa-git-alt" style="color: #f05032"></i>
+                </div>
+                <div class="tech-name">Git</div>
+              </div>
+              <div
+                class="tech-item"
+                data-tooltip="GitHub - Version Control & Collaboration"
+              >
+                <div class="tech-icon">
+                  <i class="fab fa-github" style="color: #181717"></i>
+                </div>
+                <div class="tech-name">GitHub</div>
+              </div>
+              <div class="tech-item" data-tooltip="Figma - UI/UX Design Tool">
+                <div class="tech-icon">
+                  <i class="fab fa-figma" style="color: #f24e1e"></i>
+                </div>
+                <div class="tech-name">Figma</div>
+              </div>
+              <div class="tech-item" data-tooltip="VS Code - Code Editor">
+                <div class="tech-icon">
+                  <img
+                    src="https://cdn.worldvectorlogo.com/logos/visual-studio-code-1.svg"
+                    alt="VS Code Logo"
+                    style="width: 100%; max-width: 150px; height: 55px"
+                  />
+                </div>
+                <div class="tech-name">VS Code</div>
+              </div>
+
+              <div class="tech-item" data-tooltip="AntiGravity - Code Editor">
+                <div class="tech-icon">
+                  <img
+                    src="./material/images/antigravity.png"
+                    alt="AntiGravity Logo"
+                    class="tech-logo"
+                  />
+                </div>
+                <div class="tech-name">AntiGravity</div>
+              </div>
+
+              <div
+                class="tech-item"
+                data-tooltip="Postman - API Testing & Development"
+              >
+                <div class="tech-icon">
+                  <img
+                    src="https://cdn.worldvectorlogo.com/logos/postman.svg"
+                    alt="Postman Logo"
+                  />
+                </div>
+                <div class="tech-name">Postman</div>
+              </div>
+
+              <!-- <div class="tech-item" data-tooltip="Docker - Containerization">
+                <div class="tech-icon">
+                  <i class="fab fa-docker" style="color: #2496ed"></i>
+                </div>
+                <div class="tech-name">Docker</div>
+              </div>
+              <div class="tech-item" data-tooltip="AWS - Cloud Platform">
+                <div class="tech-icon">
+                  <i class="fab fa-aws" style="color: #ff9900"></i>
+                </div>
+                <div class="tech-name">AWS</div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="experience-section reveal">
+      <div class="section-container">
+        <h2 class="section-title">Experience</h2>
+        <div class="experience-timeline">
+          <div class="experience-item">
+            <div class="experience-header">
+              <div>
+                <h3 class="experience-title">Project Developer</h3>
+                <div class="experience-company">Independent Work</div>
+              </div>
+              <div class="experience-date">2025 - Present</div>
+            </div>
+            <ul class="experience-description">
+              <li>
+                Designed and developed multiple web applications using HTML,
+                CSS, JavaScript.
+              </li>
+              <li>
+                Focused on clean architecture, responsive design, and user
+                experience.
+              </li>
+              <li>
+                Built and Deployed CrisisMitra (hackathon winner),
+                sunilkeshary.in client website, and UnifiedX digital empowerment
+                platform.
+              </li>
+            </ul>
+          </div>
+
+          <div class="experience-item">
+            <div class="experience-header">
+              <div>
+                <h3 class="experience-title">Hackathon Participant</h3>
+                <div class="experience-company">JARVIS 24-Hour Hackathon</div>
+              </div>
+              <div class="experience-date">Oct 9-10, 2025</div>
+            </div>
+            <ul class="experience-description">
+              <li>
+                Won 1st place for developing a real-time disaster management
+                platform connecting victims, volunteers, and authorities.
+              </li>
+              <li>
+                Led frontend and map integration using Leaflet.js and
+                OpenStreetMap.
+              </li>
+            </ul>
+          </div>
+
+          <!-- <div class="experience-item">
+            <div class="experience-header">
+              <div>
+                <h3 class="experience-title">Junior Developer</h3>
+                <div class="experience-company">StartUp Hub</div>
+              </div>
+              <div class="experience-date">Jan 2020 - May 2021</div>
+            </div>
+            <ul class="experience-description">
+              <li>
+                Built and maintained client websites using modern web
+                technologies
+              </li>
+              <li>
+                Participated in agile development processes and daily standups
+              </li>
+              <li>
+                Fixed bugs and implemented new features based on user feedback
+              </li>
+              <li>
+                Learned best practices in software development and version
+                control
+              </li>
+            </ul>
+          </div> -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Achievements -->
+    <section id="achievements" class="achievements-section reveal">
+      <div class="section-container">
+        <h2 class="section-title">Achievements</h2>
+        <div class="timeline">
+          <div class="achievement-card" data-achievement-id="1">
+            <div class="achievement-icon">🏆</div>
+            <div class="achievement-content">
+              <div class="achievement-date">2025</div>
+              <h3>JARVIS 24-Hour Hackathon Winner</h3>
+              <p class="achievement-preview">
+                Led a team to victory in an intensive 24-hour hackathon,
+                developing an innovative AI-powered solution...
+              </p>
+              <button class="read-more-btn" onclick="openAchievementModal(1)">
+                Read More <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+          <!-- <div class="achievement-card" data-achievement-id="2">
+            <div class="achievement-icon">🎓</div>
+            <div class="achievement-content">
+              <div class="achievement-date">2023</div>
+              <h3>Full-Stack Certification</h3>
+              <p class="achievement-preview">
+                Completed comprehensive full-stack development program,
+                mastering modern web technologies...
+              </p>
+              <button class="read-more-btn" onclick="openAchievementModal(2)">
+                Read More <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+          <div class="achievement-card" data-achievement-id="3">
+            <div class="achievement-icon">💡</div>
+            <div class="achievement-content">
+              <div class="achievement-date">2023</div>
+              <h3>Open Source Contributor</h3>
+              <p class="achievement-preview">
+                Active contributor to multiple open-source projects, helping
+                improve documentation...
+              </p>
+              <button class="read-more-btn" onclick="openAchievementModal(3)">
+                Read More <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+          <div class="achievement-card" data-achievement-id="4">
+            <div class="achievement-icon">🌟</div>
+            <div class="achievement-content">
+              <div class="achievement-date">2022</div>
+              <h3>Best Project Award</h3>
+              <p class="achievement-preview">
+                Received recognition for outstanding project design and
+                implementation...
+              </p>
+              <button class="read-more-btn" onclick="openAchievementModal(4)">
+                Read More <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Achievement Modal -->
+    <div id="achievementModal" class="modal">
+      <div class="modal-content">
+        <button class="modal-close" onclick="closeAchievementModal()">
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="modal-header">
+          <div class="modal-icon"></div>
+          <div>
+            <div class="modal-date"></div>
+            <h2 class="modal-title"></h2>
+          </div>
+        </div>
+        <div class="modal-body"></div>
+      </div>
+    </div>
+
+    <!-- Projects -->
+    <section id="projects" class="projects-section reveal">
+      <div class="section-container">
+        <h2 class="section-title">Featured Projects</h2>
+        <!-- <div class="project-filters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="web">Web Apps</button>
+          <button class="filter-btn" data-filter="mobile">Mobile</button>
+          <button class="filter-btn" data-filter="ai">AI/ML</button>
+        </div> -->
+        <div class="projects-grid">
+          <div class="project-card">
+            <!-- data-category="web" -->
+            <div class="project-image-container">
+              <img
+                src="./material/images/CrisisMitra website.png"
+                alt="CrisisMitra"
+                class="project-image"
+                loading="lazy"
+              />
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">CrisisMitra</h3>
+              <p class="project-description">
+                1st Place winning project at the JARVIS 24-Hour Hackathon - a
+                real-time disaster management platform connecting victims,
+                volunteers, and authorities in low-connectivity environments.
+                Features live map integration, multilingual support, and offline
+                synchronization.
+              </p>
+              <div class="tech-tags">
+                <span class="tech-tag">HTML</span>
+                <span class="tech-tag">CSS</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">Express.js</span>
+                <span class="tech-tag">Firebase</span>
+                <span class="tech-tag">Leaflet.js</span>
+              </div>
+              <div class="project-actions">
+                <a
+                  href="https://github.com/RyanKeshary/Team-Errorist"
+                  class="btn btn-code"
+                  target="_blank"
+                  ><i class="fab fa-github"></i> View Code</a
+                >
+                <a
+                  href="https://ryankeshary.github.io/Team-Errorist/"
+                  class="btn btn-demo"
+                  target="_blank"
+                  ><i class="fas fa-external-link-alt"></i> Live Demo</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-image-container">
+              <img
+                src="./material/images/unifiedx-screenshot.png"
+                alt="UnifiedX Platform"
+                class="project-image"
+                loading="lazy"
+              />
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">UnifiedX - Digital Empowerment</h3>
+              <p class="project-description">
+                Pure frontend platform for Mira Bhayandar addressing digital
+                divide through transit navigation, cybersecurity lessons, and
+                business tools. Built with vanilla HTML/CSS/JS, no frameworks
+                required.
+              </p>
+              <div class="tech-tags">
+                <span class="tech-tag">HTML</span>
+                <span class="tech-tag">CSS</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">JSON Data Files</span>
+              </div>
+              <div class="project-actions">
+                <a
+                  href="https://github.com/RyanKeshary/Idea-Lab---UnifiedX"
+                  class="btn btn-code"
+                  target="_blank"
+                  ><i class="fab fa-github"></i>View Code</a
+                >
+                <a
+                  href="https://ryankeshary.github.io/Idea-Lab---UnifiedX/"
+                  class="btn btn-demo"
+                  target="_blank"
+                  ><i class="fas fa-external-link-alt"></i>Live Demo</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <!-- data-category="ai" -->
+            <div class="project-image-container">
+              <img
+                src="./material/images/Sunil Keshary Site.png"
+                alt="Sunil Keshary Portfolio Website"
+                class="project-image"
+                loading="lazy"
+              />
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Sunil Keshary Portfolio Website</h3>
+              <p class="project-description">
+                A responsive, multilingual political portfolio website
+                showcasing Sunil Keshary's journey, vision, and media presence.
+                Includes gallery lightbox, smooth animations, and contact form
+                integration for instant communication.
+              </p>
+              <div class="tech-tags">
+                <span class="tech-tag">HTML</span>
+                <span class="tech-tag">CSS</span>
+                <span class="tech-tag">JavaScript</span>
+              </div>
+              <div class="project-actions">
+                <a
+                  href="https://github.com/RyanKeshary/Sunil-Keshary-Website"
+                  class="btn btn-code"
+                  target="_blank"
+                  ><i class="fab fa-github"></i> View Code</a
+                >
+                <a
+                  href="https://www.sunilkeshary.in/"
+                  class="btn btn-demo"
+                  target="_blank"
+                  ><i class="fas fa-external-link-alt"></i> Live Demo</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="project-card" data-category="web">
+            <div class="project-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=500&h=300&fit=crop"
+                alt="Social Media Dashboard"
+                class="project-image"
+                loading="lazy"
+              />
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Social Media Dashboard</h3>
+              <p class="project-description">
+                Real-time analytics dashboard for social media management with
+                data visualization and reporting.
+              </p>
+              <div class="tech-tags">
+                <span class="tech-tag">Vue.js</span>
+                <span class="tech-tag">Express</span>
+                <span class="tech-tag">PostgreSQL</span>
+              </div>
+              <div class="project-actions">
+                <a href="#" class="btn btn-code"
+                  ><i class="fab fa-github"></i> View Code</a
+                >
+                <a href="#" class="btn btn-demo"
+                  ><i class="fas fa-external-link-alt"></i> Live Demo</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card" data-category="mobile">
+            <div class="project-image-container">
+              <img
+                src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=500&h=300&fit=crop"
+                alt="Fitness Tracker App"
+                class="project-image"
+                loading="lazy"
+              />
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Fitness Tracker App</h3>
+              <p class="project-description">
+                Mobile fitness tracking application with workout plans, progress
+                tracking, and social features.
+              </p>
+              <div class="tech-tags">
+                <span class="tech-tag">React Native</span>
+                <span class="tech-tag">Firebase</span>
+                <span class="tech-tag">Redux</span>
+              </div>
+              <div class="project-actions">
+                <a href="#" class="btn btn-code"
+                  ><i class="fab fa-github"></i> View Code</a
+                >
+                <a href="#" class="btn btn-demo"
+                  ><i class="fas fa-external-link-alt"></i> Live Demo</a
+                >
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+      <div class="footer-content">
+        <div class="social-links">
+          <a
+            href="https://linkedin.com/in/ryankeshary"
+            class="social-link linkedin"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a
+            href="https://github.com/ryankeshary"
+            class="social-link github"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+          >
+            <i class="fab fa-github"></i>
+          </a>
+          <a
+            href="mailto:ryankeshary@gmail.com"
+            class="social-link email"
+            aria-label="Email"
+          >
+            <i class="fas fa-envelope"></i>
+          </a>
+
+          <a
+            href="https://twitter.com/ryankeshary"
+            class="social-link x"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="X"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"
+              />
+            </svg>
+          </a>
+
+          <a
+            href="https://www.behance.net/ryankeshary"
+            class="social-link behance"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Behance"
+          >
+            <i class="fab fa-behance"></i>
+          </a>
+
+          <a
+            href="https://contra.com/ryan_keshary_n24mdtyi/"
+            class="social-link contra"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Contra"
+          >
+            <img src="" alt="Contra logo" class="social-logo" />
+          </a>
+
+          <a
+            href="https://medium.com/@ryankeshary"
+            class="social-link medium"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Medium"
+          >
+            <img src="" alt="Medium logo" class="social-logo" />
+          </a>
+
+          <a
+            href="https://app.daily.dev/ryankeshary"
+            class="social-link dailydev"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="daily.dev"
+          >
+            <img src="" alt="daily.dev logo" class="social-logo" />
+          </a>
+        </div>
+        <nav class="footer-nav">
+          <a href="#about">About</a>
+          <a href="#tech-stack">Tech Stack</a>
+          <a href="#achievements">Achievements</a>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+        </nav>
+        <p class="copyright">© 2025 Ryan Keshary. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="./script.js"></script>
   </body>
 </html>
