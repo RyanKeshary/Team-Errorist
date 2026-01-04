@@ -13,6 +13,7 @@
     />
     <link rel="stylesheet" href="./css/globals.css" />
     <link rel="stylesheet" href="./css/dashboard.css" />
+    <link rel="stylesheet" href="./css/notifications.css" />
   </head>
 
   <body class="min-h-screen bg-[#0A0A0A]">
@@ -398,6 +399,7 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="./js/dashboard.js"></script>
+    <script src="./js/notifications.js"></script>
 
     <script>
       feather.replace();
@@ -410,14 +412,10 @@
           markSafeBtn.textContent = "STATUS UPDATED";
           markSafeBtn.classList.replace("bg-green-600", "bg-blue-600");
           safeStatusMsg.classList.remove("hidden");
-
-          // Notification simulation
-          const notification = document.createElement("div");
-          notification.className =
-            "fixed bottom-24 left-1/2 -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-full font-bold shadow-xl z-[100000] animate-bounce";
-          notification.innerHTML = "✓ Status Reported Successfully";
-          document.body.appendChild(notification);
-          setTimeout(() => notification.remove(), 3000);
+          showNotification(
+            "✓ Safety status reported successfully to authorities",
+            "success"
+          );
         });
       }
     </script>
@@ -425,4 +423,3 @@
     <script src="https://www.noupe.com/embed/0199cc5a78967a5e8e7d90d4bec06d4f5e41.js"></script>
   </body>
 </html>
-

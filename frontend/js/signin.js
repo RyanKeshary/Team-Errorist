@@ -160,14 +160,20 @@ submitBtn.addEventListener("click", async (e) => {
       })
     );
 
-    alert("✅ Signed in successfully! Your details are saved securely.");
+    showNotification(
+      "✅ Signed in successfully! Your details are saved securely.",
+      "success"
+    );
 
-    // Flawless Redirect
-    window.location.href = "./index.html";
+    // Redirect after short delay
+    setTimeout(() => {
+      window.location.href = "./index.html";
+    }, 1500);
   } catch (error) {
     console.error("Submission Error:", error);
-    alert(
-      `❌ Sign-in failed: ${error.message}\nPlease check your details and try again.`
+    showNotification(
+      `❌ Sign-in failed: ${error.message}. Please check your details and try again.`,
+      "error"
     );
 
     // Reset Button

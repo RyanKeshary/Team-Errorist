@@ -143,7 +143,7 @@ signupForm.addEventListener("submit", async (e) => {
   const password = document.getElementById("password").value;
   const confirmPassword = document.getElementById("confirm-password").value;
   if (password !== confirmPassword) {
-    alert("Passwords do not match!");
+    showNotification("Passwords do not match!", "error");
     return;
   }
 
@@ -173,11 +173,16 @@ signupForm.addEventListener("submit", async (e) => {
       })
     );
 
-    alert("✅ Account created successfully!");
-    window.location.href = "./volunteer.html";
+    showNotification(
+      "✅ Account created successfully! Redirecting to volunteer portal...",
+      "success"
+    );
+    setTimeout(() => {
+      window.location.href = "./volunteer.html";
+    }, 1500);
   } catch (err) {
     console.error(err);
-    alert("Error creating account: " + err.message);
+    showNotification("Error creating account: " + err.message, "error");
     submitBtn.disabled = false;
     submitBtn.innerHTML = originalBtnContent;
     feather.replace();

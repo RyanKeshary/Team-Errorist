@@ -129,6 +129,76 @@
         </div>
       </div>
 
+      <!-- Emergency Contacts Section -->
+      <div class="mb-6 p-6 bg-[#1A1A1A] border border-[#333333] rounded-xl">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="font-bold flex items-center gap-2">
+            <i data-feather="phone-call" class="w-5 h-5 text-blue-500"></i>
+            <span data-i18n="emergencyContacts">Emergency Contacts</span>
+          </h2>
+          <button id="toggleContactForm" type="button" class="text-sm text-blue-400 hover:text-blue-300 transition-colors">
+            + Add Contact
+          </button>
+        </div>
+
+        <!-- Add Contact Form (Hidden by default) -->
+        <div id="contactForm" class="hidden mb-4 p-4 bg-white/5 rounded-lg">
+          <div class="grid md:grid-cols-2 gap-3">
+            <input
+              type="text"
+              id="contactName"
+              placeholder="Contact Name"
+              class="form-input px-3 py-2 rounded-lg text-sm"
+            />
+            <input
+              type="tel"
+              id="contactPhone"
+              placeholder="Phone Number"
+              class="form-input px-3 py-2 rounded-lg text-sm"
+            />
+          </div>
+          <div class="flex gap-2 mt-3">
+            <button id="saveContact" type="button" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg text-sm transition-all">
+              Save Contact
+            </button>
+            <button id="cancelContact" type="button" class="px-4 bg-white/10 hover:bg-white/20 text-white py-2 rounded-lg text-sm transition-all">
+              Cancel
+            </button>
+          </div>
+        </div>
+
+        <!-- Contacts List -->
+        <div id="contactsList" class="space-y-2 mb-4">
+          <p class="text-sm text-gray-400 text-center py-4">No emergency contacts saved yet</p>
+        </div>
+
+        <!-- Send to All Contacts Button -->
+        <button id="sendToAllContacts" type="button" class="w-full bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white py-3 rounded-lg font-medium transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+          <i data-feather="send" class="w-4 h-4"></i>
+          <span>Send SOS to All Contacts</span>
+        </button>
+      </div>
+
+      <!-- Help Status / Countdown Timer -->
+      <div id="helpStatus" class="hidden mb-6 p-6 bg-gradient-to-br from-green-900/30 to-blue-900/30 border border-green-500/30 rounded-xl">
+        <div class="text-center">
+          <div class="flex items-center justify-center gap-2 mb-3">
+            <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+            <h3 class="text-lg font-bold text-green-400">Help is on the way!</h3>
+          </div>
+          <div class="mb-4">
+            <div class="text-3xl font-bold text-white mb-1" id="etaCountdown">~5 min</div>
+            <p class="text-sm text-gray-300">Estimated arrival time</p>
+          </div>
+          <div class="w-full bg-white/10 rounded-full h-2 overflow-hidden">
+            <div id="progressBar" class="bg-gradient-to-r from-green-500 to-blue-500 h-full rounded-full transition-all duration-1000" style="width: 0%"></div>
+          </div>
+          <p class="text-xs text-gray-400 mt-3">
+            <span id="respondersCount">3</span> responders have been notified
+          </p>
+        </div>
+      </div>
+
       <form id="sosForm" class="space-y-6">
         <!-- Basic Info Row -->
         <div class="grid md:grid-cols-2 gap-4">
@@ -338,17 +408,46 @@
         </div>
       </form>
 
+      <!-- Dynamic Safety Checklist -->
+      <div id="safetyChecklist" class="hidden mt-8 p-6 bg-gradient-to-br from-yellow-900/20 to-orange-900/20 border border-yellow-500/30 rounded-xl">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="font-bold flex items-center gap-2">
+            <i data-feather="shield" class="w-5 h-5 text-yellow-500"></i>
+            <span>Safety Guidelines</span>
+          </h3>
+          <button id="toggleChecklist" type="button" class="text-sm text-yellow-400 hover:text-yellow-300">
+            <i data-feather="chevron-down" class="w-4 h-4"></i>
+          </button>
+        </div>
+        <div id="checklistContent" class="space-y-3">
+          <!-- Safety tips will be dynamically inserted here -->
+        </div>
+      </div>
+
       <div class="mt-12 p-4 bg-[#1A1A1A] rounded-lg border border-[#333333]">
         <div class="flex items-start gap-3">
           <i data-feather="alert-circle" class="w-5 h-5 mt-0.5"></i>
-          <div>
-            <h3 data-i18n="offlineTitle" class="font-medium mb-1">
-              Offline Notice
-            </h3>
+          <div class="flex-1">
+            <div class="flex items-center justify-between mb-1">
+              <h3 data-i18n="offlineTitle" class="font-medium">
+                Offline Notice
+              </h3>
+              <span id="queueCounter" class="hidden text-xs bg-orange-500 px-2 py-1 rounded-full font-bold">
+                0 pending
+              </span>
+            </div>
             <p data-i18n="offlineMsg" class="text-sm text-[#D3D3D3]">
               Your alert has been queued and will automatically send when
               connection is restored. Stay in this location if possible.
             </p>
+            <div id="queueStatus" class="hidden mt-3 flex items-center gap-2">
+              <div class="flex-1 bg-white/10 rounded-full h-1.5 overflow-hidden">
+                <div id="retryProgress" class="bg-blue-500 h-full rounded-full transition-all" style="width: 0%"></div>
+              </div>
+              <button id="manualRetry" type="button" class="text-xs text-blue-400 hover:text-blue-300">
+                Retry Now
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -570,24 +669,227 @@
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
       });
 
+      // ========== NOTIFICATION SYSTEM ==========
+      function showNotification(message, type = 'info') {
+        // Remove existing notifications
+        const existing = document.querySelector('.custom-notification');
+        if (existing) existing.remove();
+
+        const notification = document.createElement('div');
+        notification.className = `custom-notification ${type}`;
+        notification.textContent = message;
+        document.body.appendChild(notification);
+
+        setTimeout(() => notification.classList.add('show'), 100);
+
+        setTimeout(() => {
+          notification.classList.remove('show');
+          setTimeout(() => notification.remove(), 300);
+        }, 4000);
+      }
+
+      // ========== MAP LOCATION INTEGRATION ==========
+      // Check if user selected location from map
+      const selectedLocation = sessionStorage.getItem('selectedLocation');
+      if (selectedLocation) {
+        document.getElementById('locationInput').value = selectedLocation;
+        sessionStorage.removeItem('selectedLocation');
+        showNotification('Location loaded from map selection', 'success');
+      }
+
+      // Map redirect - store return URL
+      document.getElementById("openMap").addEventListener("click", () => {
+        sessionStorage.setItem('returnToSOS', 'true');
+        window.location.href = "map.html";
+      });
+
       // Location detection
       document
         .getElementById("detectLocation")
         .addEventListener("click", () => {
           if (navigator.geolocation) {
+            document.getElementById("locationInput").value = "Detecting...";
             navigator.geolocation.getCurrentPosition(
               (pos) => {
                 const { latitude, longitude } = pos.coords;
                 document.getElementById(
                   "locationInput"
                 ).value = `${latitude.toFixed(5)}, ${longitude.toFixed(5)}`;
+                showNotification('Location detected successfully', 'success');
               },
-              () => alert("Unable to retrieve location. Please enable GPS.")
+              () => {
+                document.getElementById("locationInput").value = "";
+                showNotification("Unable to retrieve location. Please enable GPS or select manually on map.", "error");
+              }
             );
           } else {
-            alert("Geolocation not supported by your browser.");
+            showNotification("Geolocation not supported by your browser.", "error");
           }
         });
+
+      // ========== EMERGENCY CONTACTS MANAGEMENT ==========
+      let emergencyContacts = JSON.parse(localStorage.getItem('emergencyContacts')) || [];
+
+      function renderContacts() {
+        const contactsList = document.getElementById('contactsList');
+        const sendToAllBtn = document.getElementById('sendToAllContacts');
+        
+        if (emergencyContacts.length === 0) {
+          contactsList.innerHTML = '<p class="text-sm text-gray-400 text-center py-4">No emergency contacts saved yet</p>';
+          sendToAllBtn.disabled = true;
+        } else {
+          contactsList.innerHTML = emergencyContacts.map((contact, index) => `
+            <div class="flex items-center justify-between p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-all">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center">
+                  <i data-feather="user" class="w-5 h-5 text-blue-400"></i>
+                </div>
+                <div>
+                  <div class="font-medium">${contact.name}</div>
+                  <div class="text-sm text-gray-400">${contact.phone}</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <a href="tel:${contact.phone}" class="p-2 bg-green-600 hover:bg-green-700 rounded-lg transition-all">
+                  <i data-feather="phone" class="w-4 h-4"></i>
+                </a>
+                <button data-remove-contact="${index}" class="p-2 bg-red-600/20 hover:bg-red-600 rounded-lg transition-all">
+                  <i data-feather="trash-2" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+          `).join('');
+          sendToAllBtn.disabled = false;
+          feather.replace();
+        }
+      }
+
+      // Event delegation for remove contact buttons
+      document.getElementById('contactsList').addEventListener('click', (e) => {
+        const removeBtn = e.target.closest('[data-remove-contact]');
+        if (removeBtn) {
+          const index = parseInt(removeBtn.getAttribute('data-remove-contact'));
+          if (confirm('Remove this contact?')) {
+            emergencyContacts.splice(index, 1);
+            localStorage.setItem('emergencyContacts', JSON.stringify(emergencyContacts));
+            renderContacts();
+          }
+        }
+      });
+
+      document.getElementById('toggleContactForm').addEventListener('click', () => {
+        const form = document.getElementById('contactForm');
+        form.classList.toggle('hidden');
+      });
+
+      document.getElementById('saveContact').addEventListener('click', () => {
+        const name = document.getElementById('contactName').value.trim();
+        const phone = document.getElementById('contactPhone').value.trim();
+
+        if (!name || !phone) {
+          alert('Please enter both name and phone number');
+          return;
+        }
+
+        emergencyContacts.push({ name, phone });
+        localStorage.setItem('emergencyContacts', JSON.stringify(emergencyContacts));
+        
+        document.getElementById('contactName').value = '';
+        document.getElementById('contactPhone').value = '';
+        document.getElementById('contactForm').classList.add('hidden');
+        
+        renderContacts();
+        showNotification(`✅ ${name} added to emergency contacts`, 'success');
+      });
+
+      document.getElementById('cancelContact').addEventListener('click', () => {
+        document.getElementById('contactForm').classList.add('hidden');
+        document.getElementById('contactName').value = '';
+        document.getElementById('contactPhone').value = '';
+      });
+
+      document.getElementById('sendToAllContacts').addEventListener('click', () => {
+        const location = document.getElementById('locationInput').value;
+        if (!location || location === 'Detecting location...') {
+          alert('Please wait for location detection or enter manually.');
+          return;
+        }
+
+        const message = `🚨 EMERGENCY! I need help at: ${location}. Please send assistance immediately!`;
+        const phones = emergencyContacts.map(c => c.phone).join(',');
+        const smsUrl = `sms:${phones}?body=${encodeURIComponent(message)}`;
+        window.location.href = smsUrl;
+      });
+
+      renderContacts();
+
+      // ========== SAFETY CHECKLIST ==========
+      const safetyTips = {
+        medical: [
+          { icon: 'heart', text: 'Keep the person calm and comfortable' },
+          { icon: 'phone', text: 'Call emergency services immediately' },
+          { icon: 'shield', text: 'Do not move the person unless necessary' },
+          { icon: 'activity', text: 'Monitor breathing and pulse' }
+        ],
+        fire: [
+          { icon: 'alert-triangle', text: 'Stay low to avoid smoke inhalation' },
+          { icon: 'log-out', text: 'Check doors for heat before opening' },
+          { icon: 'x-circle', text: 'Never use elevators during a fire' },
+          { icon: 'users', text: 'Help others evacuate if safe to do so' }
+        ],
+        flood: [
+          { icon: 'arrow-up', text: 'Move to higher ground immediately' },
+          { icon: 'zap', text: 'Avoid walking through moving water' },
+          { icon: 'power', text: 'Stay away from electrical equipment' },
+          { icon: 'car', text: 'Do not drive through flooded areas' }
+        ],
+        earthquake: [
+          { icon: 'shield', text: 'Drop, Cover, and Hold On' },
+          { icon: 'home', text: 'Stay indoors until shaking stops' },
+          { icon: 'alert-octagon', text: 'Stay away from windows and heavy objects' },
+          { icon: 'alert-circle', text: 'Be prepared for aftershocks' }
+        ],
+        trapped: [
+          { icon: 'volume-2', text: 'Make noise to alert rescuers' },
+          { icon: 'battery', text: 'Conserve phone battery' },
+          { icon: 'droplet', text: 'Ration water if available' },
+          { icon: 'clock', text: 'Stay calm and patient' }
+        ],
+        accident: [
+          { icon: 'phone', text: 'Call emergency services immediately' },
+          { icon: 'shield', text: 'Ensure scene is safe before approaching' },
+          { icon: 'heart', text: 'Check for injuries and provide first aid' },
+          { icon: 'camera', text: 'Document the scene if safe to do so' }
+        ]
+      };
+
+      document.getElementById('typeInput').addEventListener('change', (e) => {
+        const type = e.target.value;
+        const checklist = document.getElementById('safetyChecklist');
+        const checklistContent = document.getElementById('checklistContent');
+
+        if (type && safetyTips[type]) {
+          checklist.classList.remove('hidden');
+          checklistContent.innerHTML = safetyTips[type].map(tip => `
+            <div class="flex items-start gap-3 p-3 bg-white/5 rounded-lg">
+              <i data-feather="${tip.icon}" class="w-5 h-5 text-yellow-400 mt-0.5 flex-shrink-0"></i>
+              <span class="text-sm">${tip.text}</span>
+            </div>
+          `).join('');
+          feather.replace();
+          showNotification('Safety guidelines loaded for ' + type, 'info');
+        } else {
+          checklist.classList.add('hidden');
+        }
+      });
+
+      document.getElementById('toggleChecklist').addEventListener('click', () => {
+        const content = document.getElementById('checklistContent');
+        const icon = document.querySelector('#toggleChecklist i');
+        content.classList.toggle('hidden');
+        icon.setAttribute('data-feather', content.classList.contains('hidden') ? 'chevron-down' : 'chevron-up');
+        feather.replace();
+      });
 
       // Map redirect
       document.getElementById("openMap").addEventListener("click", () => {
@@ -599,40 +901,138 @@
         .getElementById("sosForm")
         .addEventListener("submit", async (e) => {
           e.preventDefault();
-          const name = document.getElementById("nameInput").value.trim();
-          const location = document.getElementById("locationInput").value;
-          const type = document.getElementById("typeInput").value;
-          const details = document.getElementById("detailsInput").value.trim();
-          const peopleCount = document.getElementById("peopleInput").value;
-          const injury = document.querySelector('input[name="injury"]:checked')?.value || "none";
-          const conditions = Array.from(document.querySelectorAll('input[name="condition"]:checked')).map(cb => cb.value);
-          const allergies = document.getElementById("allergiesInput").value.trim();
+          
+          try {
+            const name = document.getElementById("nameInput").value.trim();
+            const location = document.getElementById("locationInput").value;
+            const type = document.getElementById("typeInput").value;
+            const details = document.getElementById("detailsInput").value.trim();
+            const peopleCount = document.getElementById("peopleInput").value;
+            const injury = document.querySelector('input[name="injury"]:checked')?.value || "none";
+            const conditions = Array.from(document.querySelectorAll('input[name="condition"]:checked')).map(cb => cb.value);
+            const allergies = document.getElementById("allergiesInput").value.trim();
 
-          if (!location || !type) {
-            alert("Please fill at least location and emergency type.");
-            return;
+            if (!location || location === "Detecting location...") {
+              showNotification("Please wait for location detection or select manually on the map.", "error");
+              return;
+            }
+
+            if (!type) {
+              showNotification("Please select an emergency type.", "error");
+              return;
+            }
+
+            const sosRef = ref(db, "sos_alerts");
+            const newAlertRef = push(sosRef);
+
+            await set(newAlertRef, {
+              name: name || "Anonymous",
+              location,
+              type,
+              details,
+              peopleCount,
+              medicalInfo: {
+                injury,
+                conditions,
+                allergies
+              },
+              timestamp: new Date().toISOString(),
+            });
+
+            // Show help status countdown
+            showHelpStatus();
+
+            showNotification("🚨 SOS alert sent successfully! Help is on the way.", "success");
+            e.target.reset();
+          } catch (error) {
+            console.error("Error sending SOS:", error);
+            showNotification("❌ Failed to send alert. Please try again.", "error");
           }
-
-          const sosRef = ref(db, "sos_alerts");
-          const newAlertRef = push(sosRef);
-
-          await set(newAlertRef, {
-            name: name || "Anonymous",
-            location,
-            type,
-            details,
-            peopleCount,
-            medicalInfo: {
-              injury,
-              conditions,
-              allergies
-            },
-            timestamp: new Date().toISOString(),
-          });
-
-          alert("🚨 SOS alert sent successfully!");
-          e.target.reset();
         });
+
+      // ========== HELP STATUS / COUNTDOWN TIMER ==========
+      function showHelpStatus() {
+        const helpStatus = document.getElementById('helpStatus');
+        helpStatus.classList.remove('hidden');
+        
+        let progress = 0;
+        let eta = 300; // 5 minutes in seconds
+        
+        const progressBar = document.getElementById('progressBar');
+        const etaCountdown = document.getElementById('etaCountdown');
+        
+        const interval = setInterval(() => {
+          progress += 1;
+          eta -= 1;
+          
+          const percentage = (progress / 300) * 100;
+          progressBar.style.width = percentage + '%';
+          
+          const mins = Math.floor(eta / 60);
+          const secs = eta % 60;
+          etaCountdown.textContent = `~${mins}:${secs.toString().padStart(2, '0')}`;
+          
+          if (progress >= 300) {
+            clearInterval(interval);
+            etaCountdown.textContent = 'Arriving soon!';
+            progressBar.style.width = '100%';
+          }
+        }, 1000);
+      }
+
+      // ========== OFFLINE QUEUE MANAGEMENT ==========
+      let offlineQueue = JSON.parse(localStorage.getItem('sosOfflineQueue')) || [];
+      
+      function updateQueueStatus() {
+        const queueCounter = document.getElementById('queueCounter');
+        const queueStatus = document.getElementById('queueStatus');
+        
+        if (offlineQueue.length > 0) {
+          queueCounter.classList.remove('hidden');
+          queueCounter.textContent = `${offlineQueue.length} pending`;
+          queueStatus.classList.remove('hidden');
+        } else {
+          queueCounter.classList.add('hidden');
+          queueStatus.classList.add('hidden');
+        }
+      }
+
+      async function processOfflineQueue() {
+        if (offlineQueue.length === 0) return;
+        
+        const retryProgress = document.getElementById('retryProgress');
+        retryProgress.style.width = '50%';
+        
+        try {
+          for (let i = 0; i < offlineQueue.length; i++) {
+            const alert = offlineQueue[i];
+            const sosRef = ref(db, "sos_alerts");
+            const newAlertRef = push(sosRef);
+            await set(newAlertRef, alert);
+          }
+          
+          retryProgress.style.width = '100%';
+          setTimeout(() => {
+            offlineQueue = [];
+            localStorage.setItem('sosOfflineQueue', JSON.stringify(offlineQueue));
+            updateQueueStatus();
+            alert('✅ All pending alerts sent successfully!');
+            retryProgress.style.width = '0%';
+          }, 500);
+        } catch (error) {
+          retryProgress.style.width = '0%';
+          alert('❌ Failed to send alerts. Will retry automatically.');
+        }
+      }
+
+      document.getElementById('manualRetry')?.addEventListener('click', processOfflineQueue);
+
+      // Auto-retry when online
+      window.addEventListener('online', () => {
+        processOfflineQueue();
+      });
+
+      updateQueueStatus();
 
       // Battery Monitoring
       if ('getBattery' in navigator) {
@@ -672,10 +1072,10 @@
         document.body.classList.toggle('power-saver');
         if (document.body.classList.contains('power-saver')) {
           this.textContent = 'Disable Power Saver';
-          document.body.style.filter = 'brightness(0.7)';
+          showNotification('Power Saver Mode enabled - animations disabled', 'info');
         } else {
           this.textContent = 'Enable Power Saver';
-          document.body.style.filter = 'brightness(1)';
+          showNotification('Power Saver Mode disabled', 'info');
         }
       });
 
@@ -683,11 +1083,13 @@
       document.getElementById('shareLoc').addEventListener('click', () => {
         const location = document.getElementById('locationInput').value;
         if (location && location !== 'Detecting location...') {
+          const contacts = emergencyContacts.map(c => c.phone).join(',');
           const message = `🚨 EMERGENCY! I need help at: ${location}. Please send assistance immediately!`;
-          const smsUrl = `sms:?body=${encodeURIComponent(message)}`;
+          const smsUrl = `sms:${contacts}?body=${encodeURIComponent(message)}`;
           window.location.href = smsUrl;
+          showNotification(`Sending SOS to ${emergencyContacts.length} contacts`, 'success');
         } else {
-          alert('Please wait for location detection or enter manually.');
+          showNotification('Please wait for location detection or select manually on map', 'error');
         }
       });
 
@@ -722,8 +1124,9 @@
             mediaRecorder.start();
             recordBtnText.textContent = 'Stop Recording';
             recordBtn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
-            recordBtn.classList.add('bg-red-600', 'hover:bg-red-700');
+            recordBtn.classList.add('bg-red-600', 'hover:bg-red-700', 'animate-pulse');
             recordingTime.classList.remove('hidden');
+            showNotification('🎤 Recording started', 'info');
 
             recordingInterval = setInterval(() => {
               recordingSeconds++;
@@ -733,16 +1136,17 @@
             }, 1000);
 
           } catch (err) {
-            alert('Microphone access denied. Please enable microphone permissions.');
+            showNotification('Microphone access denied. Please enable microphone permissions.', 'error');
           }
         } else {
           mediaRecorder.stop();
           mediaRecorder.stream.getTracks().forEach(track => track.stop());
           recordBtnText.textContent = 'Start Recording';
-          recordBtn.classList.remove('bg-red-600', 'hover:bg-red-700');
+          recordBtn.classList.remove('bg-red-600', 'hover:bg-red-700', 'animate-pulse');
           recordBtn.classList.add('bg-blue-600', 'hover:bg-blue-700');
           recordingTime.classList.add('hidden');
           clearInterval(recordingInterval);
+          showNotification('✅ Voice recording saved', 'success');
         }
       });
 
@@ -766,7 +1170,7 @@
             if (file.type.startsWith('image/')) {
               preview.innerHTML = `
                 <img src="${e.target.result}" class="w-full h-24 object-cover rounded-lg">
-                <button class="absolute top-1 right-1 bg-red-600 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity" onclick="this.parentElement.remove()">
+                <button class="media-remove-btn absolute top-1 right-1 bg-red-600 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity">
                   <i data-feather="x" class="w-3 h-3"></i>
                 </button>
               `;
@@ -780,6 +1184,11 @@
             
             filePreview.appendChild(preview);
             feather.replace();
+            
+            // Event delegation for media remove button
+            preview.querySelector('.media-remove-btn')?.addEventListener('click', function() {
+              this.parentElement.remove();
+            });
           };
           reader.readAsDataURL(file);
         });

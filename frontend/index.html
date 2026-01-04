@@ -10,6 +10,7 @@
     <link rel="icon" href="./Material/logo.png" type="image/x-icon" />
     <link rel="stylesheet" href="./css/globals.css" />
     <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/notifications.css" />
   </head>
   <body class="min-h-screen bg-[#0A0A0A]">
     <!-- Global Emergency Alert Banner -->
@@ -161,12 +162,12 @@
 
         <!-- AI Assistant (Non-clickable) -->
         <div
-          class="bg-[#1A1A1A] p-6 rounded-xl border border-[#333333] transition-all cursor-default"
+          class="bg-[#1A1A1A] p-6 rounded-xl border border-[#333333] hover:border-blue-500 hover:shadow-[0_0_20px_rgba(59,130,246,0.2)] transition-all group cursor-pointer"
         >
           <div
-            class="w-14 h-14 bg-[#333333] rounded-full flex items-center justify-center mb-4"
+            class="w-14 h-14 bg-[#333333] rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-600 transition-colors"
           >
-            <i data-feather="message-square" class="w-6 h-6 text-blue-400"></i>
+            <i data-feather="message-square" class="w-6 h-6"></i>
           </div>
           <h3 data-i18n="aiAssist" class="text-xl font-medium mb-3">
             AI Assistant
@@ -336,8 +337,8 @@
             <h4 class="text-sm font-bold uppercase tracking-widest text-white/40">Newsletter</h4>
             <p class="text-xs text-gray-500">Stay updated with the latest disaster response protocols and platform updates.</p>
             <div class="flex gap-2">
-              <input type="email" placeholder="Email address" class="bg-white/5 border border-white/10 px-4 py-2 rounded-lg text-sm outline-none focus:border-white/20 w-full transition-all" />
-              <button class="bg-white text-black p-2 rounded-lg hover:bg-gray-200 transition-all flex-shrink-0"><i data-feather="arrow-right" class="w-4 h-4"></i></button>
+              <input type="email" id="newsletterEmail" placeholder="Email address" class="bg-white/5 border border-white/10 px-4 py-2 rounded-lg text-sm outline-none focus:border-white/20 w-full transition-all" />
+              <button id="newsletterBtn" class="bg-white text-black p-2 rounded-lg hover:bg-gray-200 transition-all flex-shrink-0"><i data-feather="arrow-right" class="w-4 h-4"></i></button>
             </div>
           </div>
         </div>
@@ -353,70 +354,21 @@
       </div>
     </footer>
 
-    <style>
-      /* --- Clean Glow Fix --- */
-      .glow-hover {
-        transition: all 0.3s ease-in-out;
-      }
-
-      /* TEXT ELEMENTS — copyright, links, etc. */
-      p.glow-hover:hover,
-      span.glow-hover:hover,
-      h1.glow-hover:hover,
-      h2.glow-hover:hover,
-      h3.glow-hover:hover,
-      a.glow-hover.inline-block:hover {
-        text-shadow: 0 0 50px currentColor, 0 0 10px currentColor,
-          0 0 20px currentColor, 0 0 40px currentColor;
-        box-shadow: none !important;
-        transform: none;
-      }
-
-      /* BUTTONS & ICON LINKS — keep scale, no box or text glow */
-      a.glow-hover:hover,
-      button.glow-hover:hover {
-        transform: scale(1.05);
-        text-shadow: none !important;
-        box-shadow: none !important;
-      }
-
-      /* High-Impact Attention Animation (Balanced) */
-      @keyframes urgent-pulse {
-        0%,
-        100% {
-          transform: translateY(0);
-          box-shadow: 0 0 0 rgba(220, 38, 38, 0);
-        }
-        50% {
-          transform: translateY(-8px);
-          box-shadow: 0 5px 20px rgba(220, 38, 38, 0.4);
-          border-color: rgba(239, 68, 68, 0.5);
-        }
-      }
-      .urgent-pulse {
-        animation: urgent-pulse 2.5s ease-in-out infinite;
-      }
-      .urgent-pulse:hover {
-        animation-play-state: paused;
-      }
-
-      /* Emergency Alert - High Priority Pulse */
-      @keyframes emergency-pulse {
-        0% {
-          box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
-        }
-        70% {
-          box-shadow: 0 0 0 20px rgba(220, 38, 38, 0);
-        }
-        100% {
-          box-shadow: 0 0 0 0 rgba(220, 38, 38, 0);
-        }
-      }
-      .emergency-pulse {
-        animation: emergency-pulse 1.5s infinite;
-      }
-    </style>
     <script src="./js/script.js"></script>
+    <script src="./js/notifications.js"></script>
+    
+    <script>
+      // Newsletter subscription
+      document.getElementById('newsletterBtn')?.addEventListener('click', () => {
+        const email = document.getElementById('newsletterEmail').value.trim();
+        if (email && email.includes('@')) {
+          showNotification('✅ Successfully subscribed to newsletter!', 'success');
+          document.getElementById('newsletterEmail').value = '';
+        } else {
+          showNotification('Please enter a valid email address', 'error');
+        }
+      });
+    </script>
 
     <!-- Chatbot Embed -->
     <script src="https://www.noupe.com/embed/0199cc5a78967a5e8e7d90d4bec06d4f5e41.js"></script>

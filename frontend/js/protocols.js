@@ -1,4 +1,5 @@
 feather.replace();
+lucide.createIcons();
 
 // Accordion Functionality
 document.querySelectorAll(".accordion-header").forEach((header) => {

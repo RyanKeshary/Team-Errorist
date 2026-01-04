@@ -40,3 +40,102 @@ header.collapsed {
     opacity: 0.6;
   }
 }
+
+/* Progress bar animations */
+#progressBar {
+  animation: progressGlow 2s ease-in-out infinite;
+}
+
+@keyframes progressGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(34, 197, 94, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.8);
+  }
+}
+
+/* Help status pulse */
+#helpStatus .animate-pulse {
+  animation: statusPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+/* Smooth transitions for all interactive elements */
+button,
+a {
+  transition: all 0.3s ease;
+}
+
+/* Contact card hover effect */
+#contactsList > div:hover {
+  transform: translateX(4px);
+}
+
+/* Power saver mode - Fixed to prevent glitching */
+body.power-saver {
+  background-color: #000 !important;
+}
+
+body.power-saver * {
+  animation: none !important;
+  transition: none !important;
+}
+
+body.power-saver main,
+body.power-saver header,
+body.power-saver footer {
+  opacity: 0.85;
+}
+
+/* Notification System */
+.custom-notification {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background: #1a1a1a;
+  color: white;
+  padding: 16px 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  z-index: 10000;
+  min-width: 300px;
+  max-width: 400px;
+  font-size: 14px;
+  border-left: 4px solid #3b82f6;
+  opacity: 0;
+  transform: translateX(400px);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.custom-notification.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.custom-notification.success {
+  border-left-color: #10b981;
+  background: linear-gradient(135deg, #1a1a1a 0%, #064e3b 100%);
+}
+
+.custom-notification.error {
+  border-left-color: #ef4444;
+  background: linear-gradient(135deg, #1a1a1a 0%, #7f1d1d 100%);
+}
+
+.custom-notification.info {
+  border-left-color: #3b82f6;
+  background: linear-gradient(135deg, #1a1a1a 0%, #1e3a8a 100%);
+}

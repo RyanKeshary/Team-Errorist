@@ -1,0 +1,39 @@
+/* Notification System - Reusable across all pages */
+.custom-notification {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background: #1a1a1a;
+  color: white;
+  padding: 16px 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  z-index: 10000;
+  min-width: 300px;
+  max-width: 400px;
+  font-size: 14px;
+  border-left: 4px solid #3b82f6;
+  opacity: 0;
+  transform: translateX(400px);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.custom-notification.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.custom-notification.success {
+  border-left-color: #10b981;
+  background: linear-gradient(135deg, #1a1a1a 0%, #064e3b 100%);
+}
+
+.custom-notification.error {
+  border-left-color: #ef4444;
+  background: linear-gradient(135deg, #1a1a1a 0%, #7f1d1d 100%);
+}
+
+.custom-notification.info {
+  border-left-color: #3b82f6;
+  background: linear-gradient(135deg, #1a1a1a 0%, #1e3a8a 100%);
+}

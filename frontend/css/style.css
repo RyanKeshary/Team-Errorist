@@ -65,3 +65,65 @@ footer {
     max-width: 350px !important;
   }
 }
+
+/* --- Clean Glow Fix --- */
+.glow-hover {
+  transition: all 0.3s ease-in-out;
+}
+
+/* TEXT ELEMENTS — copyright, links, etc. */
+p.glow-hover:hover,
+span.glow-hover:hover,
+h1.glow-hover:hover,
+h2.glow-hover:hover,
+h3.glow-hover:hover,
+a.glow-hover.inline-block:hover {
+  text-shadow: 0 0 50px currentColor, 0 0 10px currentColor,
+    0 0 20px currentColor, 0 0 40px currentColor;
+  box-shadow: none !important;
+  transform: none;
+}
+
+/* BUTTONS & ICON LINKS — keep scale, no box or text glow */
+a.glow-hover:hover,
+button.glow-hover:hover {
+  transform: scale(1.05);
+  text-shadow: none !important;
+  box-shadow: none !important;
+}
+
+/* High-Impact Attention Animation (Balanced) */
+@keyframes urgent-pulse {
+  0%,
+  100% {
+    transform: translateY(0);
+    box-shadow: 0 0 0 rgba(220, 38, 38, 0);
+  }
+  50% {
+    transform: translateY(-8px);
+    box-shadow: 0 5px 20px rgba(220, 38, 38, 0.4);
+    border-color: rgba(239, 68, 68, 0.5);
+  }
+}
+.urgent-pulse {
+  animation: urgent-pulse 2.5s ease-in-out infinite;
+}
+.urgent-pulse:hover {
+  animation-play-state: paused;
+}
+
+/* Emergency Alert - High Priority Pulse */
+@keyframes emergency-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(220, 38, 38, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0);
+  }
+}
+.emergency-pulse {
+  animation: emergency-pulse 1.5s infinite;
+}
