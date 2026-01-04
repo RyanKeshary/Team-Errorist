@@ -1,0 +1,67 @@
+.glow-hover:hover {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+}
+
+.map-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 10, 0.9) 0%,
+    rgba(10, 10, 10, 0.5) 100%
+  );
+}
+
+/* ---- Footer fix ---- */
+footer {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 100px; /* space for chat bubble */
+}
+
+/* ---- Responsive (mobile safe) ---- */
+/* Collapsible Language Switch - IMPROVED */
+#lang-switch {
+  /* No longer fixed at top right if we want it less awkward. 
+           But keeping it fixed is standard for landing pages.
+           Let's make it look better. */
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 999; /* Higher than map overlay, lower than chat popup ideally */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(10, 10, 10, 0.4); /* More transparent */
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  padding: 6px 10px;
+  transition: all 0.3s ease-in-out;
+}
+#lang-switch:hover {
+  background: rgba(10, 10, 10, 0.8);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Mobile adjustments for lang shutter */
+@media (max-width: 640px) {
+  #lang-switch {
+    top: 15px;
+    right: 15px;
+    padding: 4px 8px;
+  }
+  /* Make chat bubble smaller/better positioned on mobile */
+  #JotformAgent-0199cc5a78967a5e8e7d90d4bec06d4f5e41 {
+    bottom: 20px !important;
+    right: 20px !important; /* Ensure it's not negative or too small */
+    left: auto !important; /* Prevent conflicts */
+    width: 50px !important;
+    height: 50px !important;
+  }
+  [id^="jfPopupContainer"] {
+    bottom: 80px !important;
+    right: 5% !important; /* Use percentage to keep it safe */
+    left: 5% !important;
+    width: 90% !important;
+    max-width: 350px !important;
+  }
+}

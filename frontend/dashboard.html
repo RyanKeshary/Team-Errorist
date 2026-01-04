@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CrisisMitra | Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="icon" href="./Material/logo.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <link rel="stylesheet" href="./css/globals.css" />
+    <link rel="stylesheet" href="./css/dashboard.css" />
+  </head>
+
+  <body class="min-h-screen bg-[#0A0A0A]">
+    <!-- Global Emergency Alert Banner -->
+    <div class="emergency-alert-banner">
+      <div class="alert-pulse-icon"></div>
+      <span class="text-sm md:text-base">
+        <strong class="uppercase mr-2">Cyclone Warning:</strong>
+        Immediate evacuation ordered for coastal Sector 7 and 9. Stay away from
+        low-lying areas.
+      </span>
+      <a
+        href="./protocols.html"
+        class="bg-white/20 hover:bg-white/30 px-3 py-1 rounded text-xs font-bold transition-colors"
+        >VIEW PROTOCOLS</a
+      >
+    </div>
+    <!-- Header -->
+    <header
+      class="sticky top-0 z-[60] bg-[#0A0A0A]/95 backdrop-blur-md px-4 py-4 md:py-6 border-b border-[#333333]"
+    >
+      <div
+        class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4"
+      >
+        <!-- Branding -->
+        <a href="./index.html" class="text-2xl font-medium shrink-0"
+          >CrisisMitra</a
+        >
+
+        <!-- Actions Container -->
+        <div
+          class="flex items-center gap-2 md:gap-3 flex-wrap justify-end flex-1"
+        >
+          <!-- SOS (Always First) -->
+          <a
+            href="./sos.html"
+            class="bg-red-600 text-white px-3 md:px-4 py-2 rounded-full text-sm flex items-center gap-2 hover:bg-red-700 transition"
+          >
+            <i data-feather="alert-triangle" class="w-4 h-4"></i>
+            <span data-i18n="sosBtn">SOS Alerts</span>
+          </a>
+
+          <!-- Volunteer Portal (Pill style) -->
+          <a
+            href="./login.html"
+            class="bg-blue-600 text-white px-3 md:px-4 py-2 rounded-full text-sm flex items-center gap-2 hover:bg-blue-700 transition"
+          >
+            <i data-feather="user" class="w-4 h-4"></i>
+            <span data-i18n="volunteerLogin" class="hidden sm:inline"
+              >Volunteer Portal</span
+            >
+            <span class="sm:hidden">Login</span>
+          </a>
+
+          <!-- Protocols (Pill style) -->
+          <a
+            href="./protocols.html"
+            class="bg-[#1a1a1a] border border-[#333] text-white px-3 md:px-4 py-2 rounded-full text-sm flex items-center gap-2 hover:border-white transition"
+          >
+            <i data-feather="shield" class="w-4 h-4"></i>
+            <span>Protocols</span>
+          </a>
+
+          <!-- Helpline -->
+          <a
+            href="./helpline.html"
+            class="bg-red-600/20 text-red-400 border border-red-500/30 px-3 md:px-4 py-2 rounded-full text-sm flex items-center gap-2 hover:bg-red-600 hover:text-white transition"
+          >
+            <i data-feather="phone" class="w-4 h-4"></i>
+            <span class="hidden sm:inline">Helplines</span>
+          </a>
+
+          <!-- Language Switcher -->
+          <div class="lang-switcher-container shrink-0" id="langSwitcher">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="hi">हिंदी</button>
+            <button class="lang-btn" data-lang="mr">मराठी</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Dashboard Content -->
+    <main class="max-w-6xl mx-auto px-4 py-8">
+      <h1 data-i18n="responseDashboard" class="text-3xl font-medium mb-8">
+        Response Dashboard
+      </h1>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="stat-card p-6 rounded-xl">
+          <div class="flex items-center justify-between">
+            <div>
+              <p data-i18n="activeAlerts" class="text-[#D3D3D3] text-sm">
+                Active Alerts
+              </p>
+              <p class="text-3xl font-bold">24</p>
+            </div>
+            <div
+              class="w-12 h-12 bg-red-600/20 rounded-full flex items-center justify-center"
+            >
+              <i data-feather="alert-circle" class="text-red-500"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="stat-card p-6 rounded-xl">
+          <div class="flex items-center justify-between">
+            <div>
+              <p data-i18n="responders" class="text-[#D3D3D3] text-sm">
+                Responders
+              </p>
+              <p class="text-3xl font-bold">128</p>
+            </div>
+            <div
+              class="w-12 h-12 bg-blue-600/20 rounded-full flex items-center justify-center"
+            >
+              <i data-feather="users" class="text-blue-500"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="stat-card p-6 rounded-xl">
+          <div class="flex items-center justify-between">
+            <div>
+              <p data-i18n="resolvedToday" class="text-[#D3D3D3] text-sm">
+                Resolved Today
+              </p>
+              <p class="text-3xl font-bold">42</p>
+            </div>
+            <div
+              class="w-12 h-12 bg-green-600/20 rounded-full flex items-center justify-center"
+            >
+              <i data-feather="check-circle" class="text-green-500"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Safety Quick Action & Feed -->
+      <div class="grid lg:grid-cols-3 gap-8 mb-8">
+        <!-- Community Feed -->
+        <div class="lg:col-span-2 glass-panel p-6">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="text-xl font-bold">Community Status Feed</h3>
+            <span class="status-badge status-warning">Local Reports</span>
+          </div>
+          <div
+            class="space-y-4 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar"
+          >
+            <div class="p-4 bg-white/5 rounded-xl border-l-2 border-yellow-500">
+              <p class="text-sm font-bold mb-1">Sector 4 Node • 5m ago</p>
+              <p class="text-gray-400 text-sm">
+                Large tree down blocking Main Street near the hospital.
+                Alternate route advised.
+              </p>
+            </div>
+            <div class="p-4 bg-white/5 rounded-xl border-l-2 border-blue-500">
+              <p class="text-sm font-bold mb-1">Health Auth • 22m ago</p>
+              <p class="text-gray-400 text-sm">
+                Drinking water distribution starting at Community Center 2.
+                Bring your own containers.
+              </p>
+            </div>
+            <div class="p-4 bg-white/5 rounded-xl border-l-2 border-red-500">
+              <p class="text-sm font-bold mb-1">Police Dispatch • 1h ago</p>
+              <p class="text-gray-400 text-sm">
+                Sector 7 Bridge closed for inspection. Use the West Flyover.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mark Safe Widget -->
+        <div
+          class="glass-panel p-6 flex flex-col items-center justify-center text-center gap-6"
+        >
+          <div
+            class="w-16 h-16 bg-green-600/20 rounded-full flex items-center justify-center"
+          >
+            <i data-feather="heart" class="w-8 h-8 text-green-500"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-2">Safety Check-in</h3>
+            <p class="text-gray-400 text-sm mb-6">
+              Are you and your family safe? Mark your status to notify
+              authorities and loved ones.
+            </p>
+            <button
+              id="markSafeBtn"
+              class="bg-green-600 hover:bg-green-700 text-white w-full py-4 rounded-xl font-bold shadow-[0_0_20px_rgba(34,197,94,0.3)] transition-all flex items-center justify-center gap-2"
+            >
+              <i data-feather="check"></i>
+              I AM SAFE
+            </button>
+          </div>
+          <p id="safeStatusMsg" class="text-xs text-gray-500 hidden italic">
+            Last marked safe: Just now
+          </p>
+        </div>
+      </div>
+      <div class="mb-8">
+        <h2 data-i18n="mapTitle" class="text-xl font-medium mb-4">
+          Interactive Incident Map
+        </h2>
+        <div class="glass-panel overflow-hidden p-2">
+          <div id="map" class="rounded-xl"></div>
+          <div class="flex justify-end p-4">
+            <button
+              id="clearMarkers"
+              class="btn-clear flex items-center gap-2 text-sm"
+            >
+              🗑 <span data-i18n="clearMarkers">Clear All Markers</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="pt-20 pb-10 px-4 border-t border-white/5 bg-[#050505] relative z-50"
+    >
+      <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+          <!-- Col 1: Brand -->
+          <div class="space-y-6">
+            <h3
+              class="text-2xl font-bold bg-gradient-to-r from-white to-white/40 bg-clip-text text-transparent"
+            >
+              CrisisMitra
+            </h3>
+            <p class="text-gray-400 leading-relaxed text-sm">
+              Empowering communities with real-time disaster relief coordination
+              and life-saving communication tools.
+            </p>
+            <div class="flex gap-4">
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 hover:text-blue-400 transition-all border border-white/10 group"
+              >
+                <i
+                  data-feather="facebook"
+                  class="w-5 h-5 group-hover:rotate-12 transition-transform"
+                ></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 hover:text-cyan-400 transition-all border border-white/10 group"
+              >
+                <i
+                  data-feather="x"
+                  class="w-5 h-5 group-hover:rotate-12 transition-transform"
+                ></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 hover:text-pink-400 transition-all border border-white/10 group"
+              >
+                <i
+                  data-feather="instagram"
+                  class="w-5 h-5 group-hover:rotate-12 transition-transform"
+                ></i>
+              </a>
+            </div>
+          </div>
+          <!-- Col 2: Platform -->
+          <div class="space-y-6">
+            <h4
+              class="text-sm font-bold uppercase tracking-widest text-white/40"
+            >
+              Platform
+            </h4>
+            <ul class="space-y-4 text-sm">
+              <li>
+                <a
+                  href="./map.html"
+                  class="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                  ><i data-feather="map" class="w-4 h-4"></i> Live Incident
+                  Map</a
+                >
+              </li>
+              <li>
+                <a
+                  href="./sos.html"
+                  class="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                  ><i data-feather="alert-triangle" class="w-4 h-4"></i> SOS
+                  System</a
+                >
+              </li>
+              <li>
+                <a
+                  href="./dashboard.html"
+                  class="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                  ><i data-feather="activity" class="w-4 h-4"></i> Response
+                  Dashboard</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Col 3: Resources -->
+          <div class="space-y-6">
+            <h4
+              class="text-sm font-bold uppercase tracking-widest text-white/40"
+            >
+              Resources
+            </h4>
+            <ul class="space-y-4 text-sm">
+              <li>
+                <a
+                  href="./protocols.html"
+                  class="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                  ><i data-feather="shield" class="w-4 h-4"></i> Safety
+                  Protocols</a
+                >
+              </li>
+              <li>
+                <a
+                  href="./volunteer.html"
+                  class="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                  ><i data-feather="users" class="w-4 h-4"></i> Volunteer
+                  Portal</a
+                >
+              </li>
+              <li>
+                <a
+                  href="./helpline.html"
+                  class="text-red-500/80 hover:text-red-500 transition-colors flex items-center gap-2 font-bold"
+                  ><i data-feather="phone" class="w-4 h-4"></i> Emergency
+                  Helplines</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Col 4: Newsletter -->
+          <div class="space-y-6">
+            <h4
+              class="text-sm font-bold uppercase tracking-widest text-white/40"
+            >
+              Stay Updated
+            </h4>
+            <p class="text-xs text-gray-500 leading-relaxed">
+              Subscribe to receive real-time alerts and critical disaster
+              response protocols directly in your inbox.
+            </p>
+            <div class="flex gap-2">
+              <input
+                type="email"
+                placeholder="Email address"
+                class="bg-white/5 border border-white/10 px-4 py-2.5 rounded-xl text-sm outline-none focus:border-white/20 w-full transition-all"
+              />
+              <button
+                class="bg-white text-black p-2.5 rounded-xl hover:bg-gray-200 transition-all flex-shrink-0"
+              >
+                <i data-feather="arrow-right" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent"
+        ></div>
+        <div
+          class="mt-10 flex flex-col md:flex-row justify-between items-center gap-6"
+        >
+          <p class="text-xs text-gray-500">
+            © 2025 CrisisMitra. Developed for Community Resilience.
+          </p>
+          <div class="flex gap-8 text-xs text-gray-500">
+            <a href="#" class="hover:text-white transition-colors"
+              >Privacy Policy</a
+            >
+            <a href="#" class="hover:text-white transition-colors"
+              >Terms of Service</a
+            >
+            <a href="#" class="hover:text-white transition-colors"
+              >Contact Support</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="./js/dashboard.js"></script>
+
+    <script>
+      feather.replace();
+
+      const markSafeBtn = document.getElementById("markSafeBtn");
+      const safeStatusMsg = document.getElementById("safeStatusMsg");
+
+      if (markSafeBtn) {
+        markSafeBtn.addEventListener("click", () => {
+          markSafeBtn.textContent = "STATUS UPDATED";
+          markSafeBtn.classList.replace("bg-green-600", "bg-blue-600");
+          safeStatusMsg.classList.remove("hidden");
+
+          // Notification simulation
+          const notification = document.createElement("div");
+          notification.className =
+            "fixed bottom-24 left-1/2 -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-full font-bold shadow-xl z-[100000] animate-bounce";
+          notification.innerHTML = "✓ Status Reported Successfully";
+          document.body.appendChild(notification);
+          setTimeout(() => notification.remove(), 3000);
+        });
+      }
+    </script>
+    <!-- Chatbot Embed -->
+    <script src="https://www.noupe.com/embed/0199cc5a78967a5e8e7d90d4bec06d4f5e41.js"></script>
+  </body>
+</html>
+

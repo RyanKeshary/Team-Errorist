@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In | CrisisMitra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="icon" href="./Material/logo.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/signin.css" />
+  </head>
+  <body class="min-h-screen flex items-center justify-center px-4 relative">
+    <!-- Language Switcher -->
+    <div class="absolute top-4 right-4 z-50">
+      <select
+        id="languageSelect"
+        class="bg-[#1a1a1a] border border-[#333] text-white text-sm rounded-lg px-3 py-2 outline-none focus:border-blue-500 transition"
+      >
+        <option value="en">English</option>
+        <option value="hi">हिंदी</option>
+        <option value="mr">मराठी</option>
+      </select>
+    </div>
+
+    <div
+      class="max-w-lg w-full bg-[#1A1A1A] p-8 rounded-2xl border border-[#333] shadow-lg"
+    >
+      <div class="text-center mb-8">
+        <i data-feather="user" class="w-10 h-10 mx-auto mb-3"></i>
+        <h1 data-i18n="signinTitle" class="text-3xl font-medium">
+          Sign In / Register
+        </h1>
+        <p data-i18n="tagline" class="text-[#D3D3D3] text-sm mt-2">
+          Stay connected and save your emergency contacts
+        </p>
+      </div>
+
+      <form id="signinForm" class="space-y-5">
+        <div>
+          <label data-i18n="nameLbl" class="block mb-2">Full Name</label>
+          <input
+            type="text"
+            id="name"
+            class="form-input"
+            data-i18n-placeholder="namePlaceholder"
+            placeholder="Your name"
+            required
+          />
+        </div>
+
+        <div>
+          <label data-i18n="phoneLbl" class="block mb-2">Phone Number</label>
+          <input
+            type="tel"
+            id="phone"
+            class="form-input"
+            placeholder="+91 9876543210"
+            required
+          />
+        </div>
+
+        <div>
+          <label data-i18n="emailLbl" class="block mb-2"
+            >Email (Optional)</label
+          >
+          <input
+            type="email"
+            id="email"
+            class="form-input"
+            data-i18n-placeholder="emailPlaceholder"
+            placeholder="you@example.com"
+          />
+        </div>
+
+        <div>
+          <label data-i18n="addressLbl" class="block mb-2"
+            >Address (Optional)</label
+          >
+          <input
+            type="text"
+            id="address"
+            class="form-input"
+            data-i18n-placeholder="addressPlaceholder"
+            placeholder="Your address"
+          />
+        </div>
+
+        <h2 data-i18n="emergencyContacts" class="text-xl font-medium mt-6 mb-2">
+          Emergency Contacts
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <input
+              type="text"
+              id="contact1-name"
+              class="form-input mb-2"
+              data-i18n-placeholder="c1Name"
+              placeholder="Contact 1 Name"
+            />
+            <input
+              type="tel"
+              id="contact1-phone"
+              class="form-input"
+              data-i18n-placeholder="c1Phone"
+              placeholder="Contact 1 Phone"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              id="contact2-name"
+              class="form-input mb-2"
+              data-i18n-placeholder="c2Name"
+              placeholder="Contact 2 Name"
+            />
+            <input
+              type="tel"
+              id="contact2-phone"
+              class="form-input"
+              data-i18n-placeholder="c2Phone"
+              placeholder="Contact 2 Phone"
+            />
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 mt-4">
+          <input type="checkbox" id="remember" class="accent-white" />
+          <label
+            data-i18n="remember"
+            for="remember"
+            class="text-sm text-[#D3D3D3]"
+            >Remember me on this device</label
+          >
+        </div>
+        <div class="mt-8">
+          <a
+            href="javascript:void(0)"
+            id="signinSubmitBtn"
+            class="w-full bg-white text-black py-4 rounded-xl font-bold text-center block hover:bg-gray-200 transition-all flex items-center justify-center gap-2"
+          >
+            <span data-i18n="continue">Continue</span>
+            <i data-feather="arrow-right" class="w-5 h-5"></i>
+          </a>
+        </div>
+      </form>
+
+      <p class="text-center text-[#888] text-sm mt-6">
+        <a
+          data-i18n="backHome"
+          href="./index.html"
+          class="hover:text-white transition-all"
+          >← Back to Home</a
+        >
+      </p>
+
+      <div class="text-center mt-8 text-xs text-gray-600">
+        <p>© 2025 CrisisMitra. All rights reserved.</p>
+        <p data-i18n="network">Emergency Response Network</p>
+      </div>
+    </div>
+
+    <script type="module" src="./js/signin.js"></script>
+  </body>
+</html>

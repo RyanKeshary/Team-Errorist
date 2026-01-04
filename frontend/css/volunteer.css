@@ -1,0 +1,23 @@
+.training-badge {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+}
+.active-mission {
+  background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+}
+select {
+  background: #1a1a1a;
+  border: 1px solid #333333;
+  color: white;
+  padding: 0.4rem;
+  border-radius: 0.5rem;
+}
+
+.card-static:hover {
+  transform: none !important;
+  border-color: #333 !important;
+  box-shadow: none !important;
+}
+.interactive-card:hover {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+}

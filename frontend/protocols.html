@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relief Protocols | CrisisMitra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="icon" href="./Material/logo.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/globals.css" />
+    <link rel="stylesheet" href="./css/protocols.css" />
+  </head>
+  <body class="min-h-screen bg-[#0A0A0A]">
+    <!-- Header -->
+    <header
+      class="sticky top-0 z-[60] bg-[#0A0A0A]/90 backdrop-blur-md px-4 py-4 md:py-6 border-b border-[#333333]"
+    >
+      <div
+        class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4"
+      >
+        <!-- Branding -->
+        <a href="./index.html" class="text-2xl font-medium shrink-0"
+          >CrisisMitra</a
+        >
+
+        <!-- Actions -->
+        <div class="flex items-center gap-3 justify-end flex-1">
+          <a
+            href="./sos.html"
+            class="bg-red-600 text-white px-4 py-2 rounded-full text-sm flex items-center gap-2 hover:bg-red-700 transition"
+          >
+            <i data-feather="alert-triangle" class="w-4 h-4"></i>
+            <span>SOS Alerts</span>
+          </a>
+
+          <a
+            href="./dashboard.html"
+            class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm flex items-center gap-2 hover:bg-blue-700 transition"
+          >
+            <i data-feather="activity" class="w-4 h-4"></i>
+            <span>Dashboard</span>
+          </a>
+
+          <a
+            href="./volunteer.html"
+            class="bg-[#1a1a1a] border border-[#333] text-white px-4 py-2 rounded-full text-sm flex items-center gap-2 hover:border-white transition"
+          >
+            <i data-feather="users" class="w-4 h-4"></i>
+            <span>Volunteer Portal</span>
+          </a>
+
+          <a
+            href="./helpline.html"
+            class="bg-red-600/20 text-red-400 border border-red-500/30 px-3 md:px-4 py-2 rounded-full text-sm flex items-center gap-2 hover:bg-red-600 hover:text-white transition"
+          >
+            <i data-feather="phone" class="w-4 h-4"></i>
+            <span class="hidden sm:inline">Helplines</span>
+          </a>
+
+          <!-- Language Switcher -->
+          <div class="lang-switcher-container" id="langSwitcher">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="hi">हिंदी</button>
+            <button class="lang-btn" data-lang="mr">मराठी</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <main class="max-w-6xl mx-auto px-4 py-12">
+      <div class="text-center mb-16">
+        <h1 class="text-4xl md:text-6xl font-extralight mb-6 tracking-tight">
+          Emergency <span class="font-bold text-blue-500">Protocols</span>
+        </h1>
+        <p
+          class="text-[#D3D3D3] max-w-2xl mx-auto text-lg leading-relaxed opacity-80"
+        >
+          Crucial life-saving procedures for immediate crises. Every second
+          counts. Stay calm, act fast, and prioritize human life.
+        </p>
+      </div>
+
+      <!-- Emergency Quick Actions -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+        <div
+          class="bg-blue-600/5 border border-blue-500/20 p-6 rounded-2xl flex flex-col gap-4 hover:bg-blue-600/10 transition-all group"
+        >
+          <div
+            class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform"
+          >
+            <i data-feather="check-circle" class="w-6 h-6 text-white"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-lg mb-1">Verify Safety</h4>
+            <p class="text-sm text-blue-300/70">
+              Ensure the scene is safe before assisting victims.
+            </p>
+          </div>
+        </div>
+        <div
+          class="bg-red-600/5 border border-red-500/20 p-6 rounded-2xl flex flex-col gap-4 hover:bg-red-600/10 transition-all group"
+        >
+          <div
+            class="w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform"
+          >
+            <i data-feather="phone-call" class="w-6 h-6 text-white"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-lg mb-1">Call for Help</h4>
+            <p class="text-sm text-red-300/70">
+              Contact emergency services immediately via SOS button.
+            </p>
+          </div>
+        </div>
+        <div
+          class="bg-green-600/5 border border-green-500/20 p-6 rounded-2xl flex flex-col gap-4 hover:bg-green-600/10 transition-all group"
+        >
+          <div
+            class="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform"
+          >
+            <i data-feather="shield" class="w-6 h-6 text-white"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-lg mb-1">Protect Vitals</h4>
+            <p class="text-sm text-green-300/70">
+              Stop bleeding and maintain clear airways.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Categories Grid -->
+      <div class="grid md:grid-cols-2 gap-10">
+        <!-- Medical -->
+        <div class="relative group">
+          <div
+            class="absolute -inset-1 bg-gradient-to-r from-red-600 to-pink-600 rounded-3xl blur opacity-10 group-hover:opacity-20 transition"
+          ></div>
+          <div
+            class="relative bg-[#0F0F0F] border border-[#222] p-8 rounded-3xl h-full"
+          >
+            <div class="flex items-center gap-5 mb-8">
+              <div
+                class="w-16 h-16 bg-red-600/10 rounded-2xl flex items-center justify-center"
+              >
+                <i data-feather="heart" class="w-10 h-10 text-red-500"></i>
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold">Medical Crisis</h3>
+                <span class="text-xs uppercase tracking-widest text-red-400"
+                  >Immediate Response</span
+                >
+              </div>
+            </div>
+            <div class="space-y-6">
+              <div class="p-4 bg-white/5 rounded-2xl">
+                <p
+                  class="font-bold text-sm mb-2 text-white flex items-center gap-2"
+                >
+                  <span
+                    class="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"
+                  ></span>
+                  Severe Trauma & Bleeding
+                </p>
+                <p class="text-sm text-gray-400 leading-relaxed">
+                  Apply firm, direct pressure. Do not remove saturated bandages;
+                  stack new ones on top. Use a tourniquet if trained.
+                </p>
+              </div>
+              <div class="p-4 bg-white/5 rounded-2xl">
+                <p
+                  class="font-bold text-sm mb-2 text-white flex items-center gap-2"
+                >
+                  <span
+                    class="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"
+                  ></span>
+                  Unconsciousness (CPR)
+                </p>
+                <p class="text-sm text-gray-400 leading-relaxed">
+                  Perform 100-120 chest compressions per minute. Push hard and
+                  fast in the center of the chest. Ensure airway is clear.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fire -->
+        <div class="relative group">
+          <div
+            class="absolute -inset-1 bg-gradient-to-r from-orange-600 to-yellow-600 rounded-3xl blur opacity-10 group-hover:opacity-20 transition"
+          ></div>
+          <div
+            class="relative bg-[#0F0F0F] border border-[#222] p-8 rounded-3xl h-full"
+          >
+            <div class="flex items-center gap-5 mb-8">
+              <div
+                class="w-16 h-16 bg-orange-600/25 rounded-2xl flex items-center justify-center"
+              >
+                <i data-feather="flame" class="w-10 h-10 text-orange-400"></i>
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold">Fire & Smoke</h3>
+                <span class="text-xs uppercase tracking-widest text-orange-400"
+                  >Building Evacuation</span
+                >
+              </div>
+            </div>
+            <div class="space-y-6">
+              <div class="p-4 bg-white/5 rounded-2xl">
+                <p class="font-bold text-sm mb-2 text-white">Evacuation Path</p>
+                <p class="text-sm text-gray-400 leading-relaxed">
+                  Stay low to avoid smoke. Feel doors for heat before opening.
+                  NEVER use elevators. Meet at pre-designated safe zones.
+                </p>
+              </div>
+              <div class="p-4 bg-white/5 rounded-2xl">
+                <p class="font-bold text-sm mb-2 text-white">
+                  Stop, Drop, Roll
+                </p>
+                <p class="text-sm text-gray-400 leading-relaxed">
+                  If clothes catch fire, do not run. Stop immediately, drop to
+                  the ground, and roll to smother the flames.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Natural Disasters -->
+        <div class="relative group">
+          <div
+            class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-3xl blur opacity-10 group-hover:opacity-20 transition"
+          ></div>
+          <div
+            class="relative bg-[#0F0F0F] border border-[#222] p-8 rounded-3xl h-full"
+          >
+            <div class="flex items-center gap-5 mb-8">
+              <div
+                class="w-16 h-16 bg-blue-600/10 rounded-2xl flex items-center justify-center"
+              >
+                <i data-feather="activity" class="w-10 h-10 text-blue-500"></i>
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold">Natural Calamity</h3>
+                <span class="text-xs uppercase tracking-widest text-blue-400"
+                  >Survival Strategy</span
+                >
+              </div>
+            </div>
+            <div class="space-y-6">
+              <div class="p-4 bg-white/5 rounded-2xl">
+                <p class="font-bold text-sm mb-2 text-white">Earthquake</p>
+                <p class="text-sm text-gray-400 leading-relaxed">
+                  Drop to hands/knees. Cover head/neck under sturdy furniture.
+                  Hold on until shaking stops completely. Stay away from glass.
+                </p>
+              </div>
+              <div class="p-4 bg-white/5 rounded-2xl">
+                <p class="font-bold text-sm mb-2 text-white">Flood Action</p>
+                <p class="text-sm text-gray-400 leading-relaxed">
+                  Seek higher ground immediately. Do not cross moving water by
+                  foot or car. Turn off utilities at the main switch.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hazardous Materials -->
+        <div class="relative group">
+          <div
+            class="absolute -inset-1 bg-gradient-to-r from-green-600 to-emerald-600 rounded-3xl blur opacity-10 group-hover:opacity-20 transition"
+          ></div>
+          <div
+            class="relative bg-[#0F0F0F] border border-[#222] p-8 rounded-3xl h-full"
+          >
+            <div class="flex items-center gap-5 mb-8">
+              <div
+                class="w-16 h-16 bg-green-600/10 rounded-2xl flex items-center justify-center"
+              >
+                <i
+                  data-feather="alert-octagon"
+                  class="w-10 h-10 text-green-500"
+                ></i>
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold">Hazmat Alert</h3>
+                <span class="text-xs uppercase tracking-widest text-green-400"
+                  >Biological/Chemical</span
+                >
+              </div>
+            </div>
+            <div class="space-y-6">
+              <div class="p-4 bg-white/5 rounded-2xl">
+                <p class="font-bold text-sm mb-2 text-white">
+                  Shelter-in-Place
+                </p>
+                <p class="text-sm text-gray-400 leading-relaxed">
+                  Close all windows/doors. Seal openings with tape/plastic. Shut
+                  off ventilation systems. Wait for official clearance.
+                </p>
+              </div>
+              <div class="p-4 bg-white/5 rounded-2xl">
+                <p class="font-bold text-sm mb-2 text-white">Decontamination</p>
+                <p class="text-sm text-gray-300 leading-relaxed">
+                  If exposed, remove outer contamination (clothing) and flush
+                  involved skin and eyes with large amounts of water.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Checklists Section -->
+      <div class="grid md:grid-cols-2 gap-10 mb-20">
+        <div class="glass-panel p-8">
+          <div class="flex items-center gap-4 mb-6">
+            <div
+              class="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center"
+            >
+              <i data-feather="briefcase" class="text-blue-500"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-2">Emergency "Go-Bag"</h3>
+            <p class="text-sm text-gray-400 mb-6">
+              Tick off items as you pack them. Saved automatically.
+            </p>
+          </div>
+          <ul class="space-y-3" id="gobag-list">
+            <li class="flex items-center gap-3 text-gray-300">
+              <input
+                type="checkbox"
+                data-item="water"
+                class="accent-blue-500 w-5 h-5 rounded border-gray-700 bg-black cursor-pointer"
+              />
+              <span>Water (3L per person per day)</span>
+            </li>
+            <li class="flex items-center gap-3 text-gray-300">
+              <input
+                type="checkbox"
+                data-item="food"
+                class="accent-blue-500 w-5 h-5 rounded border-gray-700 bg-black cursor-pointer"
+              />
+              <span>Non-perishable food (3-day supply)</span>
+            </li>
+            <li class="flex items-center gap-3 text-gray-300">
+              <input
+                type="checkbox"
+                data-item="meds"
+                class="accent-blue-500 w-5 h-5 rounded border-gray-700 bg-black cursor-pointer"
+              />
+              <span>First aid kit and medications</span>
+            </li>
+            <li class="flex items-center gap-3 text-gray-300">
+              <input
+                type="checkbox"
+                data-item="flashlight"
+                class="accent-blue-500 w-5 h-5 rounded border-gray-700 bg-black cursor-pointer"
+              />
+              <span>Flashlight & extra batteries</span>
+            </li>
+            <li class="flex items-center gap-3 text-gray-300">
+              <input
+                type="checkbox"
+                data-item="documents"
+                class="accent-blue-500 w-5 h-5 rounded border-gray-700 bg-black cursor-pointer"
+              />
+              <span>Copies of vital documents</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="glass-panel p-8">
+          <div class="flex items-center gap-4 mb-6">
+            <div
+              class="w-12 h-12 bg-green-600/20 rounded-xl flex items-center justify-center"
+            >
+              <i data-feather="tool" class="text-green-500"></i>
+            </div>
+            <h3 class="text-2xl font-bold">First Aid Basics</h3>
+          </div>
+          <div class="space-y-4">
+            <div class="p-4 bg-white/5 rounded-xl">
+              <p class="font-bold flex items-center gap-2">
+                <i data-feather="droplet" class="w-4 h-4 text-red-500"></i>
+                Stop Bleeding
+              </p>
+              <p class="text-xs text-gray-500">
+                Firm, direct pressure for at least 10 minutes without stopping.
+              </p>
+            </div>
+            <div class="p-4 bg-white/5 rounded-xl">
+              <p class="font-bold flex items-center gap-2">
+                <i data-feather="activity" class="w-4 h-4 text-blue-500"></i>
+                Treat Shock
+              </p>
+              <p class="text-xs text-gray-500">
+                Keep victim warm, elevate feet 12 inches if no head/leg
+                injuries.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="mt-20 p-10 bg-gradient-to-br from-[#111] to-black rounded-[2rem] border border-red-500/20 text-center relative overflow-hidden"
+      >
+        <div class="absolute top-0 right-0 p-8 opacity-10">
+          <i data-feather="radio" class="w-40 h-40"></i>
+        </div>
+        <h3 class="text-2xl font-bold mb-4 relative z-10">
+          Can't find what you need?
+        </h3>
+        <p class="text-gray-400 mb-8 max-w-lg mx-auto relative z-10">
+          Our AI assistant and live dispatchers are standing by 24/7 to provide
+          real-time guidance during active emergencies.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4 relative z-10">
+          <a
+            href="./sos.html"
+            class="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-xl font-bold transition-all flex items-center gap-2"
+          >
+            <i data-feather="phone"></i>
+            Call Dispatch
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="pt-20 pb-10 px-4 border-t border-white/5 bg-[#050505] relative z-50"
+    >
+      <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+          <!-- Col 1: Brand -->
+          <div class="space-y-6">
+            <h3
+              class="text-2xl font-bold bg-gradient-to-r from-white to-white/40 bg-clip-text text-transparent"
+            >
+              CrisisMitra
+            </h3>
+            <p class="text-gray-400 leading-relaxed text-sm">
+              Empowering communities with real-time disaster relief coordination
+              and life-saving communication tools.
+            </p>
+            <div class="flex gap-4">
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 hover:text-blue-400 transition-all border border-white/10 group"
+              >
+                <i
+                  data-feather="facebook"
+                  class="w-5 h-5 group-hover:rotate-12 transition-transform"
+                ></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 hover:text-cyan-400 transition-all border border-white/10 group"
+              >
+                <i
+                  data-feather="x"
+                  class="w-5 h-5 group-hover:rotate-12 transition-transform"
+                ></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 hover:text-pink-400 transition-all border border-white/10 group"
+              >
+                <i
+                  data-feather="instagram"
+                  class="w-5 h-5 group-hover:rotate-12 transition-transform"
+                ></i>
+              </a>
+            </div>
+          </div>
+          <!-- Col 2: Platform -->
+          <div class="space-y-6">
+            <h4
+              class="text-sm font-bold uppercase tracking-widest text-white/40"
+            >
+              Platform
+            </h4>
+            <ul class="space-y-4 text-sm">
+              <li>
+                <a
+                  href="./map.html"
+                  class="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                  ><i data-feather="map" class="w-4 h-4"></i> Live Incident
+                  Map</a
+                >
+              </li>
+              <li>
+                <a
+                  href="./sos.html"
+                  class="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                  ><i data-feather="alert-triangle" class="w-4 h-4"></i> SOS
+                  System</a
+                >
+              </li>
+              <li>
+                <a
+                  href="./dashboard.html"
+                  class="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                  ><i data-feather="activity" class="w-4 h-4"></i> Response
+                  Dashboard</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Col 3: Resources -->
+          <div class="space-y-6">
+            <h4
+              class="text-sm font-bold uppercase tracking-widest text-white/40"
+            >
+              Resources
+            </h4>
+            <ul class="space-y-4 text-sm">
+              <li>
+                <a
+                  href="./protocols.html"
+                  class="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                  ><i data-feather="shield" class="w-4 h-4"></i> Safety
+                  Protocols</a
+                >
+              </li>
+              <li>
+                <a
+                  href="./volunteer.html"
+                  class="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                  ><i data-feather="users" class="w-4 h-4"></i> Volunteer
+                  Portal</a
+                >
+              </li>
+              <li>
+                <a
+                  href="./helpline.html"
+                  class="text-red-500/80 hover:text-red-500 transition-colors flex items-center gap-2 font-bold"
+                  ><i data-feather="phone" class="w-4 h-4"></i> Emergency
+                  Helplines</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Col 4: Newsletter -->
+          <div class="space-y-6">
+            <h4
+              class="text-sm font-bold uppercase tracking-widest text-white/40"
+            >
+              Stay Updated
+            </h4>
+            <p class="text-xs text-gray-500 leading-relaxed">
+              Subscribe to receive real-time alerts and critical disaster
+              response protocols directly in your inbox.
+            </p>
+            <div class="flex gap-2">
+              <input
+                type="email"
+                placeholder="Email address"
+                class="bg-white/5 border border-white/10 px-4 py-2.5 rounded-xl text-sm outline-none focus:border-white/20 w-full transition-all"
+              />
+              <button
+                class="bg-white text-black p-2.5 rounded-xl hover:bg-gray-200 transition-all flex-shrink-0"
+              >
+                <i data-feather="arrow-right" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent"
+        ></div>
+        <div
+          class="mt-10 flex flex-col md:flex-row justify-between items-center gap-6"
+        >
+          <p class="text-xs text-gray-500">
+            © 2025 CrisisMitra. Developed for Community Resilience.
+          </p>
+          <div class="flex gap-8 text-xs text-gray-500">
+            <a href="#" class="hover:text-white transition-colors"
+              >Privacy Policy</a
+            >
+            <a href="#" class="hover:text-white transition-colors"
+              >Terms of Service</a
+            >
+            <a href="#" class="hover:text-white transition-colors"
+              >Contact Support</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./js/protocols.js"></script>
+
+    <!-- Chatbot Embed -->
+    <script src="https://www.noupe.com/embed/0199cc5a78967a5e8e7d90d4bec06d4f5e41.js"></script>
+  </body>
+</html>

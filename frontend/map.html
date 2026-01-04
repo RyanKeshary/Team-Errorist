@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CrisisMitra | Real-Time SOS Map</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="icon" href="./Material/logo.png" type="image/x-icon" />
+
+    <link rel="stylesheet" href="./css/globals.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <link rel="stylesheet" href="./css/map.css" />
+  </head>
+
+  <body class="min-h-screen">
+    <!-- Global Emergency Alert Banner -->
+    <div class="emergency-alert-banner">
+      <div class="alert-pulse-icon"></div>
+      <span class="text-sm md:text-base">
+        <strong class="uppercase mr-2">Cyclone Warning:</strong>
+        Immediate evacuation ordered for coastal Sector 7 and 9. Stay away from
+        low-lying areas.
+      </span>
+      <a
+        href="./protocols.html"
+        class="bg-white/20 hover:bg-white/30 px-3 py-1 rounded text-xs font-bold transition-colors"
+        >VIEW PROTOCOLS</a
+      >
+    </div>
+    <!-- Header -->
+    <header
+      class="sticky top-0 z-[60] bg-[#0A0A0A]/95 backdrop-blur-md px-4 py-4 md:py-6 border-b border-[#333333] mb-4"
+    >
+      <div
+        class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4"
+      >
+        <!-- Logo -->
+        <a href="./index.html" class="text-2xl font-medium shrink-0"
+          >CrisisMitra</a
+        >
+
+        <!-- Actions Container -->
+        <div
+          class="flex items-center gap-2 md:gap-3 flex-wrap justify-end flex-1"
+        >
+          <!-- Helpline -->
+          <a
+            href="./helpline.html"
+            class="bg-red-600/20 text-red-400 border border-red-500/30 px-3 md:px-4 py-2 rounded-full text-sm flex items-center gap-2 hover:bg-red-600 hover:text-white transition"
+          >
+            <i data-feather="phone" class="w-4 h-4"></i>
+            <span class="hidden sm:inline">Helplines</span>
+          </a>
+
+          <!-- Language Switcher -->
+          <div class="lang-switcher-container shrink-0">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="hi">हिंदी</button>
+            <button class="lang-btn" data-lang="mr">मराठी</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8">
+      <div
+        class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8"
+      >
+        <div>
+          <h1 class="text-3xl font-medium mb-2">
+            🆘 Real-Time Disaster SOS Map
+          </h1>
+          <p class="text-[#888]">
+            Monitor active emergency signals and report new incidents globally.
+          </p>
+        </div>
+        <button class="btn-clear" id="clearMarkers">
+          <i data-feather="trash-2" class="w-4 h-4"></i>
+          <span>Clear All Markers</span>
+        </button>
+      </div>
+
+      <!-- Instruction Card -->
+      <div
+        class="card p-6 rounded-xl mb-8 flex items-center gap-4 border-l-4 border-blue-500"
+      >
+        <div
+          class="w-12 h-12 bg-blue-600/20 rounded-full flex items-center justify-center shrink-0"
+        >
+          <i data-feather="info" class="text-blue-500"></i>
+        </div>
+        <div>
+          <p class="text-white font-medium">How to use</p>
+          <p class="text-[#888] text-sm">
+            Click anywhere on the map to
+            <b class="text-blue-400">add an SOS marker</b>. Provide a title and
+            description to help responders understand the situation.
+          </p>
+        </div>
+      </div>
+
+      <!-- Map Container -->
+      <div class="card rounded-2xl overflow-hidden p-3 md:p-4 shadow-2xl">
+        <div id="map" class="rounded-xl shadow-inner"></div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="pt-20 pb-10 px-4 border-t border-white/5 bg-[#050505] relative z-50"
+    >
+      <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+          <!-- Col 1: Brand -->
+          <div class="space-y-6">
+            <h3
+              class="text-2xl font-bold bg-gradient-to-r from-white to-white/40 bg-clip-text text-transparent"
+            >
+              CrisisMitra
+            </h3>
+            <p class="text-gray-400 leading-relaxed text-sm">
+              Empowering communities with real-time disaster relief coordination
+              and life-saving communication tools.
+            </p>
+            <div class="flex gap-4">
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 hover:text-blue-400 transition-all border border-white/10 group"
+              >
+                <i
+                  data-feather="facebook"
+                  class="w-5 h-5 group-hover:rotate-12 transition-transform"
+                ></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 hover:text-cyan-400 transition-all border border-white/10 group"
+              >
+                <i
+                  data-feather="x"
+                  class="w-5 h-5 group-hover:rotate-12 transition-transform"
+                ></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 hover:text-pink-400 transition-all border border-white/10 group"
+              >
+                <i
+                  data-feather="instagram"
+                  class="w-5 h-5 group-hover:rotate-12 transition-transform"
+                ></i>
+              </a>
+            </div>
+          </div>
+          <!-- Col 2: Platform -->
+          <div class="space-y-6">
+            <h4
+              class="text-sm font-bold uppercase tracking-widest text-white/40"
+            >
+              Platform
+            </h4>
+            <ul class="space-y-4 text-sm">
+              <li>
+                <a
+                  href="./map.html"
+                  class="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                  ><i data-feather="map" class="w-4 h-4"></i> Live Incident
+                  Map</a
+                >
+              </li>
+              <li>
+                <a
+                  href="./sos.html"
+                  class="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                  ><i data-feather="alert-triangle" class="w-4 h-4"></i> SOS
+                  System</a
+                >
+              </li>
+              <li>
+                <a
+                  href="./dashboard.html"
+                  class="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                  ><i data-feather="activity" class="w-4 h-4"></i> Response
+                  Dashboard</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Col 3: Resources -->
+          <div class="space-y-6">
+            <h4
+              class="text-sm font-bold uppercase tracking-widest text-white/40"
+            >
+              Resources
+            </h4>
+            <ul class="space-y-4 text-sm">
+              <li>
+                <a
+                  href="./protocols.html"
+                  class="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                  ><i data-feather="shield" class="w-4 h-4"></i> Safety
+                  Protocols</a
+                >
+              </li>
+              <li>
+                <a
+                  href="./volunteer.html"
+                  class="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                  ><i data-feather="users" class="w-4 h-4"></i> Volunteer
+                  Portal</a
+                >
+              </li>
+              <li>
+                <a
+                  href="./helpline.html"
+                  class="text-red-500/80 hover:text-red-500 transition-colors flex items-center gap-2 font-bold"
+                  ><i data-feather="phone" class="w-4 h-4"></i> Emergency
+                  Helplines</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Col 4: Newsletter -->
+          <div class="space-y-6">
+            <h4
+              class="text-sm font-bold uppercase tracking-widest text-white/40"
+            >
+              Stay Updated
+            </h4>
+            <p class="text-xs text-gray-500 leading-relaxed">
+              Subscribe to receive real-time alerts and critical disaster
+              response protocols directly in your inbox.
+            </p>
+            <div class="flex gap-2">
+              <input
+                type="email"
+                placeholder="Email address"
+                class="bg-white/5 border border-white/10 px-4 py-2.5 rounded-xl text-sm outline-none focus:border-white/20 w-full transition-all"
+              />
+              <button
+                class="bg-white text-black p-2.5 rounded-xl hover:bg-gray-200 transition-all flex-shrink-0"
+              >
+                <i data-feather="arrow-right" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent"
+        ></div>
+        <div
+          class="mt-10 flex flex-col md:flex-row justify-between items-center gap-6"
+        >
+          <p class="text-xs text-gray-500">
+            © 2025 CrisisMitra. Developed for Community Resilience.
+          </p>
+          <div class="flex gap-8 text-xs text-gray-500">
+            <a href="#" class="hover:text-white transition-colors"
+              >Privacy Policy</a
+            >
+            <a href="#" class="hover:text-white transition-colors"
+              >Terms of Service</a
+            >
+            <a href="#" class="hover:text-white transition-colors"
+              >Contact Support</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="./js/map.js"></script>
+    <script>
+      feather.replace();
+
+      function setLanguage(lang) {
+        localStorage.setItem("crisisMitraLang", lang);
+        document.querySelectorAll(".lang-btn").forEach((btn) => {
+          btn.classList.toggle(
+            "active",
+            btn.getAttribute("data-lang") === lang
+          );
+        });
+        // Map page doesn't have many i18n keys yet, but we reload to sync with map.js if needed
+        // Or we just reload for consistency if i18n is handled in map.js
+        location.reload();
+      }
+
+      const savedLang = localStorage.getItem("crisisMitraLang") || "en";
+      document.querySelectorAll(".lang-btn").forEach((btn) => {
+        btn.classList.toggle(
+          "active",
+          btn.getAttribute("data-lang") === savedLang
+        );
+        btn.addEventListener("click", () =>
+          setLanguage(btn.getAttribute("data-lang"))
+        );
+      });
+
+      // Lang Sync across tabs
+      window.addEventListener("storage", (e) => {
+        if (e.key === "crisisMitraLang") location.reload();
+      });
+    </script>
+
+    <!-- Chatbot Embed -->
+    <script src="https://www.noupe.com/embed/0199cc5a78967a5e8e7d90d4bec06d4f5e41.js"></script>
+  </body>
+</html>
+

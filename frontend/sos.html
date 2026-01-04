@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Send SOS | CrisisMitra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="icon" href="./Material/logo.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/globals.css" />
+    <link rel="stylesheet" href="./css/sos.css" />
+  <body class="min-h-screen bg-[#0A0A0A]">
+    <!-- Global Emergency Alert Banner -->
+    <div class="emergency-alert-banner">
+      <div class="alert-pulse-icon"></div>
+      <span class="text-sm md:text-base">
+        <strong class="uppercase mr-2">Cyclone Warning:</strong>
+        Immediate evacuation ordered for coastal Sector 7 and 9. Stay away from low-lying areas.
+      </span>
+      <a href="./protocols.html" class="bg-white/20 hover:bg-white/30 px-3 py-1 rounded text-xs font-bold transition-colors">VIEW PROTOCOLS</a>
+    </div>
+    <!-- Header -->
+    <header class="sticky top-0 z-[60] bg-[#0A0A0A]/95 backdrop-blur-md px-4 py-4 md:py-6 border-b border-[#333333] transition-all duration-300">
+      <div
+        class="max-w-6xl mx-auto flex flex-wrap justify-between items-center gap-4"
+      >
+        <a href="./index.html" class="text-2xl font-medium shrink-0"
+          >CrisisMitra</a
+        >
+        <div class="flex items-center gap-2 md:gap-3 flex-wrap justify-end">
+          <div
+            class="flex items-center gap-2 bg-[#333333] px-3 py-1 rounded-full"
+          >
+            <i data-feather="wifi-off" class="w-4 h-4"></i>
+            <span class="text-sm offline-badge hidden sm:inline"
+              >Your Helper</span
+            >
+            <span class="text-sm offline-badge sm:hidden">Helper</span>
+          </div>
+
+          <!-- Helpline -->
+          <a
+            href="./helpline.html"
+            class="bg-red-600/20 text-red-400 border border-red-500/30 px-3 md:px-4 py-2 rounded-full text-sm flex items-center gap-2 hover:bg-red-600 hover:text-white transition"
+          >
+            <i data-feather="phone" class="w-4 h-4"></i>
+            <span class="hidden sm:inline">Helplines</span>
+          </a>
+
+          <!-- Language Switcher -->
+          <div class="lang-switcher-container shrink-0">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="hi">हिंदी</button>
+            <button class="lang-btn" data-lang="mr">मराठी</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-12">
+      <div class="text-center mb-8">
+        <h1 data-i18n="title" class="text-3xl font-medium mb-4">
+          Send Distress Signal
+        </h1>
+        <p data-i18n="desc" class="text-[#D3D3D3]">
+          This alert will be sent to all nearby responders with your location.
+        </p>
+      </div>
+
+      <!-- Quick Emergency Action Buttons -->
+      <div class="mb-8 p-6 bg-red-600/10 border border-red-500/30 rounded-2xl">
+        <h2 class="text-lg font-bold mb-4 flex items-center gap-2">
+          <i data-feather="zap" class="w-5 h-5 text-red-500"></i>
+          <span data-i18n="quickActions">Quick Emergency Actions</span>
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <a href="tel:112" class="bg-red-600 hover:bg-red-700 text-white p-4 rounded-xl text-center transition-all group">
+            <i data-feather="phone-call" class="w-6 h-6 mx-auto mb-2 group-hover:animate-pulse"></i>
+            <div class="text-sm font-bold">112</div>
+            <div class="text-xs opacity-80">Emergency</div>
+          </a>
+          <a href="tel:102" class="bg-green-600 hover:bg-green-700 text-white p-4 rounded-xl text-center transition-all group">
+            <i data-feather="heart" class="w-6 h-6 mx-auto mb-2 group-hover:animate-pulse"></i>
+            <div class="text-sm font-bold">102</div>
+            <div class="text-xs opacity-80">Ambulance</div>
+          </a>
+          <a href="tel:101" class="bg-orange-600 hover:bg-orange-700 text-white p-4 rounded-xl text-center transition-all group">
+            <i data-feather="flame" class="w-6 h-6 mx-auto mb-2 group-hover:animate-pulse"></i>
+            <div class="text-sm font-bold">101</div>
+            <div class="text-xs opacity-80">Fire</div>
+          </a>
+          <a href="tel:100" class="bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-xl text-center transition-all group">
+            <i data-feather="shield" class="w-6 h-6 mx-auto mb-2 group-hover:animate-pulse"></i>
+            <div class="text-sm font-bold">100</div>
+            <div class="text-xs opacity-80">Police</div>
+          </a>
+        </div>
+        <button id="shareLoc" class="w-full mt-3 bg-white/10 hover:bg-white/20 text-white p-3 rounded-xl text-sm font-medium transition-all flex items-center justify-center gap-2">
+          <i data-feather="share-2" class="w-4 h-4"></i>
+          <span data-i18n="shareLocation">Share Location via SMS</span>
+        </button>
+      </div>
+
+      <!-- Battery & Status Bar -->
+      <div class="mb-6 grid grid-cols-2 gap-4">
+        <div class="p-4 bg-[#1A1A1A] border border-[#333333] rounded-xl">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <i data-feather="battery-charging" id="batteryIcon" class="w-5 h-5 text-green-500"></i>
+              <span class="text-sm font-medium">Battery</span>
+            </div>
+            <span id="batteryLevel" class="text-lg font-bold text-green-500">--</span>
+          </div>
+          <button id="batterySaver" class="mt-2 w-full bg-white/5 hover:bg-white/10 text-xs py-1.5 rounded transition-all">
+            Enable Power Saver
+          </button>
+        </div>
+        <div class="p-4 bg-[#1A1A1A] border border-[#333333] rounded-xl">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <i data-feather="users" class="w-5 h-5 text-blue-500"></i>
+              <span class="text-sm font-medium">Nearby Help</span>
+            </div>
+            <span id="nearbyCount" class="text-lg font-bold text-blue-500">12</span>
+          </div>
+          <div class="mt-2 text-xs text-gray-400">
+            <span id="eta">~5 min away</span>
+          </div>
+        </div>
+      </div>
+
+      <form id="sosForm" class="space-y-6">
+        <!-- Basic Info Row -->
+        <div class="grid md:grid-cols-2 gap-4">
+          <div>
+            <label data-i18n="nameLbl" class="block mb-2">Your Name</label>
+            <input
+              type="text"
+              id="nameInput"
+              data-i18n-placeholder="nameLbl"
+              class="form-input w-full px-4 py-3 rounded-lg"
+              placeholder="Full name (optional)"
+            />
+          </div>
+          <div>
+            <label data-i18n="peopleCount" class="block mb-2">People Affected</label>
+            <select id="peopleInput" class="form-input w-full px-4 py-3 rounded-lg">
+              <option value="1">1 Person</option>
+              <option value="2">2 People</option>
+              <option value="3-5">3-5 People</option>
+              <option value="6-10">6-10 People</option>
+              <option value="10+">10+ People</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label data-i18n="locLbl" class="block mb-2">Location</label>
+          <div class="relative">
+            <input
+              type="text"
+              id="locationInput"
+              class="form-input w-full px-4 py-3 rounded-lg bg-[#1A1A1A] border border-[#333333] text-white placeholder-[#666666]"
+              data-i18n-placeholder="detect"
+              placeholder="Detecting..."
+              value="Detecting location..."
+              readonly
+            />
+
+            <!-- Detect Location Button -->
+            <button
+              type="button"
+              id="detectLocation"
+              class="absolute right-12 top-3 text-[#D3D3D3] hover:text-white"
+              title="Detect Location"
+            >
+              <i data-feather="map-pin"></i>
+            </button>
+
+            <!-- Redirect to Map Button -->
+            <button
+              type="button"
+              id="openMap"
+              class="absolute right-3 top-3 text-[#D3D3D3] hover:text-white"
+              title="Open Map to Select Location"
+            >
+              <i data-feather="map"></i>
+            </button>
+          </div>
+
+          <p data-i18n="services" class="text-sm text-[#D3D3D3] mt-1">
+            We are using your device location services, or you can select
+            manually on the map.
+          </p>
+        </div>
+
+        <div>
+          <label data-i18n="typeLbl" class="block mb-2"
+            >Type of Emergency</label
+          >
+          <select id="typeInput" class="form-input w-full px-4 py-3 rounded-lg">
+            <option value="" data-i18n="typeLbl">Select emergency type</option>
+            <option value="medical" data-i18n="med">Medical Emergency</option>
+            <option value="trapped" data-i18n="trap">
+              Trapped/Rescue Needed
+            </option>
+            <option value="fire" data-i18n="fire">Fire</option>
+            <option value="flood" data-i18n="flood">Flood</option>
+            <option value="earthquake">Earthquake</option>
+            <option value="accident">Accident</option>
+            <option value="other" data-i18n="other">Other Critical Need</option>
+          </select>
+        </div>
+
+        <!-- Medical Information Section -->
+        <div class="p-6 bg-[#1A1A1A] border border-[#333333] rounded-xl">
+          <h3 class="font-bold mb-4 flex items-center gap-2">
+            <i data-feather="activity" class="w-5 h-5 text-red-500"></i>
+            <span data-i18n="medicalInfo">Medical Information</span>
+          </h3>
+          
+          <div class="space-y-4">
+            <div>
+              <label class="block mb-2 text-sm">Injury Severity</label>
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+                <label class="flex items-center gap-2 p-3 bg-white/5 rounded-lg cursor-pointer hover:bg-white/10 transition-all">
+                  <input type="radio" name="injury" value="none" class="accent-green-500" checked>
+                  <span class="text-sm">None</span>
+                </label>
+                <label class="flex items-center gap-2 p-3 bg-white/5 rounded-lg cursor-pointer hover:bg-white/10 transition-all">
+                  <input type="radio" name="injury" value="minor" class="accent-yellow-500">
+                  <span class="text-sm">Minor</span>
+                </label>
+                <label class="flex items-center gap-2 p-3 bg-white/5 rounded-lg cursor-pointer hover:bg-white/10 transition-all">
+                  <input type="radio" name="injury" value="severe" class="accent-orange-500">
+                  <span class="text-sm">Severe</span>
+                </label>
+                <label class="flex items-center gap-2 p-3 bg-white/5 rounded-lg cursor-pointer hover:bg-white/10 transition-all">
+                  <input type="radio" name="injury" value="critical" class="accent-red-500">
+                  <span class="text-sm">Critical</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label class="block mb-2 text-sm">Medical Conditions</label>
+                <div class="space-y-2">
+                  <label class="flex items-center gap-2 text-sm">
+                    <input type="checkbox" name="condition" value="diabetes" class="accent-blue-500">
+                    <span>Diabetes</span>
+                  </label>
+                  <label class="flex items-center gap-2 text-sm">
+                    <input type="checkbox" name="condition" value="heart" class="accent-blue-500">
+                    <span>Heart Disease</span>
+                  </label>
+                  <label class="flex items-center gap-2 text-sm">
+                    <input type="checkbox" name="condition" value="asthma" class="accent-blue-500">
+                    <span>Asthma</span>
+                  </label>
+                </div>
+              </div>
+              <div>
+                <label class="block mb-2 text-sm">Allergies</label>
+                <input
+                  type="text"
+                  id="allergiesInput"
+                  class="form-input w-full px-3 py-2 rounded-lg text-sm"
+                  placeholder="e.g., Penicillin, Peanuts"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label data-i18n="detailsLbl" class="block mb-2"
+            >Additional Details</label
+          >
+          <textarea
+            id="detailsInput"
+            class="form-input w-full px-4 py-3 rounded-lg h-32"
+            data-i18n-placeholder="detailsLbl"
+            placeholder="Brief description of your emergency"
+          ></textarea>
+        </div>
+
+        <!-- Voice Recording -->
+        <div class="p-4 bg-[#1A1A1A] border border-[#333333] rounded-xl">
+          <div class="flex items-center justify-between mb-3">
+            <label class="flex items-center gap-2">
+              <i data-feather="mic" class="w-5 h-5 text-blue-500"></i>
+              <span class="font-medium">Voice Message</span>
+            </label>
+            <span id="recordingTime" class="text-sm text-gray-400 hidden">0:00</span>
+          </div>
+          <button
+            type="button"
+            id="recordBtn"
+            class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-medium transition-all flex items-center justify-center gap-2"
+          >
+            <i data-feather="mic" class="w-5 h-5"></i>
+            <span id="recordBtnText">Start Recording</span>
+          </button>
+          <p class="text-xs text-gray-400 mt-2 text-center">
+            Record a voice message if typing is difficult
+          </p>
+        </div>
+
+        <div>
+          <label data-i18n="photoLbl" class="block mb-2"
+            >Photo/Video Evidence (Optional)</label
+          >
+          <div
+            class="border-2 border-dashed border-[#333333] rounded-lg p-8 text-center hover:border-white transition-all cursor-pointer"
+            id="uploadArea"
+          >
+            <i data-feather="upload" class="w-8 h-8 mx-auto mb-2"></i>
+            <p data-i18n="upload" class="text-[#D3D3D3]">
+              Click to upload or drag and drop
+            </p>
+            <p data-i18n="uploadDesc" class="text-sm text-[#666666] mt-1">
+              Files will be sent when connection is restored
+            </p>
+            <input type="file" id="fileInput" class="hidden" accept="image/*,video/*" multiple>
+          </div>
+          <div id="filePreview" class="mt-3 grid grid-cols-3 gap-2"></div>
+        </div>
+
+        <div class="pt-6">
+          <button
+            type="submit"
+            class="w-full bg-red-600 text-white px-6 py-4 rounded-lg font-bold text-lg flex items-center justify-center gap-2 hover:bg-red-700 transition-all animate-pulse"
+          >
+            <i data-feather="alert-triangle"></i>
+            <span data-i18n="send">SEND EMERGENCY ALERT</span>
+          </button>
+        </div>
+      </form>
+
+      <div class="mt-12 p-4 bg-[#1A1A1A] rounded-lg border border-[#333333]">
+        <div class="flex items-start gap-3">
+          <i data-feather="alert-circle" class="w-5 h-5 mt-0.5"></i>
+          <div>
+            <h3 data-i18n="offlineTitle" class="font-medium mb-1">
+              Offline Notice
+            </h3>
+            <p data-i18n="offlineMsg" class="text-sm text-[#D3D3D3]">
+              Your alert has been queued and will automatically send when
+              connection is restored. Stay in this location if possible.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="pt-20 pb-10 px-4 border-t border-white/5 bg-[#050505] relative z-50">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+          <!-- Col 1: Brand -->
+          <div class="space-y-6">
+            <h3 class="text-2xl font-bold bg-gradient-to-r from-white to-white/40 bg-clip-text text-transparent">CrisisMitra</h3>
+            <p class="text-gray-400 leading-relaxed text-sm">Empowering communities with real-time disaster relief coordination and life-saving communication tools.</p>
+            <div class="flex gap-4">
+              <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 hover:text-blue-400 transition-all border border-white/10 group">
+                <i data-feather="facebook" class="w-5 h-5 group-hover:rotate-12 transition-transform"></i>
+              </a>
+              <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 hover:text-cyan-400 transition-all border border-white/10 group">
+                <i data-feather="x" class="w-5 h-5 group-hover:rotate-12 transition-transform"></i>
+              </a>
+              <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 hover:text-pink-400 transition-all border border-white/10 group">
+                <i data-feather="instagram" class="w-5 h-5 group-hover:rotate-12 transition-transform"></i>
+              </a>
+            </div>
+          </div>
+          <!-- Col 2: Platform -->
+          <div class="space-y-6">
+            <h4 class="text-sm font-bold uppercase tracking-widest text-white/40">Platform</h4>
+            <ul class="space-y-4 text-sm">
+              <li><a href="./map.html" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2"><i data-feather="map" class="w-4 h-4"></i> Live Incident Map</a></li>
+              <li><a href="./sos.html" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2"><i data-feather="alert-triangle" class="w-4 h-4"></i> SOS System</a></li>
+              <li><a href="./dashboard.html" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2"><i data-feather="activity" class="w-4 h-4"></i> Response Dashboard</a></li>
+            </ul>
+          </div>
+          <!-- Col 3: Resources -->
+          <div class="space-y-6">
+            <h4 class="text-sm font-bold uppercase tracking-widest text-white/40">Resources</h4>
+            <ul class="space-y-4 text-sm">
+              <li><a href="./protocols.html" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2"><i data-feather="shield" class="w-4 h-4"></i> Safety Protocols</a></li>
+              <li><a href="./volunteer.html" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2"><i data-feather="users" class="w-4 h-4"></i> Volunteer Portal</a></li>
+              <li><a href="./helpline.html" class="text-red-500/80 hover:text-red-500 transition-colors flex items-center gap-2 font-bold"><i data-feather="phone" class="w-4 h-4"></i> Emergency Helplines</a></li>
+            </ul>
+          </div>
+          <!-- Col 4: Newsletter -->
+          <div class="space-y-6">
+            <h4 class="text-sm font-bold uppercase tracking-widest text-white/40">Stay Updated</h4>
+            <p class="text-xs text-gray-500 leading-relaxed">Subscribe to receive real-time alerts and critical disaster response protocols directly in your inbox.</p>
+            <div class="flex gap-2">
+              <input type="email" placeholder="Email address" class="bg-white/5 border border-white/10 px-4 py-2.5 rounded-xl text-sm outline-none focus:border-white/20 w-full transition-all" />
+              <button class="bg-white text-black p-2.5 rounded-xl hover:bg-gray-200 transition-all flex-shrink-0"><i data-feather="arrow-right" class="w-4 h-4"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+        <div class="mt-10 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p class="text-xs text-gray-500">© 2025 CrisisMitra. Developed for Community Resilience.</p>
+          <div class="flex gap-8 text-xs text-gray-500">
+            <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+            <a href="#" class="hover:text-white transition-colors">Contact Support</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Firebase & Logic -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-analytics.js";
+      import {
+        getDatabase,
+        ref,
+        push,
+        set,
+      } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-database.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyDSRuiYXqJrHmYphpx_sr3WOCGYRokVpLM",
+        authDomain: "crisismitra.firebaseapp.com",
+        databaseURL: "https://crisismitra-default-rtdb.firebaseio.com",
+        projectId: "crisismitra",
+        storageBucket: "crisismitra.firebasestorage.app",
+        messagingSenderId: "539607481271",
+        appId: "1:539607481271:web:fa3759fa9e39483ae38632",
+        measurementId: "G-QYZMHR61M3",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      getAnalytics(app);
+      const db = getDatabase(app);
+      feather.replace();
+
+      // Translations
+      const translations = {
+        en: {
+          helper: "Your Helper",
+          title: "Send Distress Signal",
+          desc: "This alert will be sent to all nearby responders with your location.",
+          nameLbl: "Your Name",
+          locLbl: "Location",
+          detect: "Detecting...",
+          detectBtn: "Detect Location",
+          mapBtn: "Open Map",
+          services: "We are using your device location services...",
+          typeLbl: "Type of Emergency",
+          med: "Medical Emergency",
+          trap: "Trapped/Rescue Needed",
+          fire: "Fire",
+          flood: "Flood",
+          other: "Other Critical Need",
+          detailsLbl: "Additional Details",
+          photoLbl: "Photo/Video Evidence (Optional)",
+          upload: "Click to upload or drag and drop",
+          uploadDesc: "Files will be sent when connection is restored",
+          send: "Send Emergency Alert",
+          offlineTitle: "Offline Notice",
+          offlineMsg:
+            "Your alert has been queued and will automatically send when connection is restored. Stay in this location if possible.",
+        },
+        hi: {
+          helper: "आपका सहायक",
+          title: "आपातकालीन संकेत भेजें",
+          desc: "यह सूचना आपके स्थान के साथ सभी नजदीकी उत्तरदाताओं को भेजी जाएगी।",
+          nameLbl: "आपका नाम",
+          locLbl: "स्थान",
+          detect: "खोज रहा है...",
+          detectBtn: "स्थान खोजें",
+          mapBtn: "मानचित्र खोलें",
+          services: "हम आपकी डिवाइस लोकेशन सेवाओं का उपयोग कर रहे हैं...",
+          typeLbl: "आपातकाल का प्रकार",
+          med: "चिकित्सा आपातकाल",
+          trap: "फंसे हुए/बचाव की आवश्यकता",
+          fire: "आग",
+          flood: "बाढ़",
+          other: "अन्य महत्वपूर्ण आवश्यकता",
+          detailsLbl: "अतिरिक्त विवरण",
+          photoLbl: "फोटो/वीडियो सबूत (वैकल्पिक)",
+          upload: "अपलोड करने के लिए क्लिक करें या ड्रैग और ड्रॉप करें",
+          uploadDesc: "कनेक्शन बहाल होने पर फाइलें भेजी जाएंगी",
+          send: "आपातकालीन चेतावनी भेजें",
+          offlineTitle: "ऑफ़लाइन सूचना",
+          offlineMsg:
+            "आपका अलर्ट कतार में है और कनेक्शन बहाल होने पर स्वचालित रूप से भेजा जाएगा। यदि संभव हो तो इस स्थान पर रहें।",
+        },
+        mr: {
+          helper: "तुमचा मदतनीस",
+          title: "आपत्कालीन सिग्नल पाठवा",
+          desc: "ही सूचना तुमच्या स्थानासह सर्व जवळच्या प्रतिसादकर्त्यांना पाठविली जाईल.",
+          nameLbl: "तुमचे नाव",
+          locLbl: "स्थान",
+          detect: "शोधत आहे...",
+          detectBtn: "स्थान शोधा",
+          mapBtn: "नकाशा उघडा",
+          services: "आम्ही तुमच्या डिव्हाइस लोकेशन सेवा वापरत आहोत...",
+          typeLbl: "आणीबाणीचा प्रकार",
+          med: "वैद्यकीय आणीबाणी",
+          trap: " अडकलेले/बचाव आवश्यक",
+          fire: "आग",
+          flood: "पूर",
+          other: "इतर गंभीर गरज",
+          detailsLbl: "अतिरिक्त तपशील",
+          photoLbl: "फोटो/व्हिडिओ पुरावा (पर्यायी)",
+          upload: "अपलोड करण्यासाठी क्लिक करा किंवा ड्रॅग आणि ड्रॉप करा",
+          uploadDesc: "कनेक्शन पुनर्संचयित झाल्यावर फाइल्स पाठवल्या जातील",
+          send: "आपत्कालीन सूचना पाठवा",
+          offlineTitle: "ऑफलाइन सूचना",
+          offlineMsg:
+            "तुमचा अलर्ट रांगेत आहे आणि कनेक्शन पुनर्संचयित झाल्यावर आपोआप पाठवला जाईल. शक्य असल्यास या ठिकाणी राहा.",
+        },
+      };
+
+      function setLanguage(lang) {
+        localStorage.setItem("crisisMitraLang", lang);
+
+        // Update Buttons
+        document.querySelectorAll(".lang-btn").forEach((btn) => {
+          btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
+        });
+
+        // Text
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          if (translations[lang] && translations[lang][key]) {
+            el.textContent = translations[lang][key];
+          }
+        });
+
+        // Placeholders
+        document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+          const key = el.getAttribute("data-i18n-placeholder");
+          if (translations[lang] && translations[lang][key]) {
+            el.placeholder = translations[lang][key];
+          }
+        });
+      }
+
+      // Initialize
+      const savedLang = localStorage.getItem("crisisMitraLang") || "en";
+      setLanguage(savedLang);
+
+      document.querySelectorAll(".lang-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          setLanguage(btn.getAttribute("data-lang"));
+        });
+      });
+
+      // Collapse header on scroll
+      let lastScrollTop = 0;
+      const header = document.querySelector("header");
+
+      window.addEventListener("scroll", () => {
+        const scrollTop =
+          window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > lastScrollTop && scrollTop > 80) {
+          header.classList.add("collapsed");
+        } else {
+          header.classList.remove("collapsed");
+        }
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+      });
+
+      // Location detection
+      document
+        .getElementById("detectLocation")
+        .addEventListener("click", () => {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+              (pos) => {
+                const { latitude, longitude } = pos.coords;
+                document.getElementById(
+                  "locationInput"
+                ).value = `${latitude.toFixed(5)}, ${longitude.toFixed(5)}`;
+              },
+              () => alert("Unable to retrieve location. Please enable GPS.")
+            );
+          } else {
+            alert("Geolocation not supported by your browser.");
+          }
+        });
+
+      // Map redirect
+      document.getElementById("openMap").addEventListener("click", () => {
+        window.location.href = "map.html";
+      });
+
+      // Form submission
+      document
+        .getElementById("sosForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const name = document.getElementById("nameInput").value.trim();
+          const location = document.getElementById("locationInput").value;
+          const type = document.getElementById("typeInput").value;
+          const details = document.getElementById("detailsInput").value.trim();
+          const peopleCount = document.getElementById("peopleInput").value;
+          const injury = document.querySelector('input[name="injury"]:checked')?.value || "none";
+          const conditions = Array.from(document.querySelectorAll('input[name="condition"]:checked')).map(cb => cb.value);
+          const allergies = document.getElementById("allergiesInput").value.trim();
+
+          if (!location || !type) {
+            alert("Please fill at least location and emergency type.");
+            return;
+          }
+
+          const sosRef = ref(db, "sos_alerts");
+          const newAlertRef = push(sosRef);
+
+          await set(newAlertRef, {
+            name: name || "Anonymous",
+            location,
+            type,
+            details,
+            peopleCount,
+            medicalInfo: {
+              injury,
+              conditions,
+              allergies
+            },
+            timestamp: new Date().toISOString(),
+          });
+
+          alert("🚨 SOS alert sent successfully!");
+          e.target.reset();
+        });
+
+      // Battery Monitoring
+      if ('getBattery' in navigator) {
+        navigator.getBattery().then(battery => {
+          function updateBatteryStatus() {
+            const level = Math.floor(battery.level * 100);
+            const batteryLevelEl = document.getElementById('batteryLevel');
+            const batteryIconEl = document.getElementById('batteryIcon');
+            
+            batteryLevelEl.textContent = level + '%';
+            
+            if (level <= 20) {
+              batteryLevelEl.classList.remove('text-green-500');
+              batteryLevelEl.classList.add('text-red-500');
+              batteryIconEl.classList.remove('text-green-500');
+              batteryIconEl.classList.add('text-red-500');
+              batteryIconEl.setAttribute('data-feather', 'battery');
+            } else if (level <= 50) {
+              batteryLevelEl.classList.remove('text-green-500', 'text-red-500');
+              batteryLevelEl.classList.add('text-yellow-500');
+              batteryIconEl.classList.remove('text-green-500', 'text-red-500');
+              batteryIconEl.classList.add('text-yellow-500');
+            }
+            feather.replace();
+          }
+          
+          updateBatteryStatus();
+          battery.addEventListener('levelchange', updateBatteryStatus);
+          battery.addEventListener('chargingchange', updateBatteryStatus);
+        });
+      } else {
+        document.getElementById('batteryLevel').textContent = 'N/A';
+      }
+
+      // Battery Saver Mode
+      document.getElementById('batterySaver').addEventListener('click', function() {
+        document.body.classList.toggle('power-saver');
+        if (document.body.classList.contains('power-saver')) {
+          this.textContent = 'Disable Power Saver';
+          document.body.style.filter = 'brightness(0.7)';
+        } else {
+          this.textContent = 'Enable Power Saver';
+          document.body.style.filter = 'brightness(1)';
+        }
+      });
+
+      // Share Location via SMS
+      document.getElementById('shareLoc').addEventListener('click', () => {
+        const location = document.getElementById('locationInput').value;
+        if (location && location !== 'Detecting location...') {
+          const message = `🚨 EMERGENCY! I need help at: ${location}. Please send assistance immediately!`;
+          const smsUrl = `sms:?body=${encodeURIComponent(message)}`;
+          window.location.href = smsUrl;
+        } else {
+          alert('Please wait for location detection or enter manually.');
+        }
+      });
+
+      // Voice Recording
+      let mediaRecorder;
+      let audioChunks = [];
+      let recordingInterval;
+      let recordingSeconds = 0;
+
+      document.getElementById('recordBtn').addEventListener('click', async () => {
+        const recordBtn = document.getElementById('recordBtn');
+        const recordBtnText = document.getElementById('recordBtnText');
+        const recordingTime = document.getElementById('recordingTime');
+
+        if (!mediaRecorder || mediaRecorder.state === 'inactive') {
+          try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorder = new MediaRecorder(stream);
+            audioChunks = [];
+            recordingSeconds = 0;
+
+            mediaRecorder.ondataavailable = (event) => {
+              audioChunks.push(event.data);
+            };
+
+            mediaRecorder.onstop = () => {
+              const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+              console.log('Voice recording saved:', audioBlob);
+              // You can upload this to Firebase Storage or attach to the alert
+            };
+
+            mediaRecorder.start();
+            recordBtnText.textContent = 'Stop Recording';
+            recordBtn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+            recordBtn.classList.add('bg-red-600', 'hover:bg-red-700');
+            recordingTime.classList.remove('hidden');
+
+            recordingInterval = setInterval(() => {
+              recordingSeconds++;
+              const mins = Math.floor(recordingSeconds / 60);
+              const secs = recordingSeconds % 60;
+              recordingTime.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+            }, 1000);
+
+          } catch (err) {
+            alert('Microphone access denied. Please enable microphone permissions.');
+          }
+        } else {
+          mediaRecorder.stop();
+          mediaRecorder.stream.getTracks().forEach(track => track.stop());
+          recordBtnText.textContent = 'Start Recording';
+          recordBtn.classList.remove('bg-red-600', 'hover:bg-red-700');
+          recordBtn.classList.add('bg-blue-600', 'hover:bg-blue-700');
+          recordingTime.classList.add('hidden');
+          clearInterval(recordingInterval);
+        }
+      });
+
+      // File Upload
+      const uploadArea = document.getElementById('uploadArea');
+      const fileInput = document.getElementById('fileInput');
+      const filePreview = document.getElementById('filePreview');
+
+      uploadArea.addEventListener('click', () => fileInput.click());
+
+      fileInput.addEventListener('change', (e) => {
+        const files = Array.from(e.target.files);
+        filePreview.innerHTML = '';
+        
+        files.forEach((file, index) => {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const preview = document.createElement('div');
+            preview.className = 'relative group';
+            
+            if (file.type.startsWith('image/')) {
+              preview.innerHTML = `
+                <img src="${e.target.result}" class="w-full h-24 object-cover rounded-lg">
+                <button class="absolute top-1 right-1 bg-red-600 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity" onclick="this.parentElement.remove()">
+                  <i data-feather="x" class="w-3 h-3"></i>
+                </button>
+              `;
+            } else {
+              preview.innerHTML = `
+                <div class="w-full h-24 bg-white/5 rounded-lg flex items-center justify-center">
+                  <i data-feather="film" class="w-8 h-8"></i>
+                </div>
+              `;
+            }
+            
+            filePreview.appendChild(preview);
+            feather.replace();
+          };
+          reader.readAsDataURL(file);
+        });
+      });
+
+      // Drag and drop
+      uploadArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        uploadArea.classList.add('border-white');
+      });
+
+      uploadArea.addEventListener('dragleave', () => {
+        uploadArea.classList.remove('border-white');
+      });
+
+      uploadArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        uploadArea.classList.remove('border-white');
+        fileInput.files = e.dataTransfer.files;
+        fileInput.dispatchEvent(new Event('change'));
+      });
+    </script>
+
+    <!-- Chatbot Embed -->
+    <script src="https://www.noupe.com/embed/0199cc5a78967a5e8e7d90d4bec06d4f5e41.js"></script>
+  </body>
+</html>

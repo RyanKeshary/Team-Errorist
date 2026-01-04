@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | CrisisMitra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="icon" href="./Material/logo.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/login.css" />
+  </head>
+
+  <body
+    class="min-h-screen bg-[#0A0A0A] flex items-center justify-center p-4 relative"
+  >
+    <!-- Language Switcher -->
+    <div class="absolute top-4 right-4 z-50">
+      <select
+        id="languageSelect"
+        class="bg-[#1a1a1a] border border-[#333] text-white text-sm rounded-lg px-3 py-2 outline-none focus:border-blue-500 transition"
+      >
+        <option value="en">English</option>
+        <option value="hi">हिंदी</option>
+        <option value="mr">मराठी</option>
+      </select>
+    </div>
+    <div class="w-full max-w-md">
+      <!-- Logo Header -->
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-bold text-blue-400 mb-2">
+          <a href="./index.html">CrisisMitra</a>
+        </h1>
+        <p data-i18n="tagline" class="text-gray-400">
+          Emergency Response Volunteer Portal
+        </p>
+      </div>
+
+      <!-- Login Card -->
+      <div class="auth-card rounded-xl p-8 glow-effect">
+        <h2 data-i18n="loginTitle" class="text-2xl font-bold text-center mb-6">
+          Volunteer Login
+        </h2>
+
+        <form class="space-y-6">
+          <div>
+            <label
+              data-i18n="emailLbl"
+              for="email"
+              class="block text-sm font-medium mb-2"
+              >Email</label
+            >
+            <div class="relative">
+              <input
+                type="email"
+                id="email"
+                class="input-field w-full px-4 py-3 rounded-lg text-white placeholder-gray-500"
+                data-i18n-placeholder="emailPlaceholder"
+                placeholder="volunteer@example.com"
+                required
+              />
+              <i
+                data-feather="mail"
+                class="absolute right-3 top-3 text-gray-500"
+              ></i>
+            </div>
+          </div>
+
+          <div>
+            <label
+              data-i18n="passwordLbl"
+              for="password"
+              class="block text-sm font-medium mb-2"
+              >Password</label
+            >
+            <div class="relative">
+              <input
+                type="password"
+                id="password"
+                class="input-field w-full px-4 py-3 rounded-lg text-white placeholder-gray-500"
+                data-i18n-placeholder="passwordPlaceholder"
+                placeholder="••••••••"
+                required
+              />
+              <i
+                data-feather="lock"
+                class="absolute right-3 top-3 text-gray-500"
+              ></i>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between">
+            <div class="flex items-center">
+              <input
+                id="remember-me"
+                type="checkbox"
+                class="h-4 w-4 text-blue-500 focus:ring-blue-400 border-gray-300 rounded"
+              />
+              <label
+                data-i18n="rememberMe"
+                for="remember-me"
+                class="ml-2 block text-sm text-gray-400"
+              >
+                Remember me
+              </label>
+            </div>
+            <a
+              data-i18n="forgotPass"
+              href="#"
+              class="text-sm text-blue-400 hover:text-blue-300"
+            >
+              Forgot password?
+            </a>
+          </div>
+
+          <a
+            href="./volunteer.html"
+            class="gradient-bg w-full py-3 px-4 rounded-lg text-white font-medium hover:bg-blue-700 transition duration-200 flex items-center justify-center gap-2"
+          >
+            <i data-feather="log-in" class="w-5 h-5"></i>
+            <span data-i18n="signIn">Sign In</span>
+          </a>
+        </form>
+
+        <div class="auth-divider my-6 relative">
+          <span
+            data-i18n="or"
+            class="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#1a1a1a] px-4 text-sm text-gray-400"
+            >or</span
+          >
+        </div>
+
+        <div class="space-y-4">
+          <button
+            class="w-full py-3 px-4 rounded-lg bg-[#1a1a1a] text-white font-medium hover:bg-[#222] border border-[#333] transition duration-200 flex items-center justify-center gap-2"
+          >
+            <i data-feather="facebook" class="w-5 h-5"></i>
+            <span data-i18n="fbLogin">Continue with Facebook</span>
+          </button>
+          <button
+            class="w-full py-3 px-4 rounded-lg bg-[#1a1a1a] text-white font-medium hover:bg-[#222] border border-[#333] transition duration-200 flex items-center justify-center gap-2"
+          >
+            <i data-feather="google" class="w-5 h-5"></i>
+            <span data-i18n="googleLogin">Continue with Google</span>
+          </button>
+        </div>
+
+        <p class="text-center text-sm text-gray-400 mt-6">
+          <span data-i18n="noAccount">Don't have an account?</span>
+          <a
+            data-i18n="signUpLink"
+            href="./signup.html"
+            class="text-blue-400 hover:text-blue-300 font-medium"
+          >
+            Sign up now
+          </a>
+        </p>
+      </div>
+
+      <div class="text-center mt-8 text-xs text-gray-600">
+        <p>© 2025 CrisisMitra. All rights reserved.</p>
+        <p data-i18n="network">Emergency Response Network</p>
+      </div>
+    </div>
+
+    <script src="./js/login.js"></script>
+  </body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lifeline Directory | CrisisMitra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="icon" href="./Material/logo.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/globals.css" />
+  </head>
+  <body class="min-h-screen bg-[#0A0A0A]">
+    <!-- Global Emergency Alert Banner -->
+    <div class="emergency-alert-banner">
+      <div class="alert-pulse-icon"></div>
+      <span class="text-sm md:text-base">
+        <strong class="uppercase mr-2">Cyclone Warning:</strong>
+        Immediate evacuation ordered for coastal Sector 7 and 9. Stay away from
+        low-lying areas.
+      </span>
+      <a
+        href="./protocols.html"
+        class="bg-white/20 hover:bg-white/30 px-3 py-1 rounded text-xs font-bold transition-colors"
+        >VIEW PROTOCOLS</a
+      >
+    </div>
+
+    <!-- Header -->
+    <header class="px-4 py-4 md:py-6 border-b border-[#333333] bg-[#0A0A0A]">
+      <div class="max-w-6xl mx-auto flex items-center justify-between">
+        <a href="./index.html" class="text-2xl font-medium">CrisisMitra</a>
+        <nav class="hidden md:flex items-center gap-6">
+          <a href="./map.html" class="hover:text-blue-400 transition">Map</a>
+          <a href="./protocols.html" class="hover:text-blue-400 transition"
+            >Protocols</a
+          >
+          <a href="./dashboard.html" class="hover:text-blue-400 transition"
+            >Dashboard</a
+          >
+          <a href="./helpline.html" class="text-blue-400 font-bold"
+            >Helplines</a
+          >
+        </nav>
+        <a
+          href="./sos.html"
+          class="bg-red-600 text-white px-6 py-2 rounded-full font-bold hover:bg-red-700 transition"
+          >SOS</a
+        >
+      </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-12">
+      <div class="text-center mb-16">
+        <h1 class="text-4xl md:text-5xl font-light mb-4">
+          Lifeline <span class="font-bold text-blue-500">Directory</span>
+        </h1>
+        <p class="text-gray-400 max-w-2xl mx-auto">
+          Official emergency helpline numbers and local authorities. Tap the
+          number to call directly from your device.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- National Emergency -->
+        <div class="helpline-card">
+          <div
+            class="w-12 h-12 bg-red-600/10 rounded-xl flex items-center justify-center"
+          >
+            <i data-feather="phone-call" class="text-red-500"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-1">National Emergency</h3>
+            <p class="text-sm text-gray-500 mb-4">
+              Single emergency number for all services
+            </p>
+            <a
+              href="tel:112"
+              class="call-btn flex items-center justify-center gap-2"
+            >
+              <i data-feather="phone" class="w-4 h-4"></i> 112
+            </a>
+          </div>
+        </div>
+
+        <!-- Police -->
+        <div class="helpline-card">
+          <div
+            class="w-12 h-12 bg-red-600/10 rounded-xl flex items-center justify-center"
+          >
+            <i data-feather="shield" class="text-red-500"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-1">Police</h3>
+            <p class="text-sm text-gray-500 mb-4">
+              Immediate law enforcement assistance
+            </p>
+            <a
+              href="tel:100"
+              class="call-btn flex items-center justify-center gap-2"
+            >
+              <i data-feather="phone" class="w-4 h-4"></i> 100
+            </a>
+          </div>
+        </div>
+
+        <!-- Fire -->
+        <div class="helpline-card">
+          <div
+            class="w-12 h-12 bg-red-600/10 rounded-xl flex items-center justify-center"
+          >
+            <i data-feather="flame" class="text-red-500"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-1">Fire Brigade</h3>
+            <p class="text-sm text-gray-500 mb-4">Fire and rescue services</p>
+            <a
+              href="tel:101"
+              class="call-btn flex items-center justify-center gap-2"
+            >
+              <i data-feather="phone" class="w-4 h-4"></i> 101
+            </a>
+          </div>
+        </div>
+
+        <!-- Ambulance -->
+        <div class="helpline-card">
+          <div
+            class="w-12 h-12 bg-red-600/10 rounded-xl flex items-center justify-center"
+          >
+            <i data-feather="heart" class="text-red-500"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-1">Ambulance</h3>
+            <p class="text-sm text-gray-500 mb-4">
+              Medical emergency transport
+            </p>
+            <a
+              href="tel:102"
+              class="call-btn flex items-center justify-center gap-2"
+            >
+              <i data-feather="phone" class="w-4 h-4"></i> 102
+            </a>
+          </div>
+        </div>
+
+        <!-- Disaster Management -->
+        <div class="helpline-card">
+          <div
+            class="w-12 h-12 bg-red-600/10 rounded-xl flex items-center justify-center"
+          >
+            <i data-feather="alert-octagon" class="text-red-500"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-1">Disaster Relief</h3>
+            <p class="text-sm text-gray-500 mb-4">
+              NDRF National Resource center
+            </p>
+            <a
+              href="tel:1078"
+              class="call-btn flex items-center justify-center gap-2"
+            >
+              <i data-feather="phone" class="w-4 h-4"></i> 1078
+            </a>
+          </div>
+        </div>
+
+        <!-- Women Helpline -->
+        <div class="helpline-card">
+          <div
+            class="w-12 h-12 bg-red-600/10 rounded-xl flex items-center justify-center"
+          >
+            <i data-feather="user" class="text-red-500"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-1">Women Helpline</h3>
+            <p class="text-sm text-gray-500 mb-4">
+              Emergency support for women
+            </p>
+            <a
+              href="tel:1091"
+              class="call-btn flex items-center justify-center gap-2"
+            >
+              <i data-feather="phone" class="w-4 h-4"></i> 1091
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-20 p-8 glass-panel text-center">
+        <h3 class="text-2xl font-bold mb-4">Local Volunteer Hubs</h3>
+        <p class="text-gray-400 mb-6">
+          If you need ground-level assistance with food, water, or shelter,
+          connect with our volunteer nodes.
+        </p>
+        <a
+          href="./volunteer.html"
+          class="text-blue-400 font-bold hover:underline"
+          >Access Volunteer Portal →</a
+        >
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="pt-20 pb-10 px-4 border-t border-white/5 bg-[#050505] relative z-50"
+    >
+      <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+          <!-- Col 1: Brand -->
+          <div class="space-y-6">
+            <h3
+              class="text-2xl font-bold bg-gradient-to-r from-white to-white/40 bg-clip-text text-transparent"
+            >
+              CrisisMitra
+            </h3>
+            <p class="text-gray-400 leading-relaxed text-sm">
+              Empowering communities with real-time disaster relief coordination
+              and life-saving communication tools.
+            </p>
+            <div class="flex gap-4">
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 hover:text-blue-400 transition-all border border-white/10 group"
+              >
+                <i
+                  data-feather="facebook"
+                  class="w-5 h-5 group-hover:rotate-12 transition-transform"
+                ></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 hover:text-cyan-400 transition-all border border-white/10 group"
+              >
+                <i
+                  data-feather="x"
+                  class="w-5 h-5 group-hover:rotate-12 transition-transform"
+                ></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 hover:text-pink-400 transition-all border border-white/10 group"
+              >
+                <i
+                  data-feather="instagram"
+                  class="w-5 h-5 group-hover:rotate-12 transition-transform"
+                ></i>
+              </a>
+            </div>
+          </div>
+          <!-- Col 2: Platform -->
+          <div class="space-y-6">
+            <h4
+              class="text-sm font-bold uppercase tracking-widest text-white/40"
+            >
+              Platform
+            </h4>
+            <ul class="space-y-4 text-sm">
+              <li>
+                <a
+                  href="./map.html"
+                  class="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                  ><i data-feather="map" class="w-4 h-4"></i> Live Incident
+                  Map</a
+                >
+              </li>
+              <li>
+                <a
+                  href="./sos.html"
+                  class="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                  ><i data-feather="alert-triangle" class="w-4 h-4"></i> SOS
+                  System</a
+                >
+              </li>
+              <li>
+                <a
+                  href="./dashboard.html"
+                  class="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                  ><i data-feather="activity" class="w-4 h-4"></i> Response
+                  Dashboard</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Col 3: Resources -->
+          <div class="space-y-6">
+            <h4
+              class="text-sm font-bold uppercase tracking-widest text-white/40"
+            >
+              Resources
+            </h4>
+            <ul class="space-y-4 text-sm">
+              <li>
+                <a
+                  href="./protocols.html"
+                  class="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                  ><i data-feather="shield" class="w-4 h-4"></i> Safety
+                  Protocols</a
+                >
+              </li>
+              <li>
+                <a
+                  href="./volunteer.html"
+                  class="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                  ><i data-feather="users" class="w-4 h-4"></i> Volunteer
+                  Portal</a
+                >
+              </li>
+              <li>
+                <a
+                  href="./helpline.html"
+                  class="text-red-500/80 hover:text-red-500 transition-colors flex items-center gap-2 font-bold"
+                  ><i data-feather="phone" class="w-4 h-4"></i> Emergency
+                  Helplines</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Col 4: Newsletter -->
+          <div class="space-y-6">
+            <h4
+              class="text-sm font-bold uppercase tracking-widest text-white/40"
+            >
+              Stay Updated
+            </h4>
+            <p class="text-xs text-gray-500 leading-relaxed">
+              Subscribe to receive real-time alerts and critical disaster
+              response protocols directly in your inbox.
+            </p>
+            <div class="flex gap-2">
+              <input
+                type="email"
+                placeholder="Email address"
+                class="bg-white/5 border border-white/10 px-4 py-2.5 rounded-xl text-sm outline-none focus:border-white/20 w-full transition-all"
+              />
+              <button
+                class="bg-white text-black p-2.5 rounded-xl hover:bg-gray-200 transition-all flex-shrink-0"
+              >
+                <i data-feather="arrow-right" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent"
+        ></div>
+        <div
+          class="mt-10 flex flex-col md:flex-row justify-between items-center gap-6"
+        >
+          <p class="text-xs text-gray-500">
+            © 2025 CrisisMitra. Developed for Community Resilience.
+          </p>
+          <div class="flex gap-8 text-xs text-gray-500">
+            <a href="#" class="hover:text-white transition-colors"
+              >Privacy Policy</a
+            >
+            <a href="#" class="hover:text-white transition-colors"
+              >Terms of Service</a
+            >
+            <a href="#" class="hover:text-white transition-colors"
+              >Contact Support</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      feather.replace();
+    </script>
+    <script src="https://www.noupe.com/embed/0199cc5a78967a5e8e7d90d4bec06d4f5e41.js"></script>
+  </body>
+</html>
+
