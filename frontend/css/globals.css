@@ -90,6 +90,88 @@ body {
   }
 }
 
+.hero-title {
+  text-shadow: 0 2px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Hero text sizing - Original baseline with proper scaling */
+.hero-massive {
+  font-size: 2.25rem; /* 4xl - original baseline */
+}
+
+@media (min-width: 640px) {
+  .hero-massive {
+    font-size: 3rem; /* 5xl */
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-massive {
+    font-size: 4.5rem; /* 7xl */
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-massive {
+    font-size: 6rem; /* 8xl */
+  }
+}
+
+/* Hero subtext sizing - Original baseline */
+.hero-subtext {
+  font-size: 1rem; /* base */
+}
+
+@media (min-width: 640px) {
+  .hero-subtext {
+    font-size: 1.125rem; /* lg */
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-subtext {
+    font-size: 1.25rem; /* xl */
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-subtext {
+    font-size: 1.5rem; /* 2xl */
+  }
+}
+
+/* Enhanced entrance animations */
+@keyframes heroFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: heroFadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-delay {
+  animation: heroFadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+  opacity: 0;
+}
+
+/* Gradient text support */
+.bg-clip-text {
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.text-transparent {
+  -webkit-text-fill-color: transparent;
+}
+
 /* ---- Professional UI Enhancements ---- */
 
 /* Emergency Alert Banner */

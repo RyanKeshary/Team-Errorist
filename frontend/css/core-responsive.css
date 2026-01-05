@@ -175,7 +175,8 @@ textarea {
   padding: 1.25rem !important; /* Comfortable padding */
 }
 
-h1 {
+/* Default heading sizes - can be overridden by specific classes like .hero-massive */
+h1:not(.hero-massive):not(.hero-title) {
   font-size: var(--text-3xl) !important;
 }
 h2 {
@@ -184,7 +185,7 @@ h2 {
 h3 {
   font-size: var(--text-xl) !important;
 }
-p {
+p:not(.hero-subtext) {
   font-size: var(--text-sm) !important;
 }
 
