@@ -8,6 +8,9 @@
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="icon" href="./Material/logo.png" type="image/x-icon" />
     <link rel="stylesheet" href="./css/globals.css" />
+    <link rel="stylesheet" href="./css/helpline.css" />
+    <link rel="stylesheet" href="./css/core-responsive.css" />
+    <link rel="stylesheet" href="./css/lang-switcher.css" />
   </head>
   <body class="min-h-screen bg-[#0A0A0A]">
     <!-- Global Emergency Alert Banner -->
@@ -25,8 +28,40 @@
       >
     </div>
 
-    <!-- Header -->
-    <header class="px-4 py-4 md:py-6 border-b border-[#333333] bg-[#0A0A0A]">
+    </div>
+
+    <!-- Mobile Top Navigation Bar (Sticky) -->
+    <nav class="nav-bottom-bar">
+      <a href="./index.html" class="nav-item-mobile">
+        <i data-feather="home"></i>
+        <span>Home</span>
+      </a>
+      <a href="./dashboard.html" class="nav-item-mobile">
+        <i data-feather="activity"></i>
+        <span>Dash</span>
+      </a>
+      <a href="./sos.html" class="nav-item-mobile danger">
+        <i data-feather="alert-circle"></i>
+        <span>SOS</span>
+      </a>
+      <a href="./helpline.html" class="nav-item-mobile active">
+        <i data-feather="phone"></i>
+        <span>Help</span>
+      </a>
+      <a href="./map.html" class="nav-item-mobile">
+        <i data-feather="map"></i>
+        <span>Map</span>
+      </a>
+      <a href="./protocols.html" class="nav-item-mobile">
+        <i data-feather="shield"></i>
+        <span>Tips</span>
+      </a>
+    </nav>
+
+    <!-- Desktop Header -->
+    <header
+      class="nav-desktop-header sticky top-0 z-[60] bg-[#0A0A0A]/95 backdrop-blur-md px-4 py-4 md:py-6 border-b border-[#333333] transition-all duration-300"
+    >
       <div class="max-w-6xl mx-auto flex items-center justify-between">
         <a href="./index.html" class="text-2xl font-medium">CrisisMitra</a>
         <nav class="hidden md:flex items-center gap-6">
@@ -232,7 +267,6 @@
                 class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 hover:text-cyan-400 transition-all border border-white/10 group"
               >
                 <i
-                  data-feather="x"
                   class="w-5 h-5 group-hover:rotate-12 transition-transform"
                 ></i>
               </a>
@@ -241,7 +275,6 @@
                 class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 hover:text-pink-400 transition-all border border-white/10 group"
               >
                 <i
-                  data-feather="instagram"
                   class="w-5 h-5 group-hover:rotate-12 transition-transform"
                 ></i>
               </a>
@@ -367,7 +400,8 @@
     <script>
       feather.replace();
     </script>
+
     <script src="https://www.noupe.com/embed/0199cc5a78967a5e8e7d90d4bec06d4f5e41.js"></script>
+    <script src="./js/lang-switcher.js"></script>
   </body>
 </html>
-

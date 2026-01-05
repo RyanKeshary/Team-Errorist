@@ -10,11 +10,41 @@
     <link rel="icon" href="./Material/logo.png" type="image/x-icon" />
     <link rel="stylesheet" href="./css/globals.css" />
     <link rel="stylesheet" href="./css/protocols.css" />
+    <link rel="stylesheet" href="./css/core-responsive.css" />
+    <link rel="stylesheet" href="./css/lang-switcher.css" />
   </head>
   <body class="min-h-screen bg-[#0A0A0A]">
-    <!-- Header -->
+    <!-- Mobile Top Navigation Bar (Sticky) -->
+    <nav class="nav-bottom-bar">
+      <a href="./index.html" class="nav-item-mobile">
+        <i data-feather="home"></i>
+        <span>Home</span>
+      </a>
+      <a href="./dashboard.html" class="nav-item-mobile">
+        <i data-feather="activity"></i>
+        <span>Dash</span>
+      </a>
+      <a href="./sos.html" class="nav-item-mobile danger">
+        <i data-feather="alert-circle"></i>
+        <span>SOS</span>
+      </a>
+      <a href="./helpline.html" class="nav-item-mobile">
+        <i data-feather="phone"></i>
+        <span>Help</span>
+      </a>
+      <a href="./map.html" class="nav-item-mobile">
+        <i data-feather="map"></i>
+        <span>Map</span>
+      </a>
+      <a href="./protocols.html" class="nav-item-mobile active">
+        <i data-feather="shield"></i>
+        <span>Tips</span>
+      </a>
+    </nav>
+
+    <!-- Desktop Header -->
     <header
-      class="sticky top-0 z-[60] bg-[#0A0A0A]/90 backdrop-blur-md px-4 py-4 md:py-6 border-b border-[#333333]"
+      class="nav-desktop-header sticky top-0 z-[60] bg-[#0A0A0A]/95 backdrop-blur-md px-4 py-4 md:py-6 border-b border-[#333333] transition-all duration-300"
     >
       <div
         class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4"
@@ -57,19 +87,23 @@
             <i data-feather="phone" class="w-4 h-4"></i>
             <span class="hidden sm:inline">Helplines</span>
           </a>
-
-          <!-- Language Switcher -->
-          <div class="lang-switcher-container" id="langSwitcher">
-            <button class="lang-btn active" data-lang="en">EN</button>
-            <button class="lang-btn" data-lang="hi">हिंदी</button>
-            <button class="lang-btn" data-lang="mr">मराठी</button>
-          </div>
         </div>
       </div>
     </header>
 
     <!-- Content -->
     <main class="max-w-6xl mx-auto px-4 py-12">
+      <!-- Mobile Volunteer Portal (Visible only on mobile) -->
+      <div class="lg:hidden flex justify-end mb-6">
+        <a
+          href="./volunteer.html"
+          class="bg-[#1a1a1a] border border-[#333] text-white px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2 hover:border-white transition"
+        >
+          <i data-feather="users" class="w-4 h-4"></i>
+          <span>Volunteer Portal</span>
+        </a>
+      </div>
+
       <div class="text-center mb-16">
         <h1 class="text-4xl md:text-6xl font-extralight mb-6 tracking-tight">
           Emergency <span class="font-bold text-blue-500">Protocols</span>
@@ -333,7 +367,6 @@
             <li class="flex items-center gap-3 text-gray-300">
               <input
                 type="checkbox"
-                data-item="water"
                 class="accent-blue-500 w-5 h-5 rounded border-gray-700 bg-black cursor-pointer"
               />
               <span>Water (3L per person per day)</span>
@@ -341,7 +374,6 @@
             <li class="flex items-center gap-3 text-gray-300">
               <input
                 type="checkbox"
-                data-item="food"
                 class="accent-blue-500 w-5 h-5 rounded border-gray-700 bg-black cursor-pointer"
               />
               <span>Non-perishable food (3-day supply)</span>
@@ -349,7 +381,6 @@
             <li class="flex items-center gap-3 text-gray-300">
               <input
                 type="checkbox"
-                data-item="meds"
                 class="accent-blue-500 w-5 h-5 rounded border-gray-700 bg-black cursor-pointer"
               />
               <span>First aid kit and medications</span>
@@ -357,7 +388,6 @@
             <li class="flex items-center gap-3 text-gray-300">
               <input
                 type="checkbox"
-                data-item="flashlight"
                 class="accent-blue-500 w-5 h-5 rounded border-gray-700 bg-black cursor-pointer"
               />
               <span>Flashlight & extra batteries</span>
@@ -365,7 +395,6 @@
             <li class="flex items-center gap-3 text-gray-300">
               <input
                 type="checkbox"
-                data-item="documents"
                 class="accent-blue-500 w-5 h-5 rounded border-gray-700 bg-black cursor-pointer"
               />
               <span>Copies of vital documents</span>
@@ -559,7 +588,6 @@
             <div class="flex gap-2">
               <input
                 type="email"
-                placeholder="Email address"
                 class="bg-white/5 border border-white/10 px-4 py-2.5 rounded-xl text-sm outline-none focus:border-white/20 w-full transition-all"
               />
               <button
@@ -598,5 +626,9 @@
 
     <!-- Chatbot Embed -->
     <script src="https://www.noupe.com/embed/0199cc5a78967a5e8e7d90d4bec06d4f5e41.js"></script>
+    <script>
+      feather.replace();
+    </script>
+    <script src="./js/lang-switcher.js"></script>
   </body>
 </html>

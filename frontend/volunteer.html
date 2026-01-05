@@ -9,6 +9,8 @@
     <link rel="icon" href="./Material/logo.png" type="image/x-icon" />
     <link rel="stylesheet" href="./css/globals.css" />
     <link rel="stylesheet" href="./css/volunteer.css" />
+    <link rel="stylesheet" href="./css/core-responsive.css" />
+    <link rel="stylesheet" href="./css/lang-switcher.css" />
   </head>
 
   <body class="min-h-screen bg-[#0A0A0A]">
@@ -26,9 +28,38 @@
         >VIEW PROTOCOLS</a
       >
     </div>
-    <!-- Header -->
+    </div>
+
+    <!-- Mobile Top Navigation Bar (Sticky) -->
+    <nav class="nav-bottom-bar">
+      <a href="./index.html" class="nav-item-mobile">
+        <i data-feather="home"></i>
+        <span>Home</span>
+      </a>
+      <a href="./volunteer.html" class="nav-item-mobile active">
+        <i data-feather="users"></i>
+        <span>Volunteer</span>
+      </a>
+      <a href="./sos.html" class="nav-item-mobile danger">
+        <i data-feather="alert-circle"></i>
+        <span>SOS</span>
+      </a>
+      <a href="./helpline.html" class="nav-item-mobile">
+        <i data-feather="phone"></i>
+        <span>Help</span>
+      </a>
+      <a href="./map.html" class="nav-item-mobile">
+        <i data-feather="map"></i>
+        <span>Map</span>
+      </a>
+      <a href="./protocols.html" class="nav-item-mobile">
+        <i data-feather="shield"></i>
+        <span>Tips</span>
+      </a>
+    </nav>
+    <!-- Desktop Header -->
     <header
-      class="sticky top-0 z-[60] bg-[#0A0A0A]/90 backdrop-blur-md px-4 py-4 md:py-6 border-b border-[#333333]"
+      class="nav-desktop-header sticky top-0 z-[60] bg-[#0A0A0A]/95 backdrop-blur-md px-4 py-4 md:py-6 border-b border-[#333333] transition-all duration-300"
     >
       <div
         class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4"
@@ -50,7 +81,7 @@
             class="bg-red-600 text-white px-4 py-2 rounded-full text-sm flex items-center gap-2 hover:bg-red-700 transition"
           >
             <i data-feather="alert-triangle" class="w-4 h-4"></i>
-            <span data-i18n="sos_alerts">SOS Alerts</span>
+            <span>SOS Alerts</span>
           </a>
 
           <a
@@ -58,7 +89,7 @@
             class="bg-[#1a1a1a] border border-[#333] text-white px-4 py-2 rounded-full text-sm flex items-center gap-2 hover:border-white transition"
           >
             <i data-feather="activity" class="w-4 h-4"></i>
-            <span data-i18n="dashboard">Dashboard</span>
+            <span>Dashboard</span>
           </a>
 
           <a
@@ -70,10 +101,10 @@
           </a>
 
           <!-- Language Switcher -->
-          <div class="lang-switcher-container shrink-0">
-            <button class="lang-btn active" data-lang="en">EN</button>
-            <button class="lang-btn" data-lang="hi">हिंदी</button>
-            <button class="lang-btn" data-lang="mr">मराठी</button>
+          <div class="flex items-center gap-2">
+            <a href="#" class="text-gray-400 hover:text-white text-sm font-medium">EN</a>
+            <span class="text-gray-600">|</span>
+            <a href="#" class="text-gray-400 hover:text-white text-sm font-medium">HI</a>
           </div>
         </div>
       </div>
@@ -93,11 +124,11 @@
           </div>
           <div>
             <p class="text-sm font-medium text-blue-400">
-              <span data-i18n="welcome">Welcome</span>,
+              <span>Welcome</span>,
               <span id="volunteer-name" class="font-bold">Volunteer</span>
             </p>
             <p class="text-xs text-blue-300">
-              <span data-i18n="current_status">Current Status</span>: On Duty
+              <span>Current Status</span>: On Duty
             </p>
             <p class="text-xs text-blue-300">
               Stationed at Zone A-4 (District Hospital)
@@ -135,7 +166,7 @@
                 <i data-feather="user" class="w-8 h-8 text-blue-400"></i>
               </div>
               <div>
-                <h2 class="text-xl font-medium" data-i18n="volunteer_name">
+                <h2 class="text-xl font-medium">
                   Volunteer Name
                 </h2>
                 <div
@@ -198,7 +229,7 @@
           <div class="card card-static p-6 rounded-xl border border-[#333]">
             <h3 class="text-lg font-medium mb-4 flex items-center gap-2">
               <i data-feather="award" class="w-5 h-5"></i>
-              <span data-i18n="training">Training</span>
+              <span>Training</span>
             </h3>
             <div class="space-y-4">
               <div class="flex items-start gap-3">
@@ -208,10 +239,10 @@
                   <i data-feather="check" class="w-4 h-4"></i>
                 </div>
                 <div>
-                  <h4 class="font-medium" data-i18n="train_basic">
+                  <h4 class="font-medium">
                     Basic First Aid
                   </h4>
-                  <p class="text-sm text-[#D3D3D3]" data-i18n="completed_2w">
+                  <p class="text-sm text-[#D3D3D3]">
                     Completed 2 weeks ago
                   </p>
                 </div>
@@ -266,18 +297,17 @@
             <div class="flex items-center justify-between mb-4">
               <h2 class="text-xl font-medium flex items-center gap-2">
                 <i data-feather="target" class="w-5 h-5 text-blue-400"></i>
-                <span data-i18n="active_mission">Active Mission</span>
+                <span>Active Mission</span>
               </h2>
               <span
                 class="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold"
-                data-i18n="in_progress"
                 >LIVE</span
               >
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
               <div>
-                <p class="text-sm text-[#D3D3D3]" data-i18n="location">
+                <p class="text-sm text-[#D3D3D3]">
                   Location
                 </p>
                 <p class="font-medium flex items-center gap-2">
@@ -286,11 +316,11 @@
                 </p>
               </div>
               <div>
-                <p class="text-sm text-[#D3D3D3]" data-i18n="team">Team</p>
+                <p class="text-sm text-[#D3D3D3]">Team</p>
                 <p class="font-medium">Medical Unit #4 (Alpha)</p>
               </div>
               <div>
-                <p class="text-sm text-[#D3D3D3]" data-i18n="started">
+                <p class="text-sm text-[#D3D3D3]">
                   Time Elapsed
                 </p>
                 <p class="font-medium text-orange-400">02:14:35</p>
@@ -507,9 +537,13 @@
       </div>
     </footer>
 
-    <script src="./js/volunteer.js"></script>
-
     <!-- Chatbot Embed -->
     <script src="https://www.noupe.com/embed/0199cc5a78967a5e8e7d90d4bec06d4f5e41.js"></script>
+    <script src="./js/volunteer.js"></script>
+    <script src="./js/notifications.js"></script>
+    <script>
+      feather.replace();
+    </script>
+    <script src="./js/lang-switcher.js"></script>
   </body>
 </html>

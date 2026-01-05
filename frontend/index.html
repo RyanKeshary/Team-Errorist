@@ -11,19 +11,22 @@
     <link rel="stylesheet" href="./css/globals.css" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/notifications.css" />
+    <link rel="stylesheet" href="./css/core-responsive.css" />
+    <link rel="stylesheet" href="./css/lang-switcher.css" />
   </head>
   <body class="min-h-screen bg-[#0A0A0A]">
     <!-- Global Emergency Alert Banner -->
     <div class="emergency-alert-banner">
       <div class="alert-pulse-icon"></div>
       <span class="text-sm md:text-base">
-        <strong class="uppercase mr-2">Cyclone Warning:</strong>
-        Immediate evacuation ordered for coastal Sector 7 and 9. Stay away from
-        low-lying areas.
+        <strong class="uppercase mr-2" data-i18n="cycloneWarning">Cyclone Warning:</strong>
+        <span data-i18n="warningText">Immediate evacuation ordered for coastal Sector 7 and 9. Stay away from
+        low-lying areas.</span>
       </span>
       <a
         href="./protocols.html"
         class="bg-white/20 hover:bg-white/30 px-3 py-1 rounded text-xs font-bold transition-colors"
+        data-i18n="viewProtocols"
         >VIEW PROTOCOLS</a
       >
     </div>
@@ -31,10 +34,38 @@
     <!-- Vanta.js Background -->
     <div id="vanta-bg" class="fixed inset-0 -z-10 opacity-20"></div>
 
-    <!-- Header / Nav -->
-    <header class="sticky top-0 z-[60] bg-[#0A0A0A]/90 backdrop-blur-md border-b border-white/5 px-6 py-4 transition-all duration-300">
+    <!-- Mobile Top Navigation Bar (Sticky) -->
+    <nav class="nav-bottom-bar">
+      <a href="./index.html" class="nav-item-mobile active">
+        <i data-feather="home"></i>
+        <span data-i18n="navHome">Home</span>
+      </a>
+      <a href="./dashboard.html" class="nav-item-mobile">
+        <i data-feather="activity"></i>
+        <span data-i18n="navDash">Dash</span>
+      </a>
+      <a href="./sos.html" class="nav-item-mobile danger">
+        <i data-feather="alert-circle"></i>
+        <span data-i18n="navSOS">SOS</span>
+      </a>
+      <a href="./helpline.html" class="nav-item-mobile">
+        <i data-feather="phone"></i>
+        <span data-i18n="navHelp">Help</span>
+      </a>
+      <a href="./map.html" class="nav-item-mobile">
+        <i data-feather="map"></i>
+        <span data-i18n="navMap">Map</span>
+      </a>
+      <a href="./protocols.html" class="nav-item-mobile">
+        <i data-feather="shield"></i>
+        <span data-i18n="navTips">Tips</span>
+      </a>
+    </nav>
+
+    <!-- Desktop Header (Hidden on Mobile via core-responsive.css) -->
+    <header class="nav-desktop-header sticky top-0 z-[60] bg-[#0A0A0A]/90 backdrop-blur-md border-b border-white/5 px-6 py-4 transition-all duration-300">
       <div class="max-w-7xl mx-auto flex items-center justify-between">
-        <a href="./index.html" class="text-xl font-bold tracking-tighter">CrisisMitra</a>
+        <a href="./index.html" class="text-xl font-bold tracking-tighter" data-i18n="appName">CrisisMitra</a>
         <div class="flex items-center gap-6">
           <nav class="hidden md:flex items-center gap-6">
             <a
@@ -42,14 +73,9 @@
               class="bg-red-600/20 text-red-500 border border-red-500/30 px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2 hover:bg-red-600 hover:text-white transition group"
             >
               <i data-feather="phone" class="w-4 h-4 group-hover:rotate-12 transition-transform"></i>
-              Helplines
+              <span data-i18n="navHelplines">Helplines</span>
             </a>
           </nav>
-          <div class="lang-switcher-container">
-            <button class="lang-btn active" data-lang="en">EN</button>
-            <button class="lang-btn" data-lang="hi">हिंदी</button>
-            <button class="lang-btn" data-lang="mr">मराठी</button>
-          </div>
         </div>
       </div>
     </header>
@@ -67,13 +93,12 @@
         <h1
           class="text-4xl sm:text-5xl md:text-7xl font-light mb-6 tracking-tight"
         >
-          <span data-i18n="every" class="block mb-2">Every</span>
-          <span data-i18n="secondCounts" class="font-medium"
+          <span class="block mb-2">Every</span>
+          <span class="font-medium"
             >Second Counts</span
           >
         </h1>
         <p
-          data-i18n="heroText"
           class="text-lg sm:text-xl md:text-2xl text-[#D3D3D3] mb-12 max-w-2xl mx-auto"
         >
           Connect emergency responders with those in need through real-time
@@ -85,14 +110,14 @@
             class="bg-red-600 text-white px-8 py-4 rounded-full font-bold text-lg glow-hover transform hover:scale-105 active:scale-95 hover:bg-red-700 hover:shadow-[0_0_20px_rgba(220,38,38,0.5)] transition-all flex items-center gap-2"
           >
             <i data-feather="alert-triangle"></i>
-            <span data-i18n="sendSOS">Send SOS</span>
+            <span >Send SOS</span>
           </a>
           <a
             href="./dashboard.html"
             class="bg-blue-600 text-white px-8 py-4 rounded-full font-medium text-lg glow-hover transform hover:scale-105 transition-all flex items-center gap-2"
           >
             <i data-feather="activity"></i>
-            <span data-i18n="dashboard">Dashboard</span>
+            <span >Dashboard</span>
           </a>
           <a
             id="user-login-btn"
@@ -100,7 +125,7 @@
             class="border-2 border-white px-8 py-4 rounded-full font-medium text-lg hover:bg-white hover:text-black transition-all flex items-center gap-2"
           >
             <i data-feather="users"></i>
-            <span data-i18n="volunteerLogin">User Login</span>
+            <span >User Login</span>
           </a>
           <a
             id="volunteer-hero-btn"
@@ -108,7 +133,7 @@
             class="hidden bg-green-600 text-white px-8 py-4 rounded-full font-medium text-lg glow-hover transform hover:scale-105 transition-all flex items-center gap-2"
           >
             <i data-feather="user-check"></i>
-            <span>Volunteer Portal</span>
+            <span >Volunteer Portal</span>
           </a>
         </div>
       </div>
@@ -118,7 +143,6 @@
     <!-- Features Section -->
     <section id="features" class="py-20 px-4 max-w-6xl mx-auto">
       <h2
-        data-i18n="criticalFunc"
         class="text-3xl font-medium mb-16 text-center"
       >
         Critical Functionalities
@@ -134,10 +158,10 @@
           >
             <i data-feather="alert-circle" class="w-6 h-6"></i>
           </div>
-          <h3 data-i18n="sendSOS" class="text-xl font-medium mb-3">
+          <h3 class="text-xl font-medium mb-3">
             SOS System
           </h3>
-          <p data-i18n="notifyMsg" class="text-[#D3D3D3]">
+          <p class="text-[#D3D3D3]">
             This will notify all nearby responders of your exact location.
           </p>
         </div>
@@ -151,10 +175,10 @@
           >
             <i data-feather="map" class="w-6 h-6"></i>
           </div>
-          <h3 data-i18n="liveMap" class="text-xl font-medium mb-3">
+          <h3 class="text-xl font-medium mb-3">
             Live Incident Map
           </h3>
-          <p data-i18n="liveMapDesc" class="text-[#D3D3D3]">
+          <p class="text-[#D3D3D3]">
             Visualize emergencies and resources in real-time across affected
             areas.
           </p>
@@ -169,10 +193,10 @@
           >
             <i data-feather="message-square" class="w-6 h-6"></i>
           </div>
-          <h3 data-i18n="aiAssist" class="text-xl font-medium mb-3">
+          <h3 class="text-xl font-medium mb-3">
             AI Assistant
           </h3>
-          <p data-i18n="aiAssistDesc" class="text-[#D3D3D3]">
+          <p class="text-[#D3D3D3]">
             Get critical information without internet using our NLP system.
           </p>
         </div>
@@ -203,10 +227,10 @@
           >
             <i data-feather="shield" class="w-6 h-6"></i>
           </div>
-          <h3 data-i18n="safetyProtocols" class="text-xl font-medium mb-3">
+          <h3 class="text-xl font-medium mb-3">
             Safety Protocols
           </h3>
-          <p data-i18n="safetyProtocolsDesc" class="text-[#D3D3D3]">
+          <p class="text-[#D3D3D3]">
             Essential guidelines and step-by-step procedures for emergencies.
           </p>
         </a>
@@ -221,10 +245,10 @@
           >
             <i data-feather="users" class="w-6 h-6"></i>
           </div>
-          <h3 data-i18n="volPortal" class="text-xl font-medium mb-3">
+          <h3 class="text-xl font-medium mb-3">
             Volunteer Portal
           </h3>
-          <p data-i18n="volPortalDesc" class="text-[#D3D3D3]">
+          <p class="text-[#D3D3D3]">
             Access missions, training, and coordination tools for responders.
           </p>
         </a>
@@ -235,7 +259,7 @@
     <section class="py-20 bg-[#1A1A1A]">
       <div class="max-w-4xl mx-auto text-center px-4">
         <div class="p-8 bg-[#0A0A0A] rounded-xl border border-[#333333]">
-          <h2 data-i18n="needHelp" class="text-3xl font-medium mb-6">
+          <h2 class="text-3xl font-medium mb-6">
             Need Immediate Help?
           </h2>
               <a
@@ -243,11 +267,11 @@
                 class="bg-red-600 text-white px-10 py-5 rounded-full font-bold text-xl glow-hover transform hover:scale-105 active:scale-95 hover:bg-red-700 hover:shadow-[0_0_30px_rgba(220,38,38,0.6)] transition-all flex items-center justify-center gap-3 mx-auto"
               >
                 <i data-feather="phone-call"></i>
-                <span>EMERGENCY HELPLINES</span>
+                <span >EMERGENCY HELPLINES</span>
               </a>
             </div>
 
-          <p data-i18n="notifyMsg" class="mt-6 text-[#D3D3D3]">
+          <p class="mt-6 text-[#D3D3D3]">
             This will notify all nearby responders of your exact location
           </p>
         </div>
@@ -261,7 +285,7 @@
           <h2 class="text-3xl font-medium">Critical Updates</h2>
           <span class="status-badge status-safe">
             <span class="alert-pulse-icon !bg-green-500"></span>
-            Live Connection
+            <span >Live Connection</span>
           </span>
         </div>
         <div class="grid md:grid-cols-2 gap-6">
@@ -344,16 +368,17 @@
         </div>
         <div class="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
         <div class="mt-10 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p class="text-xs text-gray-500">© 2025 CrisisMitra. Developed for Resilience.</p>
+          <p class="text-xs text-gray-500" data-i18n="copyright">© 2025 CrisisMitra. Developed for Resilience.</p>
           <div class="flex gap-8 text-xs text-gray-500">
-            <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
-            <a href="#" class="hover:text-white transition-colors">Contact Support</a>
+            <a href="#" class="hover:text-white transition-colors" data-i18n="privacyPolicy">Privacy Policy</a>
+            <a href="#" class="hover:text-white transition-colors" data-i18n="termsOfService">Terms of Service</a>
+            <a href="#" class="hover:text-white transition-colors" data-i18n="contactSupport">Contact Support</a>
           </div>
         </div>
       </div>
     </footer>
 
+    <script src="./js/lang-switcher.js"></script>
     <script src="./js/script.js"></script>
     <script src="./js/notifications.js"></script>
     

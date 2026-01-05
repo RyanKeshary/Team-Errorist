@@ -1,0 +1,199 @@
+/* CrisisMitra Core Mobile-First Layout Engine */
+
+:root {
+  --nav-height-mobile: 60px; /* Reduced specific height */
+  --header-height-desktop: 72px;
+
+  /* Fluid Typography - Tuned for Mobile Elegance */
+  --text-xs: clamp(0.7rem, 1.5vw, 0.8rem);
+  --text-sm: clamp(0.8rem, 2vw, 0.9rem);
+  --text-base: clamp(0.95rem, 2.5vw, 1rem);
+  --text-lg: clamp(1.1rem, 3vw, 1.25rem);
+  --text-xl: clamp(1.25rem, 4vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 5vw, 2rem);
+  --text-3xl: clamp(1.8rem, 6vw, 2.5rem); /* Reduced max header size */
+
+  /* Spacing */
+  --touch-target: 44px;
+}
+
+/* 1. Mobile-First Reset */
+html {
+  font-size: 16px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  padding-top: 0;
+  padding-bottom: 0;
+  overflow-x: hidden;
+}
+
+@media (min-width: 1024px) {
+  body {
+    padding-top: 0;
+  }
+}
+
+/* 2. Compact Top Alert Banner */
+.emergency-alert-banner {
+  font-size: 0.75rem !important; /* Small text */
+  padding: 8px 12px !important; /* Compact padding */
+  flex-wrap: wrap; /* allow wrapping on tiny screens */
+  gap: 8px !important;
+  line-height: 1.2;
+}
+
+.emergency-alert-banner .alert-pulse-icon {
+  width: 8px !important;
+  height: 8px !important;
+}
+
+.emergency-alert-banner a {
+  font-size: 0.7rem !important;
+  padding: 4px 8px !important;
+  white-space: nowrap;
+}
+
+/* 3. Responsive Buttons & Inputs */
+button,
+.btn,
+.btn-touch,
+input,
+select,
+textarea {
+  padding: 0.5rem 0.875rem !important; /* Slightly smaller horizontal padding */
+  font-size: 0.9rem !important;
+  min-height: 40px;
+}
+
+/* Landing Page Specific Tuning */
+.hero-title {
+  line-height: 1.1 !important;
+  margin-bottom: 1rem !important;
+}
+
+/* Make Hero Buttons stack nicely */
+@media (max-width: 640px) {
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem !important;
+  }
+
+  .hero-buttons a {
+    width: 100%;
+    justify-content: center;
+    padding: 12px !important; /* Consistent height */
+  }
+}
+
+/* 4. Navigation Architecture */
+
+/* Desktop Header - Visible on Desktop only */
+.nav-desktop-header {
+  display: none !important;
+}
+
+@media (min-width: 1024px) {
+  .nav-desktop-header {
+    display: block !important;
+  }
+}
+
+/* Mobile Top Nav Bar (Previously Bottom) */
+/* Mobile Top Nav Bar (Sticky) */
+.nav-bottom-bar {
+  /* Renaming visually to Top Bar, keeping class name to avoid HTML rewrite */
+  position: -webkit-sticky;
+  position: sticky; /* Sticky positioning */
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-height-mobile);
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 9999;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  padding: 0 10px;
+  width: 100%; /* Ensure full width in flow */
+}
+
+.nav-item-mobile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 0.65rem;
+  font-weight: 500;
+  gap: 3px;
+  text-decoration: none;
+  padding: 6px 8px;
+}
+
+.nav-item-mobile svg {
+  width: 20px;
+  height: 20px;
+}
+
+.nav-item-mobile.active {
+  color: white;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.nav-item-mobile.danger {
+  color: #ef4444;
+}
+
+.nav-item-mobile.danger.active {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+@media (min-width: 1024px) {
+  .nav-bottom-bar {
+    display: none;
+  }
+}
+
+/* 5. Chatbot Fix - No longer needs bottom offset, but kept just in case */
+#noupe-chat-widget,
+.noupe-widget-container {
+  bottom: 20px !important; /* Reset to normal since nav is top */
+}
+
+/* 6. Visual Scaling */
+.card,
+.glass-panel {
+  padding: 1.25rem !important; /* Comfortable padding */
+}
+
+h1 {
+  font-size: var(--text-3xl) !important;
+}
+h2 {
+  font-size: var(--text-2xl) !important;
+}
+h3 {
+  font-size: var(--text-xl) !important;
+}
+p {
+  font-size: var(--text-sm) !important;
+}
+
+/* Mobile Utilities */
+.hide-on-mobile {
+  display: none !important;
+}
+@media (min-width: 1024px) {
+  .hide-on-mobile {
+    display: flex !important;
+  }
+}

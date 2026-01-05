@@ -10,23 +10,13 @@
     <link rel="stylesheet" href="./css/globals.css" />
     <link rel="stylesheet" href="./css/notifications.css" />
     <link rel="stylesheet" href="./css/signin.css" />
+    <link rel="stylesheet" href="./css/core-responsive.css" />
+    <link rel="stylesheet" href="./css/lang-switcher.css" />
   </head>
-  <body class="min-h-screen flex items-center justify-center px-4 relative">
-    <!-- Language Switcher -->
-    <div class="absolute top-4 right-4 z-50">
-      <select
-        id="languageSelect"
-        class="bg-[#1a1a1a] border border-[#333] text-white text-sm rounded-lg px-3 py-2 outline-none focus:border-blue-500 transition"
-      >
-        <option value="en">English</option>
-        <option value="hi">हिंदी</option>
-        <option value="mr">मराठी</option>
-      </select>
-    </div>
-
-    <div
-      class="max-w-lg w-full bg-[#1A1A1A] p-8 rounded-2xl border border-[#333] shadow-lg"
-    >
+  <body
+    class="min-h-screen flex items-center justify-center px-4 py-12 relative"
+  >
+    <div class="max-w-lg w-full glass-card p-6 md:p-10 relative z-10 mx-auto">
       <div class="text-center mb-8">
         <i data-feather="user" class="w-10 h-10 mx-auto mb-3"></i>
         <h1 data-i18n="signinTitle" class="text-3xl font-medium">
@@ -37,91 +27,106 @@
         </p>
       </div>
 
-      <form id="signinForm" class="space-y-5">
-        <div>
-          <label data-i18n="nameLbl" class="block mb-2">Full Name</label>
-          <input
-            type="text"
-            id="name"
-            class="form-input"
-            data-i18n-placeholder="namePlaceholder"
-            placeholder="Your name"
-            required
-          />
-        </div>
-
-        <div>
-          <label data-i18n="phoneLbl" class="block mb-2">Phone Number</label>
-          <input
-            type="tel"
-            id="phone"
-            class="form-input"
-            placeholder="+91 9876543210"
-            required
-          />
-        </div>
-
-        <div>
-          <label data-i18n="emailLbl" class="block mb-2"
-            >Email (Optional)</label
-          >
-          <input
-            type="email"
-            id="email"
-            class="form-input"
-            data-i18n-placeholder="emailPlaceholder"
-            placeholder="you@example.com"
-          />
-        </div>
-
-        <div>
-          <label data-i18n="addressLbl" class="block mb-2"
-            >Address (Optional)</label
-          >
-          <input
-            type="text"
-            id="address"
-            class="form-input"
-            data-i18n-placeholder="addressPlaceholder"
-            placeholder="Your address"
-          />
-        </div>
-
-        <h2 data-i18n="emergencyContacts" class="text-xl font-medium mt-6 mb-2">
-          Emergency Contacts
-        </h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <form id="signinForm" class="space-y-3">
+        <div class="grid grid-cols-2 gap-3">
           <div>
+            <label data-i18n="nameLbl" class="block mb-1 text-sm font-medium"
+              >Full Name</label
+            >
             <input
               type="text"
-              id="contact1-name"
-              class="form-input mb-2"
-              data-i18n-placeholder="c1Name"
-              placeholder="Contact 1 Name"
-            />
-            <input
-              type="tel"
-              id="contact1-phone"
+              id="name"
               class="form-input"
-              data-i18n-placeholder="c1Phone"
-              placeholder="Contact 1 Phone"
+              data-i18n-placeholder="namePlaceholder"
+              placeholder="Name"
+              required
             />
           </div>
+
           <div>
-            <input
-              type="text"
-              id="contact2-name"
-              class="form-input mb-2"
-              data-i18n-placeholder="c2Name"
-              placeholder="Contact 2 Name"
-            />
+            <label data-i18n="phoneLbl" class="block mb-1 text-sm font-medium"
+              >Phone</label
+            >
             <input
               type="tel"
-              id="contact2-phone"
+              id="phone"
               class="form-input"
-              data-i18n-placeholder="c2Phone"
-              placeholder="Contact 2 Phone"
+              placeholder="+91..."
+              required
             />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label data-i18n="emailLbl" class="block mb-1 text-sm text-gray-400"
+              >Email (Opt)</label
+            >
+            <input
+              type="email"
+              id="email"
+              class="form-input"
+              placeholder="you@mail.com"
+            />
+          </div>
+
+          <div>
+            <label
+              data-i18n="addressLbl"
+              class="block mb-1 text-sm text-gray-400"
+              >City (Opt)</label
+            >
+            <input
+              type="text"
+              id="address"
+              class="form-input"
+              placeholder="City/Area"
+            />
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <h2
+            data-i18n="emergencyContacts"
+            class="text-sm font-bold text-gray-300 mb-2 uppercase tracking-wide"
+          >
+            Emergency Contacts
+          </h2>
+          <div class="space-y-2">
+            <!-- Contact 1 -->
+            <div class="grid grid-cols-2 gap-3">
+              <input
+                type="text"
+                id="contact1-name"
+                class="form-input"
+                data-i18n-placeholder="c1Name"
+                placeholder="Contact 1 Name"
+              />
+              <input
+                type="tel"
+                id="contact1-phone"
+                class="form-input"
+                data-i18n-placeholder="c1Phone"
+                placeholder="Phone No."
+              />
+            </div>
+            <!-- Contact 2 -->
+            <div class="grid grid-cols-2 gap-3">
+              <input
+                type="text"
+                id="contact2-name"
+                class="form-input"
+                data-i18n-placeholder="c2Name"
+                placeholder="Contact 2 Name"
+              />
+              <input
+                type="tel"
+                id="contact2-phone"
+                class="form-input"
+                data-i18n-placeholder="c2Phone"
+                placeholder="Phone No."
+              />
+            </div>
           </div>
         </div>
 
@@ -162,5 +167,7 @@
     </div>
 
     <script type="module" src="./js/signin.js"></script>
+    <script src="./js/lang-switcher.js"></script>
+    <script src="./js/notifications.js"></script>
   </body>
 </html>

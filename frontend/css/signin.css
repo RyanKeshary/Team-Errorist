@@ -1,18 +1,149 @@
+/* CSS Variables for consistently premium feel */
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --primary-glow: rgba(59, 130, 246, 0.5); /* Blue glow */
+}
+
 body {
-  background-color: #0a0a0a;
+  background-color: #050505;
   color: #ffffff;
   font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+  position: relative;
 }
+
+/* Dynamic Mesh Gradient Background */
+body::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 50% 50%, #1a1a40 0%, #000000 50%);
+  opacity: 0.6;
+  z-index: -2;
+  animation: rotateBackground 30s linear infinite;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+      circle at 80% 20%,
+      rgba(59, 130, 246, 0.15) 0%,
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 20% 80%,
+      rgba(220, 38, 38, 0.15) 0%,
+      transparent 40%
+    );
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes rotateBackground {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Glassmorphism CardContainer */
+.glass-card {
+  background: rgba(20, 20, 20, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Typography Enhancements */
+h1 {
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Premium Inputs */
 .form-input {
-  background-color: #1a1a1a;
+  background-color: rgba(0, 0, 0, 0.3);
   border: 1px solid #333;
   color: white;
-  border-radius: 0.5rem;
-  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
   width: 100%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 1rem; /* Prevent zoom on mobile */
 }
+
+.form-input:hover {
+  border-color: #444;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 .form-input:focus {
   outline: none;
-  border-color: #ffffff;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+  border-color: #3b82f6;
+  background-color: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+  transform: translateY(-1px);
+}
+
+.form-input::placeholder {
+  color: #666;
+}
+
+/* Custom Checkbox */
+input[type="checkbox"] {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  filter: hue-rotate(180deg); /* Adjust accent color if needed */
+}
+
+/* Buttons */
+#signinSubmitBtn {
+  background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+  border: none;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+#signinSubmitBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+}
+
+#signinSubmitBtn:active {
+  transform: translateY(0);
+}
+
+/* Language Switcher */
+#languageSelect {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+
+#languageSelect:hover {
+  background: rgba(0, 0, 0, 0.7);
 }

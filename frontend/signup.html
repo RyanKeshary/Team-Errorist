@@ -9,22 +9,13 @@
     <link rel="icon" href="./Material/logo.png" type="image/x-icon" />
     <link rel="stylesheet" href="./css/globals.css" />
     <link rel="stylesheet" href="./css/notifications.css" />
+    <link rel="stylesheet" href="./css/core-responsive.css" />
+    <link rel="stylesheet" href="./css/lang-switcher.css" />
   </head>
 
   <body
     class="min-h-screen bg-[#0A0A0A] flex items-center justify-center p-4 relative"
   >
-    <!-- Language Switcher -->
-    <div class="absolute top-4 right-4 z-50">
-      <select
-        id="languageSelect"
-        class="bg-[#1a1a1a] border border-[#333] text-white text-sm rounded-lg px-3 py-2 outline-none focus:border-blue-500 transition"
-      >
-        <option value="en">English</option>
-        <option value="hi">हिंदी</option>
-        <option value="mr">मराठी</option>
-      </select>
-    </div>
     <div class="w-full max-w-md">
       <!-- Logo Header -->
       <div class="text-center mb-8">
@@ -162,13 +153,13 @@
               </div>
               <div class="ml-3">
                 <label for="terms" class="text-sm text-gray-400">
-                  <span data-i18n="agree">I agree to the</span>
+                  <span>I agree to the</span>
                   <a href="#" class="text-blue-400 hover:text-blue-300"
-                    ><span data-i18n="terms">Terms of Service</span></a
+                    ><span>Terms of Service</span></a
                   >
-                  <span data-i18n="and">and</span>
+                  <span>and</span>
                   <a href="#" class="text-blue-400 hover:text-blue-300"
-                    ><span data-i18n="privacy">Privacy Policy</span></a
+                    ><span>Privacy Policy</span></a
                   >
                 </label>
               </div>
@@ -226,5 +217,7 @@
     </div>
 
     <script type="module" src="./js/signup.js"></script>
+    <script src="./js/lang-switcher.js"></script>
+    <script src="./js/notifications.js"></script>
   </body>
 </html>

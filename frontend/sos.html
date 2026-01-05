@@ -9,6 +9,10 @@
     <link rel="icon" href="./Material/logo.png" type="image/x-icon" />
     <link rel="stylesheet" href="./css/globals.css" />
     <link rel="stylesheet" href="./css/sos.css" />
+    <link rel="stylesheet" href="./css/notifications.css" />
+    <link rel="stylesheet" href="./css/core-responsive.css" />
+    <link rel="stylesheet" href="./css/lang-switcher.css" />
+  </head>
   <body class="min-h-screen bg-[#0A0A0A]">
     <!-- Global Emergency Alert Banner -->
     <div class="emergency-alert-banner">
@@ -19,8 +23,37 @@
       </span>
       <a href="./protocols.html" class="bg-white/20 hover:bg-white/30 px-3 py-1 rounded text-xs font-bold transition-colors">VIEW PROTOCOLS</a>
     </div>
-    <!-- Header -->
-    <header class="sticky top-0 z-[60] bg-[#0A0A0A]/95 backdrop-blur-md px-4 py-4 md:py-6 border-b border-[#333333] transition-all duration-300">
+    </div>
+
+    <!-- Mobile Top Navigation Bar (Sticky) -->
+    <nav class="nav-bottom-bar">
+      <a href="./index.html" class="nav-item-mobile">
+        <i data-feather="home"></i>
+        <span>Home</span>
+      </a>
+      <a href="./dashboard.html" class="nav-item-mobile">
+        <i data-feather="activity"></i>
+        <span>Dash</span>
+      </a>
+      <a href="./sos.html" class="nav-item-mobile danger active">
+        <i data-feather="alert-circle"></i>
+        <span>SOS</span>
+      </a>
+      <a href="./helpline.html" class="nav-item-mobile">
+        <i data-feather="phone"></i>
+        <span>Help</span>
+      </a>
+      <a href="./map.html" class="nav-item-mobile">
+        <i data-feather="map"></i>
+        <span>Map</span>
+      </a>
+      <a href="./protocols.html" class="nav-item-mobile">
+        <i data-feather="shield"></i>
+        <span>Tips</span>
+      </a>
+    </nav>
+    <!-- Desktop Header -->
+    <header class="nav-desktop-header sticky top-0 z-[60] bg-[#0A0A0A]/95 backdrop-blur-md px-4 py-4 md:py-6 border-b border-[#333333] transition-all duration-300">
       <div
         class="max-w-6xl mx-auto flex flex-wrap justify-between items-center gap-4"
       >
@@ -47,19 +80,14 @@
             <span class="hidden sm:inline">Helplines</span>
           </a>
 
-          <!-- Language Switcher -->
-          <div class="lang-switcher-container shrink-0">
-            <button class="lang-btn active" data-lang="en">EN</button>
-            <button class="lang-btn" data-lang="hi">हिंदी</button>
-            <button class="lang-btn" data-lang="mr">मराठी</button>
-          </div>
+          <!-- Language Switcher: Replaced by FAB -->
         </div>
       </div>
     </header>
 
     <main class="max-w-4xl mx-auto px-4 py-12">
       <div class="text-center mb-8">
-        <h1 data-i18n="title" class="text-3xl font-medium mb-4">
+        <h1 class="text-3xl font-medium mb-4">
           Send Distress Signal
         </h1>
         <p data-i18n="desc" class="text-[#D3D3D3]">
@@ -540,119 +568,6 @@
       const db = getDatabase(app);
       feather.replace();
 
-      // Translations
-      const translations = {
-        en: {
-          helper: "Your Helper",
-          title: "Send Distress Signal",
-          desc: "This alert will be sent to all nearby responders with your location.",
-          nameLbl: "Your Name",
-          locLbl: "Location",
-          detect: "Detecting...",
-          detectBtn: "Detect Location",
-          mapBtn: "Open Map",
-          services: "We are using your device location services...",
-          typeLbl: "Type of Emergency",
-          med: "Medical Emergency",
-          trap: "Trapped/Rescue Needed",
-          fire: "Fire",
-          flood: "Flood",
-          other: "Other Critical Need",
-          detailsLbl: "Additional Details",
-          photoLbl: "Photo/Video Evidence (Optional)",
-          upload: "Click to upload or drag and drop",
-          uploadDesc: "Files will be sent when connection is restored",
-          send: "Send Emergency Alert",
-          offlineTitle: "Offline Notice",
-          offlineMsg:
-            "Your alert has been queued and will automatically send when connection is restored. Stay in this location if possible.",
-        },
-        hi: {
-          helper: "आपका सहायक",
-          title: "आपातकालीन संकेत भेजें",
-          desc: "यह सूचना आपके स्थान के साथ सभी नजदीकी उत्तरदाताओं को भेजी जाएगी।",
-          nameLbl: "आपका नाम",
-          locLbl: "स्थान",
-          detect: "खोज रहा है...",
-          detectBtn: "स्थान खोजें",
-          mapBtn: "मानचित्र खोलें",
-          services: "हम आपकी डिवाइस लोकेशन सेवाओं का उपयोग कर रहे हैं...",
-          typeLbl: "आपातकाल का प्रकार",
-          med: "चिकित्सा आपातकाल",
-          trap: "फंसे हुए/बचाव की आवश्यकता",
-          fire: "आग",
-          flood: "बाढ़",
-          other: "अन्य महत्वपूर्ण आवश्यकता",
-          detailsLbl: "अतिरिक्त विवरण",
-          photoLbl: "फोटो/वीडियो सबूत (वैकल्पिक)",
-          upload: "अपलोड करने के लिए क्लिक करें या ड्रैग और ड्रॉप करें",
-          uploadDesc: "कनेक्शन बहाल होने पर फाइलें भेजी जाएंगी",
-          send: "आपातकालीन चेतावनी भेजें",
-          offlineTitle: "ऑफ़लाइन सूचना",
-          offlineMsg:
-            "आपका अलर्ट कतार में है और कनेक्शन बहाल होने पर स्वचालित रूप से भेजा जाएगा। यदि संभव हो तो इस स्थान पर रहें।",
-        },
-        mr: {
-          helper: "तुमचा मदतनीस",
-          title: "आपत्कालीन सिग्नल पाठवा",
-          desc: "ही सूचना तुमच्या स्थानासह सर्व जवळच्या प्रतिसादकर्त्यांना पाठविली जाईल.",
-          nameLbl: "तुमचे नाव",
-          locLbl: "स्थान",
-          detect: "शोधत आहे...",
-          detectBtn: "स्थान शोधा",
-          mapBtn: "नकाशा उघडा",
-          services: "आम्ही तुमच्या डिव्हाइस लोकेशन सेवा वापरत आहोत...",
-          typeLbl: "आणीबाणीचा प्रकार",
-          med: "वैद्यकीय आणीबाणी",
-          trap: " अडकलेले/बचाव आवश्यक",
-          fire: "आग",
-          flood: "पूर",
-          other: "इतर गंभीर गरज",
-          detailsLbl: "अतिरिक्त तपशील",
-          photoLbl: "फोटो/व्हिडिओ पुरावा (पर्यायी)",
-          upload: "अपलोड करण्यासाठी क्लिक करा किंवा ड्रॅग आणि ड्रॉप करा",
-          uploadDesc: "कनेक्शन पुनर्संचयित झाल्यावर फाइल्स पाठवल्या जातील",
-          send: "आपत्कालीन सूचना पाठवा",
-          offlineTitle: "ऑफलाइन सूचना",
-          offlineMsg:
-            "तुमचा अलर्ट रांगेत आहे आणि कनेक्शन पुनर्संचयित झाल्यावर आपोआप पाठवला जाईल. शक्य असल्यास या ठिकाणी राहा.",
-        },
-      };
-
-      function setLanguage(lang) {
-        localStorage.setItem("crisisMitraLang", lang);
-
-        // Update Buttons
-        document.querySelectorAll(".lang-btn").forEach((btn) => {
-          btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
-        });
-
-        // Text
-        document.querySelectorAll("[data-i18n]").forEach((el) => {
-          const key = el.getAttribute("data-i18n");
-          if (translations[lang] && translations[lang][key]) {
-            el.textContent = translations[lang][key];
-          }
-        });
-
-        // Placeholders
-        document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
-          const key = el.getAttribute("data-i18n-placeholder");
-          if (translations[lang] && translations[lang][key]) {
-            el.placeholder = translations[lang][key];
-          }
-        });
-      }
-
-      // Initialize
-      const savedLang = localStorage.getItem("crisisMitraLang") || "en";
-      setLanguage(savedLang);
-
-      document.querySelectorAll(".lang-btn").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          setLanguage(btn.getAttribute("data-lang"));
-        });
-      });
 
       // Collapse header on scroll
       let lastScrollTop = 0;
@@ -1214,5 +1129,7 @@
 
     <!-- Chatbot Embed -->
     <script src="https://www.noupe.com/embed/0199cc5a78967a5e8e7d90d4bec06d4f5e41.js"></script>
+    <script src="./js/lang-switcher.js"></script>
+    <script src="./js/sos.js"></script>
   </body>
 </html>

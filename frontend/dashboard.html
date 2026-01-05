@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="./css/globals.css" />
     <link rel="stylesheet" href="./css/dashboard.css" />
     <link rel="stylesheet" href="./css/notifications.css" />
+    <link rel="stylesheet" href="./css/core-responsive.css" />
+    <link rel="stylesheet" href="./css/lang-switcher.css" />
   </head>
 
   <body class="min-h-screen bg-[#0A0A0A]">
@@ -31,9 +33,37 @@
         >VIEW PROTOCOLS</a
       >
     </div>
-    <!-- Header -->
+
+    <!-- Mobile Top Navigation Bar (Sticky) -->
+    <nav class="nav-bottom-bar">
+      <a href="./index.html" class="nav-item-mobile">
+        <i data-feather="home"></i>
+        <span>Home</span>
+      </a>
+      <a href="./dashboard.html" class="nav-item-mobile active">
+        <i data-feather="activity"></i>
+        <span>Dash</span>
+      </a>
+      <a href="./sos.html" class="nav-item-mobile danger">
+        <i data-feather="alert-circle"></i>
+        <span>SOS</span>
+      </a>
+      <a href="./helpline.html" class="nav-item-mobile">
+        <i data-feather="phone"></i>
+        <span>Help</span>
+      </a>
+      <a href="./map.html" class="nav-item-mobile">
+        <i data-feather="map"></i>
+        <span>Map</span>
+      </a>
+      <a href="./protocols.html" class="nav-item-mobile">
+        <i data-feather="shield"></i>
+        <span>Tips</span>
+      </a>
+    </nav>
+    <!-- Desktop Header -->
     <header
-      class="sticky top-0 z-[60] bg-[#0A0A0A]/95 backdrop-blur-md px-4 py-4 md:py-6 border-b border-[#333333]"
+      class="nav-desktop-header sticky top-0 z-[60] bg-[#0A0A0A]/95 backdrop-blur-md px-4 py-4 md:py-6 border-b border-[#333333]"
     >
       <div
         class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4"
@@ -87,17 +117,27 @@
           </a>
 
           <!-- Language Switcher -->
-          <div class="lang-switcher-container shrink-0" id="langSwitcher">
-            <button class="lang-btn active" data-lang="en">EN</button>
-            <button class="lang-btn" data-lang="hi">हिंदी</button>
-            <button class="lang-btn" data-lang="mr">मराठी</button>
-          </div>
+          <!-- Language Switcher: Replaced by FAB -->
+        </div>
+      </div>
+    </header>
         </div>
       </div>
     </header>
 
     <!-- Dashboard Content -->
     <main class="max-w-6xl mx-auto px-4 py-8">
+      <!-- Mobile Volunteer Login (Visible only on mobile) -->
+      <div class="lg:hidden flex justify-end mb-6">
+        <a
+          href="./login.html"
+          class="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2 shadow-lg hover:bg-blue-700 transition"
+        >
+          <i data-feather="user" class="w-4 h-4"></i>
+          <span>Volunteer Login</span>
+        </a>
+      </div>
+
       <h1 data-i18n="responseDashboard" class="text-3xl font-medium mb-8">
         Response Dashboard
       </h1>
@@ -123,7 +163,7 @@
         <div class="stat-card p-6 rounded-xl">
           <div class="flex items-center justify-between">
             <div>
-              <p data-i18n="responders" class="text-[#D3D3D3] text-sm">
+              <p class="text-[#D3D3D3] text-sm">
                 Responders
               </p>
               <p class="text-3xl font-bold">128</p>
@@ -398,6 +438,7 @@
     </footer>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="./js/lang-switcher.js"></script>
     <script src="./js/dashboard.js"></script>
     <script src="./js/notifications.js"></script>
 
@@ -419,7 +460,6 @@
         });
       }
     </script>
-    <!-- Chatbot Embed -->
     <script src="https://www.noupe.com/embed/0199cc5a78967a5e8e7d90d4bec06d4f5e41.js"></script>
   </body>
 </html>
