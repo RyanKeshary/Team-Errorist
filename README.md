@@ -1,7 +1,8 @@
 # 🚨 CrisisMitra – Offline-First Emergency Response Platform
 **“Every Second Counts”**  
 
-🏆 **1st Place – JARVIS 24-Hour Hackathon**
+<!-- 🏆 **1st Place – JARVIS 24-Hour Hackathon** -->
+
 
 **CrisisMitra** is an **offline-first, multilingual emergency response and disaster coordination web platform** built to operate reliably in **low-connectivity or no-connectivity environments**. It enables civilians to send SOS alerts, responders to coordinate actions, and authorities to monitor incidents through live maps and dashboards using lightweight, browser-native technologies.
 
